@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Votings</h1>
+
+<table border="1" >
+  <tr>
+        <td> voting._id </td>
+        <td> voting.user_id </td>
+        <td> voting.audience </td>
+        <td> voting.searchable </td>
+        <td> voting.online_from </td>
+        <td> voting.online_to </td>
+        <td> voting.title </td>
+        <td> voting.description </td>
+        <td> voting.contribution </td>
+        <td> voting.item_type </td>
+        <td> voting.voting_type </td>
+        <td> voting.contribution </td>
+      </tr>
+
+
+    <% @votings.each do |voting| %>
+      <tr>
+        <td><%= voting._id %></td>
+        <td><%= voting.user_id %></td>
+        <td><%= voting.audience %></td>
+        <td><%= voting.searchable %></td>
+        <td><%= voting.online_from %></td>
+        <td><%= voting.online_to %></td>
+        <td><%= voting.title %></td>
+        <td><%= voting.description %></td>
+        <td><%= voting.contribution %></td>
+        <td><%= voting.item_type %></td>
+        <td><%= voting.voting_type %></td>
+        <td><%= voting.contribution %></td>
+      </tr>
+    <% end %>
+
+</table>
+
+

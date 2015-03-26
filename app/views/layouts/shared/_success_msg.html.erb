@@ -1,0 +1,8 @@
+<% if flash[:success_msg] %>
+  <div class="alert alert-success">
+    Good news!
+    <ul>
+      <li><%= flash[:success_msg] %></li>
+    </ul>
+  </div>
+<% end %>

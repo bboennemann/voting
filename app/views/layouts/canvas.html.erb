@@ -1,0 +1,9 @@
+<%= render '/layouts/shared/success_msg' %>
+<%= render '/layouts/shared/warning_msg' %>
+<%= yield %>
+
+<script type="text/javascript" >
+	$('#wizardSelection').click(function(){
+		loadHtml(this);
+	});
+</script>

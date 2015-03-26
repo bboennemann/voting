@@ -1,0 +1,8 @@
+<% if flash[:warning_msg] %>
+  <div class="alert alert-warning">
+    Hey! We just wanted to let you know:
+    <ul>
+      <li><%= flash[:warning_msg] %></li>
+    </ul>
+  </div>
+<% end %>

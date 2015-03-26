@@ -1,0 +1,2 @@
+module VotingWizardsHelper
+end

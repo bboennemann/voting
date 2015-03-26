@@ -1,0 +1,185 @@
+<%= form_for(@voting, :html => {:class => 'form-horizontal', :id => 'new_voting_form'}) do |f| %>
+  <% if @voting.errors.any? %>
+    <div class="form-group">
+      <div class="col-md-1">
+       &nbsp;
+      </div>
+      <div class="col-md-10 alert alert-danger">
+        Oh snap! There are a few problems with your voting. Please take a look:
+        <ul>
+          <% @voting.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-1">
+        &nbsp;
+      </div>
+    </div>
+  <% end %>
+
+<div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Voting Title:
+    </div>
+    <div class="col-md-7">
+    <%= f.text_field :title, class: "form-control", placeholder: "E.g. Cutest kitten photo!" %>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>  
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Voting Description:
+    </div>
+    <div class="col-md-7">
+      <%= f.text_area :description, class: "form-control", rows: "3" %>
+      
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Audience:
+    </div>
+    <div class="col-md-7">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info <%= @voting.audience == 'everyone' ? 'active' : nil %>">
+          <%= f.radio_button :audience, 'everyone' %>Everybody
+        </label>
+        <label class="btn btn-info <%= @voting.audience == 'signed_in' ? 'active' : nil %>">
+          <%= f.radio_button :audience, 'signed_in' %>Signed In
+        </label>
+        <label class="btn btn-info <%= @voting.audience == 'link' ? 'active' : nil %>">
+          <%= f.radio_button :audience, 'link' %>Only with the link
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Contribution:
+    </div>
+    <div class="col-md-7">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info <%= @voting.contribution ? 'active' : nil %>">
+          <%= f.radio_button :contribution, true %>Allowed
+        </label>
+        <label class="btn btn-info <%= @voting.contribution ? nil : 'active' %>">
+          <%= f.radio_button :contribution, false %>Not Allowed
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Searchable:
+    </div>
+    <div class="col-md-7">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info <%= @voting.searchable ? 'active' : nil %>">
+          <%= f.radio_button :searchable, true %>Yes
+        </label>
+        <label class="btn btn-info <%= @voting.searchable ? nil : 'active' %>">
+          <%= f.radio_button :searchable, false %>No
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Online from:
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="date" class="form-control" placeholder="<%= Date.current %>">
+        <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
+      </div>
+    </div>
+    <div class="col-md-2">
+      &nbsp;
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Online To:
+    </div>
+    <div class="col-md-6">
+      <div class="input-group">
+        <input type="date" class="form-control" placeholder="<%= (Date.current() + Rails.configuration.x.voting.default_expiration) %>">
+        <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
+      </div>      
+    </div>
+    <div class="col-md-2">
+      &nbsp;
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-10">
+      <button id="submit"  class="btn btn-lg btn-success">Create my Voting</button>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+
+<% end %>
+<script type="text/javascript">
+$("#new_voting_form").ajaxForm({
+      type: "post", 
+      url : '/votings',
+      error : function(jqXHR, textStatus, errorThrown) {
+        alert('There was a problem loading the requested content. Please try again later');
+      },
+      success : function(html, resultText) {
+        $('#overlay').html(html);
+      }
+    });
+</script>
