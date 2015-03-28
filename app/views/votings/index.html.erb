@@ -21,7 +21,7 @@
 
     <% @votings.each do |voting| %>
       <tr>
-        <td><%= voting._id %></td>
+        <td><%= link_to voting._id, voting %></td>
         <td><%= voting.user_id %></td>
         <td><%= voting.audience %></td>
         <td><%= voting.searchable %></td>

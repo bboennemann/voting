@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @image_item.image_file.url(:xxs) %><br>
+<%= image_tag @image_item.image_file.url(:s) %><br>
+<%= image_tag @image_item.image_file.url(:m) %><br>
+<%= image_tag @image_item.image_file.url(:l) %><br>
+<%= image_tag @image_item.image_file.url(:xl) %><br>
+<%= image_tag @image_item.image_file.url.to_s %><br>
+
 <%= link_to 'Edit', edit_image_item_path(@image_item) %> |
 <%= link_to 'Back', image_items_path %>

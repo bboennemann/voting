@@ -10,10 +10,10 @@ class ImageItem
 
   has_mongoid_attached_file :image_file,
     :storage        => :s3,
+    :s3_host_name   => 's3.amazonaws.com',
+    :path           => '/' + Rails.env.to_s + '/image_items/:id/:style.:extension',
     :s3_credentials => Rails.configuration.x.s3.credentials,
-    :path           => Rails.env + '/images/' + ':id/:style.:extension',
-    :url            => 'http://s3.amazonaws.com/' + Rails.env + '/images/' + ':id/:style.:extension',
     :styles         => Rails.configuration.x.image.sizes
 
-
+  validates_attachment :image_file, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 end

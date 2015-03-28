@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # for s3 storage
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # enhanced error page
 gem 'better_errors', :group => [:development, :test]

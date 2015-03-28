@@ -1,3 +1,3 @@
-class ClassicVoting
+class ClassicVoting 
   include Mongoid::Document
 end

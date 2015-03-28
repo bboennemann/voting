@@ -1,0 +1,34 @@
+<%= form_for(@image_item, id: :fileupload, multipart: true) do |f| %>
+  <% if @image_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image_item.errors.count, "error") %> prohibited this image_item from being saved:</h2>
+
+      <ul>
+      <% @image_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :voting_id, value: @image_item.voting_id %>
+  <%= f.file_field :image_file %>
+
+  <%= f.submit %>
+
+
+<% end %>
+
+
+<script type="text/javascript">
+$("#fileupload").ajaxForm({
+      type: "post", 
+      url : '/image_items',
+      error : function(jqXHR, textStatus, errorThrown) {
+        alert('There was a problem loading the requested content. Please try again later');
+      },
+      success : function(html, resultText) {
+       // $('#overlay').html(html);
+      }
+    });
+</script>

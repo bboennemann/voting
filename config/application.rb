@@ -32,7 +32,7 @@ module Votogenic
     ### Custom app configuration below
 
     # Config parameters can be accessed with
-    # e.g. Rails.configuration.voting.default_expiration
+    # e.g. Rails.configuration.x.voting.default_expiration
 
     # voting
     config.x.voting.default_expiration = 90 # days
@@ -56,8 +56,8 @@ module Votogenic
     # amazon s3 configuration
     config.x.s3.credentials = {
         :bucket => 'votogenic', 
-        :access_key_id => "AKIAIYH2ZUYDSBJDCNRA", 
-        :secret_access_key => "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"
+        :access_key_id => "AKIAJ6Q54GLWOKPI4SBA", 
+        :secret_access_key => "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"
     }
   end
 end

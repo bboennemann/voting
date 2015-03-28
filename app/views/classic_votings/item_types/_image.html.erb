@@ -1,0 +1,4 @@
+
+<% @voting.image_items.each do |item| %>
+<%= image_tag item.image_file.url(:s) %><br>
+<% end %>

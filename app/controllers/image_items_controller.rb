@@ -16,7 +16,7 @@ class ImageItemsController < ApplicationController
 
   # GET /image_items/new
   def new
-    @image_item = ImageItem.new
+    @image_item = ImageItem.new(:voting_id => params[:voting_id])
   end
 
   # GET /image_items/1/edit
@@ -26,16 +26,23 @@ class ImageItemsController < ApplicationController
   # POST /image_items
   # POST /image_items.json
   def create
-    @image_item = ImageItem.new(image_item_params)
+
+    @voting = Voting.find(image_item_params[:voting_id])
+
+    image_item_params[:image_file].each do |file|
+      @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file )
+    end
+
+    #@image_item = ImageItem.new(image_item_params)
 
     respond_to do |format|
-      if @image_item.save
-        format.html { redirect_to @image_item, notice: 'Image item was successfully created.' }
+#      if @image_item.save
+        format.html { redirect_to @voting, notice: 'Image item was successfully created.' }
         format.json { render :show, status: :created, location: @image_item }
-      else
-        format.html { render :new }
-        format.json { render json: @image_item.errors, status: :unprocessable_entity }
-      end
+#      else
+#        format.html { render :new }
+#        format.json { render json: @image_item.errors, status: :unprocessable_entity }
+#      end
     end
   end
 
@@ -71,6 +78,7 @@ class ImageItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_item_params
-      params[:image_item]
+      #params[:image_item]
+      params.require(:image_item).permit(:voting_id, :image_file => [])
     end
 end

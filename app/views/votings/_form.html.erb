@@ -97,6 +97,7 @@
     </div>
   </div>
 
+
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -125,45 +126,38 @@
       &nbsp;
     </div>
     <div class="col-md-3 text-info">
-      Online from:
+      Online from - To:
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="input-group">
         <input type="date" class="form-control" placeholder="<%= Date.current %>">
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>
     </div>
-    <div class="col-md-2">
-      &nbsp;
-    </div>
-  </div>
-
-
-  <div class="form-group">
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-    <div class="col-md-3 text-info">
-      Online To:
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="input-group">
         <input type="date" class="form-control" placeholder="<%= (Date.current() + Rails.configuration.x.voting.default_expiration) %>">
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>      
     </div>
-    <div class="col-md-2">
-      &nbsp;
-    </div>
+
   </div>
+
+
   <br>
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
     </div>
-    <div class="col-md-10">
+    <div class="col-md-4">
       <button id="submit"  class="btn btn-lg btn-success">Create my Voting</button>
     </div>
+    <div class="col-md-1">
+      -or-
+    </div>
+    <div class="col-md-5">
+      <button id="cancel" onclick="hideCanvas();" class="btn btn-sm btn-danger" href='/'>cancel</button>
+    </div>    
     <div class="col-md-1">
       &nbsp;
     </div>

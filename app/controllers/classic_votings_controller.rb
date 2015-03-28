@@ -64,7 +64,7 @@ class ClassicVotingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_classic_voting
-      @classic_voting = ClassicVoting.find(params[:id])
+      @voting = Voting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
