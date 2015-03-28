@@ -1,4 +1,45 @@
+<% content_for :side_nav do %>
+  <img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
+  <ul class="nav nav-sidebar">
+    <li><a href="#"><%= @voting.user_id  %></a></li>
+    <li></li>
+  </ul>
+  <a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true">Message</span></a>
+<% end %>
 
+<% index = 1 %>
 <% @voting.image_items.each do |item| %>
-<%= image_tag item.image_file.url(:s) %><br>
+
+	<div class="row">
+    	<div class="col-md-1">
+    		<h1><%= index %></h1>
+    		<br>
+
+    		<span class="badge"><%= item.hits %></span>
+    		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+  			
+  			<br><br>
+
+  			<span class="badge"><%= item.score %></span>
+  			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+  			
+    	</div>
+
+    	<div class="col-md-4">
+    		<%= image_tag item.image_file.url(:s), class: "img-rounded" %><br>
+    	</div>
+
+    	<div class="col-md-3">
+    		Description: <%= item.description %>
+    	</div>
+
+    	<div class="col-md-4">
+    		User: <%= item.user_id %>
+    	</div>
+
+    </div>
+
+    <br>
+
+	<% index = index + 1 %>
 <% end %>

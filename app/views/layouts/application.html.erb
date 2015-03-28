@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Votogenic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- Include boostrap from CDN -->
@@ -22,11 +23,11 @@
   <%= render '/layouts/shared/warning_msg' %>
 
   <%= yield %>
+  
+  <%= render 'layouts/shared/canvas' %>
 
 </div>
 
 
-
-<%= render 'layouts/shared/canvas' %>
 </body>
 </html>

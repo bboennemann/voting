@@ -4,9 +4,11 @@ class ImageItem
 
   belongs_to :voting
 
-  field :voting_id, type: String
-  field :hits, 		type: Integer
-  field :score, 	type: Integer
+  field :voting_id,   type: String
+  field :user_id,     type: String
+  field :hits,        type: Integer, default: 0
+  field :score,       type: Integer, default: 0
+  field :description, type: String
 
   has_mongoid_attached_file :image_file,
     :storage        => :s3,
