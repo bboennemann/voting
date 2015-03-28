@@ -1,6 +1,8 @@
 class ClassicVotingsController < ApplicationController
   before_action :set_classic_voting, only: [:show, :edit, :update, :destroy]
 
+  layout 'sidebar', only: [:show]
+
   # GET /classic_votings
   # GET /classic_votings.json
   def index

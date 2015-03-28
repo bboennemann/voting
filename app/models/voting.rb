@@ -21,10 +21,10 @@ class Voting
   field :searchable, 	:type => Boolean, :default => true	# appears in search results
   field :audience, 		:type => String, :default => 'everyone'  	# e.g. everyone, friends only, invited only, loged in users only
   field :active, 		:type => Boolean, :default => false 	# can be tmp disabled by owner
-  field :hits, 			:type => Integer	# de-normalized / redundant for faster access
+  field :hits, 			:type => Integer, default: 0	# de-normalized / redundant for faster access
   field	:voting_type,	:type => String		# e.g. classic, flip, etc.
   field :item_type, 	:type => String  	# e.g. picture, video, text, sound, website, etc
-  field :itmes, 		:type => Array, :default => []		# array of subject IDs. should actually be 'has many', but can be different subject types. maybe multiple optional has many references?
+  field :items, 		:type => Array, :default => []		# array of subject IDs. should actually be 'has many', but can be different subject types. maybe multiple optional has many references?
 
   
   protected

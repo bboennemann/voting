@@ -1,0 +1,42 @@
+
+<h1><%= @voting.title %></h1>
+
+<img src="/placeholder.jpg" alt="..." width="75%" height="125" class="img-rounded">
+
+<div>
+	<h5>Description:</h5>
+	<p><%= @voting.description %></p>
+</div>
+
+<br>	
+
+<div class="row">
+  <div class="col-md-1 text-center">
+  	<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br>
+  	<span class="badge"><%=@voting.hits %> hits</span>
+  </div>
+  <div class="col-md-1 text-center">
+  	<span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br>
+  	<span class="badge"><%=@voting.items.length %> <%=@voting.item_type.pluralize %> </span>
+  </div>
+  <div class="col-md-1 text-center">
+  	<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><br>
+  	<span class="badge">Type: <%=@voting.voting_type %></span>
+  </div>
+  <div class="col-md-1 text-center">
+  	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><br>
+  	<span class="badge"><%=@voting.audience %></span>
+  </div>
+  <div class="col-md-1 text-center">
+  	<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span><br>
+  	<span class="badge"><%=@voting.contribution %> </span>
+  </div>	
+</div>
+
+<br>	
+<div>
+	<span class="badge">tag</span>
+	<span class="badge">tag</span>
+	<span class="badge">tag</span>
+	<span class="badge">tag</span>
+</div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
   <title>Votogenic</title>
@@ -14,19 +14,18 @@
 <body>
 
 <div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/navigation/navigation_bar' %>
+    <%= render 'layouts/navigation/side_nav' %>
 
-  <%= render 'layouts/navigation/navigation_bar' %>
-  <%= render 'layouts/banners/main_banner' %>
+    <%= render '/layouts/shared/success_msg' %>
+    <%= render '/layouts/shared/warning_msg' %>
 
-  <%= render '/layouts/shared/success_msg' %>
-  <%= render '/layouts/shared/warning_msg' %>
+    <%= yield %>  
 
-  <%= yield %>
 
+  </div>
 </div>
-
-
-
 <%= render 'layouts/shared/canvas' %>
 </body>
 </html>
