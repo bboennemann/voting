@@ -27,6 +27,12 @@ $(document).ready(function() {
 		loadHtml(this);
 		showCanvas();
 	});
+
+	$('#trigger_overlay').click(function(){
+		$('#overlay').html('');
+		loadHtml(this);
+		showCanvas();
+	});
 	
 	$('#sign_in').click(function(){
 		$('#overlay').html('');

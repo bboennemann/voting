@@ -30,8 +30,10 @@ class ImageItemsController < ApplicationController
     @voting = Voting.find(image_item_params[:voting_id])
 
     image_item_params[:image_file].each do |file|
-      @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file )
+      image_item = @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file )
+      @voting.items << image_item.id
     end
+    @voting.save
 
     #@image_item = ImageItem.new(image_item_params)
 
