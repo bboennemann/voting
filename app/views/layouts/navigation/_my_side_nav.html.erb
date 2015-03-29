@@ -1,0 +1,15 @@
+<img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
+<p>
+  <%= link_to :owner, user_path(current_user.id)  %>
+</p>
+
+<ul class="nav nav-sidebar">
+  <li><%= link_to :my_votings, ""  %></li>
+  <li><%= link_to :my_friends, ""  %></li>
+  <li><%= link_to :my_conversations, ''  %></li>
+</ul>
+
+<br>
+<br>
+
+<%= yield :my_context %>
