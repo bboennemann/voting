@@ -1,0 +1,38 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Votogenic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <!-- Include boostrap from CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container-fluid">
+    
+    <%= render 'layouts/navigation/navigation_bar' %>
+
+    <div class="row">
+      <div class="col-md-2 sidebar">
+        <%= render 'layouts/navigation/side_nav' %>
+      </div>
+
+      <div class="col-md-10 sidebar">
+        <%= render '/layouts/shared/success_msg' %>
+        <%= render '/layouts/shared/warning_msg' %>
+
+        <%= yield %>  
+      </div>
+
+
+    </div>
+  <%= render 'layouts/shared/canvas' %>
+</div>
+</body>
+</html>

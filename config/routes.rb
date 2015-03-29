@@ -3,17 +3,20 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  devise_for :users
+
   # You can have the root of your site routed with "root"
   root 'votings#index'
 
-  resources :image_items
-
-  devise_for :users
-
+  # voting wizard routes
   get 'voting_wizards/step1'
   get 'voting_wizards/step2'
   get 'voting_wizards/step3'
 
+  # my account routes
+  get 'my_account' => 'my_account#index'
+
+  resources :image_items
 
   resources :classic_votings
 

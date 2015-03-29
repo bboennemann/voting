@@ -4,6 +4,8 @@ class VotingsController < ApplicationController
 
   layout 'canvas', only: [:new, :create]
 
+  layout 'my', only: [:edit]
+
   # GET /votings
   # GET /votings.json
   def index
