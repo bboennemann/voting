@@ -13,7 +13,8 @@ class ClassicVotingsController < ApplicationController
   # GET /classic_votings/1.json
   def show
 
-    # thi smust be possible more elegant.
+    # TODO
+    # this must be possible more elegant.
     # this requires all items to be queried twice.
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
 

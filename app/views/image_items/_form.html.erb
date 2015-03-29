@@ -1,4 +1,4 @@
-<%= form_for(@image_item, id: :fileupload, :html => {multipart: true}) do |f| %>
+<%= form_for(@image_item, :html => {multipart: true, :class => 'form-horizontal', :id => 'fileupload'}) do |f| %>
   <% if @image_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image_item.errors.count, "error") %> prohibited this image_item from being saved:</h2>
@@ -62,12 +62,12 @@
 <script type="text/javascript">
 $("#fileupload").ajaxForm({
       type: "post", 
-      url : '/image_items',
+      url : '/votings/<%= @voting.id  %>/image_items',
       error : function(jqXHR, textStatus, errorThrown) {
         alert('There was a problem loading the requested content. Please try again later');
       },
       success : function(html, resultText) {
-       // $('#overlay').html(html);
+       $('#overlay').html(html);
       }
     });
 </script>

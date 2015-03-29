@@ -50,7 +50,7 @@ module Votogenic
       :s        => ['250x250>',  :jpg],
       :m        => ['500x500>',  :jpg],
       :l        => ['1024x1024>',  :jpg],
-      :xl       => ['1920x1600>',  :jpg]
+      :original => ['1920x1600>',  :jpg]
     }
 
     # amazon s3 configuration

@@ -16,6 +16,7 @@ class ImageItemsController < ApplicationController
 
   # GET /image_items/new
   def new
+    @voting = Voting.find(params[:voting_id])
     @image_item = ImageItem.new(:voting_id => params[:voting_id])
   end
 
@@ -39,7 +40,8 @@ class ImageItemsController < ApplicationController
 
     respond_to do |format|
 #      if @image_item.save
-        format.html { redirect_to @voting, notice: 'Image item was successfully created.' }
+        #format.html { redirect_to @voting, notice: 'Image item was successfully created.' }
+        format.html { render '/votings/_item_added', notice: 'Image item was successfully created.' }
         format.json { render :show, status: :created, location: @image_item }
 #      else
 #        format.html { render :new }
