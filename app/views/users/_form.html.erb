@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, :html => {multipart: true, :class => 'form-horizontal'}) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,26 +11,31 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <div class="col-lg-2  text-info">
+  <img src="/placeholder.jpg" width="250px"><input type="file" name="user_image" style="position: relative; left: 20px; bottom: 50px">
+
+  <div class="row">
+    <div class="col-md-2  text-info">
       First name:
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
       <%= f.text_field :first_name, class: 'form-control' %>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       &nbsp;
     </div>
   </div>
 
-  <div class="form-group">
-    <div class="col-lg-2 text-info">
+  <br>
+
+
+  <div class="row">
+    <div class="col-md-2 text-info">
       Last name:
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
       <%= f.text_field :last_name, class: 'form-control' %>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       &nbsp;
     </div>
   </div>

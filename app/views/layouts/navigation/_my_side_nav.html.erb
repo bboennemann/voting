@@ -1,4 +1,4 @@
-<img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
+<%= image_tag @user.user_image.url(:xs), class: "img-thumbnail"%>
 <p>
   <a href="<%= edit_user_path(current_user.id)  %>"><i class="glyphicon glyphicon-pencil"></i></a> <%= @user.first_name %>
 </p>

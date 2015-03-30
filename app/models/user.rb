@@ -50,6 +50,7 @@ class User
     :s3_host_name   => 's3.amazonaws.com',
     :path           => '/' + Rails.env.to_s + '/user_image/:id/:style.:extension',
     :s3_credentials => Rails.configuration.x.s3.credentials,
-    :styles         => Rails.configuration.x.user_image.sizes
+    :styles         => Rails.configuration.x.user_image.sizes,
+    :default_url    => '/public/  placeholder.jpg'
 
 end
