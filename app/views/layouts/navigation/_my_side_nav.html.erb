@@ -1,12 +1,12 @@
 <img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
 <p>
-  <%= link_to :owner, user_path(current_user.id)  %>
+  <a href="<%= edit_user_path(current_user.id)  %>"><i class="glyphicon glyphicon-pencil"></i></a> <%= @user.first_name %>
 </p>
 
 <ul class="nav nav-sidebar">
-  <li><%= link_to :my_votings, ""  %></li>
-  <li><%= link_to :my_friends, ""  %></li>
-  <li><%= link_to :my_conversations, ''  %></li>
+  <li><%= link_to 'Votings', '/my_account'  %></li>
+  <li><%= link_to 'Friends', ""  %></li>
+  <li><%= link_to 'Conversations', ''  %></li>
 </ul>
 
 <br>

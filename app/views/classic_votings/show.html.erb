@@ -1,7 +1,34 @@
 <%= render '/votings/basics' %>
-
 <br>
-
 <%= render "/classic_votings/item_types/#{@voting.item_type}" %>
 
 
+<% content_for :side_nav do %>
+  <img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
+  <p>
+    <i class="glyphicon glyphicon-eye-open"> <%= link_to @voting.user.first_name, user_path(@voting.user_id)  %></i>
+  </p>
+
+  <ul class="nav nav-sidebar">
+    <li><i class="glyphicon glyphicon-envelope"> <%= link_to "Message", user_path(@voting.user_id)  %></i></li>
+    <li><i class="glyphicon glyphicon-user"> <%= link_to "Add Friend", user_path(@voting.user_id)  %></i></li>
+  </ul>
+
+  <br>
+
+  <ul class="nav nav-sidebar">
+    <li><i class="glyphicon glyphicon-ban-circle"> <%= link_to "Report", user_path(@voting.user_id)  %></i></li>
+    <li><i class="glyphicon glyphicon-share"> <%= link_to "Share", user_path(@voting.user_id)  %></i></li>
+    <li><i class="glyphicon glyphicon-play"> <%= link_to "Vote", user_path(@voting.user_id)  %></i></li>
+  </ul>
+
+  <br>
+  <br>
+
+  <% if @voting.contribution == true %>
+    <a id="trigger_overlay" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-success navbar-btn" >
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      Add <%= @voting.item_type.pluralize %>
+    </a>
+  <% end %>
+<% end %> 

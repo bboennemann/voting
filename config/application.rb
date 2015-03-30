@@ -43,13 +43,21 @@ module Votogenic
     # default user limits
     config.x.user.default_allowed_friends = 100
 
-    # image size configuration
+    # image item size configuration
     config.x.image.sizes = {
       :xxs      => ['50x50>',  :jpg],
       :xs       => ['100x100>',  :jpg],
       :s        => ['250x250>',  :jpg],
       :m        => ['500x500>',  :jpg],
       :l        => ['1024x1024>',  :jpg],
+      :original => ['1920x1600>',  :jpg]
+    }
+
+    # user image / avatar size configuration
+    config.x.user_image.sizes = {
+      :xxs      => ['50x50',  :jpg],
+      :xs       => ['100x100',  :jpg],
+      :s        => ['250x250',  :jpg],
       :original => ['1920x1600>',  :jpg]
     }
 

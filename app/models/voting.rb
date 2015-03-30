@@ -4,6 +4,8 @@ class Voting
 
   has_many :image_items, dependent: :destroy
 
+  belongs_to :user
+
 
   validates_presence_of :title, message: ": Your voting needs a title!"
   validates_presence_of :user_id, message: ": You need to be logged in to create a voting!"

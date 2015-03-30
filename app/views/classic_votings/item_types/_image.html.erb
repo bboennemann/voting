@@ -1,35 +1,3 @@
-<% content_for :side_nav do %>
-  <img src="/placeholder.jpg" alt="..." width="100px" class="img-thumbnail">
-  <p>
-    <%= link_to :owner, user_path(@voting.user_id)  %>
-  </p>
-
-  <ul class="nav nav-sidebar">
-    <li><%= link_to :message, user_path(@voting.user_id)  %></li>
-    <li><%= link_to :add_friend, user_path(@voting.user_id)  %></li>
-  </ul>
-
-  <br>
-  <br>
-
-  <ul class="nav nav-sidebar">
-    <li><%= link_to :report, user_path(@voting.user_id)  %></li>
-    <li><%= link_to :share, user_path(@voting.user_id)  %></li>
-    <li><%= link_to :vote, user_path(@voting.user_id)  %></li>
-  </ul>
-
-  <br>
-  <br>
-
-  <% if @voting.contribution == true %>
-    <a id="trigger_overlay" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-success navbar-btn" >
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-      Add <%= @voting.item_type.pluralize %>
-    </a>
-  <% end %>
-<% end %> 
-
-
 
 <% index = 1 %>
 <% @image_items.each do |item| %>

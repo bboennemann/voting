@@ -1,7 +1,8 @@
 class User
   include Mongoid::Document
+  include Mongoid::Paperclip
 
-  has_many :votings, dependent: :destroy
+  #has_many :votings, dependent: :destroy
 
   validates_presence_of :first_name, message: ": Please tell us your first name."
   validates_presence_of :last_name, message: ": Please tell us your last name."
@@ -43,5 +44,12 @@ class User
   # custom user fields
   field :first_name,  type: String
   field :last_name,   type: String
+
+  has_mongoid_attached_file :user_image,
+    :storage        => :s3,
+    :s3_host_name   => 's3.amazonaws.com',
+    :path           => '/' + Rails.env.to_s + '/user_image/:id/:style.:extension',
+    :s3_credentials => Rails.configuration.x.s3.credentials,
+    :styles         => Rails.configuration.x.user_image.sizes
 
 end
