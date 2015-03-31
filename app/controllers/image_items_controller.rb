@@ -16,6 +16,13 @@ class ImageItemsController < ApplicationController
 
   # GET /image_items/new
   def new
+
+    if user_signed_in? == false
+      session[:redirect_path] = request.original_url
+      flash[:warning_msg] = 'You need to be logged in to create a new voting!'
+      redirect_to controller: 'devise/sessions', action: 'new', layout: 'canvas'
+    end
+
     @voting = Voting.find(params[:voting_id])
     @image_item = ImageItem.new(:voting_id => params[:voting_id])
   end
@@ -35,8 +42,6 @@ class ImageItemsController < ApplicationController
       @voting.items << image_item.id
     end
     @voting.save
-
-    #@image_item = ImageItem.new(image_item_params)
 
     respond_to do |format|
 #      if @image_item.save

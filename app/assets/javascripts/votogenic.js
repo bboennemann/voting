@@ -21,6 +21,11 @@ function loadHtml(data){
 }
 
 $(document).ready(function() {
+
+	$('#datepicker').datepicker({
+		viewMode: 'years'
+	});
+
 	
 	$('#new_voting').click(function(){
 		$('#overlay').html('');

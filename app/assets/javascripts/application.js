@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.form
+//= require bootstrap-datepicker
 //= require votogenic
 //= require turbolinks
 

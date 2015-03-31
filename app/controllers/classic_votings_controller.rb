@@ -17,7 +17,6 @@ class ClassicVotingsController < ApplicationController
     # this must be possible more elegant.
     # this requires all items to be queried twice.
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
-
     @image_item = ImageItem.new(:voting_id => params[:id])
   end
 

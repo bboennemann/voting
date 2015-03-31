@@ -10,10 +10,33 @@
       </ul>
     </div>
   <% end %>
+  
 
-  <img src="/placeholder.jpg" width="250px"><input type="file" name="user_image" style="position: relative; left: 20px; bottom: 50px">
+<!-- TODO: Space this correctly -->
+<br>
+<br>
 
-  <div class="row">
+<!-- TODO: Style input button -->
+<!-- TODO: Add cover image -->
+<!--  User Image -->
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      Profile Photo:
+    </div>
+    <div class="col-md-4">
+
+        <%= image_tag @user.user_image.url(:s) , class: "img-thumbnail"%>
+        <%= f.file_field :user_image, style: "position: relative; left: 20px; bottom: 50px;"%>
+
+    </div>
+    <div class="col-md-6">
+      &nbsp;
+    </div>
+  </div>
+  
+
+<!--  First Name -->
+  <div class="form-group">
     <div class="col-md-2  text-info">
       First name:
     </div>
@@ -25,10 +48,9 @@
     </div>
   </div>
 
-  <br>
 
-
-  <div class="row">
+<!--  Last Name -->
+  <div class="form-group">
     <div class="col-md-2 text-info">
       Last name:
     </div>
@@ -40,9 +62,70 @@
     </div>
   </div>
 
-  <br>
 
-  <div>
-    <%= f.submit 'Save User' , class: 'btn btn-success' %>
+<!--  About me -->
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      About me:
+    </div>
+    <div class="col-md-4">
+      <%= f.text_area :about, class: 'form-control' %>
+    </div>
+    <div class="col-md-6">
+      &nbsp;
+    </div>
+  </div>
+
+
+<!--  date of birth -->
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      Date of birth:
+    </div>
+    <div class="col-md-3">
+      <div class="input-group">
+        <%= f.text_field :dob, type: "date", class: "form-control", placeholder: "1/1/1900", id: "datepicker" %>
+        
+        <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
+      </div>
+    </div>
+    <div class="col-md-7">
+      &nbsp;
+    </div>
+  </div>
+
+
+<!--  Sex / gender -->
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      Sex:
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info <%= @user.sex == "M" ? 'active' : nil %>">
+          <%= f.radio_button :sex, "M" %>M
+        </label>
+        <label class="btn btn-info <%= @user.sex == "F" ? 'active' : nil %>">
+          <%= f.radio_button :sex, "F" %>F
+        </label>
+        <label class="btn btn-info <%= @user.sex.nil? ? 'active' : nil %>">
+          <%= f.radio_button :sex, nil  %>None
+        </label>
+      </div>
+    </div>
+    <div class="col-md-6">
+      &nbsp;
+    </div>
+  </div>
+
+<!-- TODO: Add location map -->
+
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      &nbsp;
+    </div>
+    <div class="col-md-4">
+      <%= f.submit 'Save' , class: 'btn btn-lg btn-success' %>
+    </div>
   </div>
 <% end %>

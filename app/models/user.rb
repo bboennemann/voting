@@ -44,6 +44,10 @@ class User
   # custom user fields
   field :first_name,  type: String
   field :last_name,   type: String
+  field :about,       type: String
+  field :sex,         type: String
+  field :dob,         type: Date
+  field :from,        type: String
 
   has_mongoid_attached_file :user_image,
     :storage        => :s3,
@@ -51,6 +55,8 @@ class User
     :path           => '/' + Rails.env.to_s + '/user_image/:id/:style.:extension',
     :s3_credentials => Rails.configuration.x.s3.credentials,
     :styles         => Rails.configuration.x.user_image.sizes,
-    :default_url    => '/public/  placeholder.jpg'
+    :default_url    => '/placeholder.jpg'
+
+  validates_attachment :user_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
 end
