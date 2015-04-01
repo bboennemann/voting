@@ -49,6 +49,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-tagsinput-rails (0.4.2.1)
+      railties (>= 3.1)
     bson (2.3.0)
     builder (3.2.2)
     byebug (4.0.4)
@@ -156,7 +158,7 @@ GEM
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     sass (3.4.13)
-    sass-rails (5.0.2)
+    sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
@@ -202,6 +204,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (< 2.0)
   better_errors
+  bootstrap-tagsinput-rails
   byebug
   coffee-rails
   devise

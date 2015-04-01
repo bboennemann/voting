@@ -26,7 +26,13 @@
     	</div>
 
     	<div class="col-md-4">
-    		User: <%= item.user_id %>
+    		<%= image_tag item.user.user_image.url(:xs), class: 'img-thumbnail', alt: item.user.first_name %>
+        <p>
+          By <%= link_to item.user.first_name, user_path(item.user_id)  %>
+        </p>
+        <p>
+          At <%= item.created_at.strftime("%-d/%-m/%y: %H:%M") unless item.created_at.nil? %>
+        </p>
     	</div>
 
     </div>

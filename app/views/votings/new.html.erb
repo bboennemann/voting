@@ -43,4 +43,18 @@
 
 	<%= render 'form' %>
 
+<script type="text/javascript">
+	$("#new_voting_form").ajaxForm({
+      type: "post", 
+      url : '/votings',
+      error : function(jqXHR, textStatus, errorThrown) {
+        alert('There was a problem loading the requested content. Please try again later');
+      },
+      success : function(html, resultText) {
+        $('#overlay').html(html);
+      }
+    });
+	$("#tagsinput").tagsinput()
+</script>
+
 </div>

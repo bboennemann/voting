@@ -1,16 +1,18 @@
 class VotingsController < ApplicationController
   before_action :set_voting, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:new, :create, :destroy]
+
   
-  before_action :authenticate_user!, only:[:new, :create, :edit, :update, :destroy]
-
-  layout 'canvas', only: [:new, :create]
-
-  layout 'my', only: [:edit]
 
   # GET /votings
   # GET /votings.json
   def index
-    @votings = Voting.all
+    if params[:tags]
+      @votings = Voting.where(:tags => params[:tags])
+    else
+      @votings = Voting.all
+    end
+
   end
 
   # GET /votings/1
@@ -20,17 +22,25 @@ class VotingsController < ApplicationController
 
   # GET /votings/new
   def new
-        @voting = Voting.new
+    @voting = Voting.new
+    render layout: "canvas"
   end
 
   # GET /votings/1/edit
   def edit
+    is_current_user? @voting.user_id
+    render layout: "my"
   end
 
   # POST /votings
   # POST /votings.json
   def create
-    @voting = Voting.new(voting_params)
+
+    tmp_params = voting_params
+    tmp_params[:tags] = tmp_params[:tags].split(',')
+
+
+    @voting = Voting.new(tmp_params)
 
     @voting.user_id = current_user.id
     @voting.voting_type = session[:new_voting_type]
@@ -40,7 +50,7 @@ class VotingsController < ApplicationController
       if @voting.save
         flash[:success_msg]  = "Congratulations! Here is your shiny new voting! Now go and add some #{@voting.item_type.pluralize}"
         format.html { redirect_to "/votings/#{@voting._id}/#{@voting.item_type}_items/new" }
-        format.json { render :show, status: :created, location: @voting }
+        format.json { render :show, status: :created, location: @voting, layout: "canvas" }
       else
         format.html { render :new }
         format.json { render json: @voting.errors, status: :unprocessable_entity }
@@ -51,9 +61,15 @@ class VotingsController < ApplicationController
   # PATCH/PUT /votings/1
   # PATCH/PUT /votings/1.json
   def update
+
+    tmp_params = voting_params
+    tmp_params[:tags] = tmp_params[:tags].split(',')
+    
+
     respond_to do |format|
-      if @voting.update(voting_params)
-        format.html { redirect_to @voting, notice: 'Voting was successfully updated.' }
+      if @voting.update(tmp_params)
+        flash[:success_msg] = 'Voting was successfully updated.'
+        format.html { render :edit, layout: 'my' }
         format.json { render :show, status: :ok, location: @voting }
       else
         format.html { render :edit }
@@ -81,7 +97,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags)
     end
 
 end

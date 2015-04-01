@@ -1,6 +1,6 @@
-<%= image_tag @user.user_image.url(:xs), class: "img-thumbnail"%>
+<%= image_tag current_user.user_image.url(:xs), class: "img-thumbnail"%>
 <p>
-  <a href="<%= edit_user_path(current_user.id)  %>"><i class="glyphicon glyphicon-pencil"></i></a> <%= @user.first_name %>
+  <a href="<%= edit_user_path(current_user.id)  %>"><i class="glyphicon glyphicon-pencil"></i></a> <%= current_user.first_name %>
 </p>
 
 <ul class="nav nav-sidebar">

@@ -3,12 +3,14 @@ class ImageItem
   include Mongoid::Paperclip
 
   belongs_to :voting
+  belongs_to :user
 
   field :voting_id,   type: String
   field :user_id,     type: String
   field :hits,        type: Integer, default: 0
   field :score,       type: Integer, default: 0
   field :description, type: String
+  field :created_at,  type: DateTime
 
   has_mongoid_attached_file :image_file,
     :storage        => :s3,

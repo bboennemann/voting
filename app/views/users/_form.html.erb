@@ -84,8 +84,7 @@
     </div>
     <div class="col-md-3">
       <div class="input-group">
-        <%= f.text_field :dob, type: "date", class: "form-control", placeholder: "1/1/1900", id: "datepicker" %>
-        
+        <%= f.text_field :dob, type: "date", class: "form-control", placeholder: "1/1/1900", id: "datepicker", 'data-provide' => "datepicker" %>
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>
     </div>
@@ -108,8 +107,8 @@
         <label class="btn btn-info <%= @user.sex == "F" ? 'active' : nil %>">
           <%= f.radio_button :sex, "F" %>F
         </label>
-        <label class="btn btn-info <%= @user.sex.nil? ? 'active' : nil %>">
-          <%= f.radio_button :sex, nil  %>None
+        <label class="btn btn-info <%= @user.sex == "N" ? 'active' : nil %>">
+          <%= f.radio_button :sex, "N"  %>Prefer not to say
         </label>
       </div>
     </div>
@@ -125,7 +124,7 @@
       &nbsp;
     </div>
     <div class="col-md-4">
-      <%= f.submit 'Save' , class: 'btn btn-lg btn-success' %>
+      <%= f.submit 'Save' , class: 'btn btn-success' %>
     </div>
   </div>
 <% end %>

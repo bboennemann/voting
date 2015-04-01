@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
 
+  def is_current_user? user_id
+    if (user_signed_in? == false) or (user_id.to_s != current_user.id.to_s)
+      flash[:warning_msg] = 'You do not have permission for this action.'
+      redirect_to '/'
+    end
+  end
+
 end

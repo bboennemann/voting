@@ -6,6 +6,9 @@ gem 'aws-sdk', '< 2.0'
 # enhanced error page
 gem 'better_errors', :group => [:development, :test]
 
+# tag input fields
+gem 'bootstrap-tagsinput-rails'
+
 # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 gem 'byebug', :group => [:development, :test]
 

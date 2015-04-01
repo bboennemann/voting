@@ -18,6 +18,7 @@
     </div>
   <% end %>
 
+<!-- Voting TITLE  -->
 <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -33,6 +34,7 @@
     </div>
   </div>  
 
+<!-- Voting DESCRIPTION  -->
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -48,6 +50,25 @@
     </div>
   </div>
 
+<!-- Voting TAGS  -->
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Tags:
+    </div>
+    <div class="col-md-7">
+      <%= f.text_field :tags, id: :tagsinput, 'data-role' => 'tagsinput', class: "form-control", value: @voting.tags.join(",") %>
+      <span class="text-warning">(use comma "," as a separator)</span>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>
+
+
+<!-- Voting AUDIENCE  -->
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -74,6 +95,7 @@
   </div>
 
 
+<!-- Voting CONTRIBUTION  -->
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -97,6 +119,7 @@
   </div>
 
 
+<!-- Voting SEARCHABLE  -->
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -120,6 +143,7 @@
   </div>
 
 
+<!-- Voting ONLINE DATES  -->
   <div class="form-group">
     <div class="col-md-1">
       &nbsp;
@@ -129,20 +153,20 @@
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <input type="date" class="form-control" placeholder="<%= Date.current %>">
+        <input type="date" class="form-control" placeholder="<%= Date.current %>" id="datepicker_from">
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <input type="date" class="form-control" placeholder="<%= (Date.current() + Rails.configuration.x.voting.default_expiration) %>">
+        <input type="date" class="form-control" placeholder="<%= (Date.current() + Rails.configuration.x.voting.default_expiration) %>" id="datepicker_to">
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>      
     </div>
 
   </div>
 
-
+<!-- SUBMIT  -->
   <br>
   <div class="form-group">
     <div class="col-md-1">
@@ -163,16 +187,7 @@
   </div>
 
 <% end %>
-
 <script type="text/javascript">
-$("#new_voting_form").ajaxForm({
-      type: "post", 
-      url : '/votings',
-      error : function(jqXHR, textStatus, errorThrown) {
-        alert('There was a problem loading the requested content. Please try again later');
-      },
-      success : function(html, resultText) {
-        $('#overlay').html(html);
-      }
-    });
+    $('#datepicker_from').datepicker();
+    $('#datepicker_to').datepicker();
 </script>

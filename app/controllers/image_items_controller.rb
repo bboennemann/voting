@@ -19,7 +19,7 @@ class ImageItemsController < ApplicationController
 
     if user_signed_in? == false
       session[:redirect_path] = request.original_url
-      flash[:warning_msg] = 'You need to be logged in to create a new voting!'
+      flash[:warning_msg] = 'You need to be logged in to add an image!'
       redirect_to controller: 'devise/sessions', action: 'new', layout: 'canvas'
     end
 
@@ -38,7 +38,7 @@ class ImageItemsController < ApplicationController
     @voting = Voting.find(image_item_params[:voting_id])
 
     image_item_params[:image_file].each do |file|
-      image_item = @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file )
+      image_item = @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file, :user_id => current_user.id, created_at: DateTime.now )
       @voting.items << image_item.id
     end
     @voting.save
