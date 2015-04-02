@@ -13,20 +13,29 @@
 
   			<span class="badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-        <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-remove-circle", :style => "position: absolute; left: -35px; top: 0px; font-size: 2em;"  %>
+        <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger", alt: "Delete!", :style => "position: absolute; left: -35px; top: 0px; font-size: 2em;"  %>
           
   			
     	</div>
 
-    	<div class="col-md-4">
+    	<div class="col-md-3">
     		<%= image_tag item.image_file.url(:s), class: "img-rounded" %><br>
     	</div>
 
-    	<div class="col-md-3">
-    		Description: <%= item.description %>
+    	<div class="col-md-5 text-bottom">
+        <%= form_for item, remote: true do |f| %>
+          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 5, disabled: !is_owner?(item.user_id) %> 
+          <br>
+            <% if is_owner?(item.user_id) %>
+              <button class="btn btn-sm btn-info">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                Save
+              </button>
+            <% end %>
+        <% end %>
     	</div>
 
-    	<div class="col-md-4">
+    	<div class="col-md-3">
     		<%= image_tag item.user.user_image.url(:xs), class: 'img-thumbnail', alt: item.user.first_name %>
         <p>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
@@ -42,3 +51,4 @@
     <br>
 
 <% end %>
+

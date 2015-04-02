@@ -20,7 +20,10 @@ Rails.application.routes.draw do
 
   resources :classic_votings
 
-  resources :votings
+  resources :votings 
+  get 'votings/:id/delete' => 'votings#delete'
+  post 'votings/:id/delete' => 'votings#destroy'
+  
 
   resources :users
 

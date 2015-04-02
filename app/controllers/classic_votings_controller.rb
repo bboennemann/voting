@@ -16,6 +16,7 @@ class ClassicVotingsController < ApplicationController
     # TODO
     # this must be possible more elegant.
     # this requires all items to be queried twice.
+    session[:redirect_path] = request.original_url
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
     @image_item = ImageItem.new(:voting_id => params[:id])
   end
@@ -30,6 +31,8 @@ class ClassicVotingsController < ApplicationController
     # TODO
     # this must be possible more elegant.
     # this requires all items to be queried twice.
+
+    @context = 'items'
     session[:redirect_path] = request.original_url
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
     @image_item = ImageItem.new(:voting_id => params[:id])   

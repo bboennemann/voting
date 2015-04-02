@@ -1,34 +1,9 @@
 <table >
-  <tr>
-        <td> voting._id </td>
-        <td> voting.user_id </td>
-        <td> voting.audience </td>
-        <td> voting.searchable </td>
-        <td> voting.online_from </td>
-        <td> voting.online_to </td>
-        <td> voting.title </td>
-        <td> voting.description </td>
-        <td> voting.contribution </td>
-        <td> voting.item_type </td>
-        <td> voting.voting_type </td>
-        <td> voting.contribution </td>
-      </tr>
-
-
     <% @votings.each do |voting| %>
       <tr>
-        <td><%= link_to voting._id, "#{voting.voting_type}_votings/#{voting.id}" %></td>
-        <td><%= voting.user_id %></td>
+        <td><%= link_to voting._id, voting_path(voting) %></td>
         <td><%= link_to :edit, edit_voting_path(voting) %></td>
-        <td><%= voting.searchable %></td>
-        <td><%= voting.online_from %></td>
-        <td><%= voting.online_to %></td>
-        <td><%= voting.title %></td>
-        <td><%= voting.description %></td>
-        <td><%= voting.contribution %></td>
-        <td><%= voting.item_type %></td>
-        <td><%= voting.voting_type %></td>
-        <td><%= voting.contribution %></td>
+
       </tr>
     <% end %>
 

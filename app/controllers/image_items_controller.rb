@@ -88,6 +88,6 @@ class ImageItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_item_params
       #params[:image_item]
-      params.require(:image_item).permit(:voting_id, :image_file => [])
+      params.require(:image_item).permit(:voting_id, :description, :image_file => [])
     end
 end

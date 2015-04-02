@@ -1,6 +1,6 @@
 <div class="nav nav-sidebar" role="navigation">
-	<div class="side-nav-item"><%= link_to 'Show', @voting  %></div>
-	<div class='side-nav-item context-nav-active'><%= link_to 'Settings', edit_voting_path(@voting)  %></div>
-	<div class="side-nav-item"><%= link_to 'Items', edit_items_path(@voting)  %></div>
-	<div class="side-nav-item"><%= link_to 'Delete', ''  %></div>
+	<div class="side-nav-item <%= context_nav_active?('show') %>"><%= link_to 'Show', @voting  %></div>
+	<div class='side-nav-item <%= context_nav_active?('settings') %>'><%= link_to 'Settings', edit_voting_path(@voting) %></div>
+	<div class="side-nav-item <%= context_nav_active?('items') %>"><%= link_to 'Items', edit_items_path(@voting)  %></div>
+	<div class="side-nav-item <%= context_nav_active?('delete') %>"><%= link_to'Delete', delete_voting_path(@voting) %></div>
 </div>

@@ -1,0 +1,39 @@
+<% content_for :my_context_nav do %>
+  <% render '/my_account/side_nav/voting_context_nav' %>
+<% end %> 
+
+	<div class="panel-danger">
+	<div class="panel-heading">This action can not be reverted!</div>
+	<div class="panel-body text-danger">
+		<p>When you delete this voting, all related information will be removed.</p>
+	</div> 
+</div>
+
+<%= render '/votings/basics' %>
+
+<br>
+<br>
+
+
+
+<div class="row">
+		<div class="col-md-1">
+			
+		</div>
+		<div class="col-md-10">
+			
+		</div>
+		<div class="col-md-1">
+			
+		</div>
+	</div>
+
+<%= form_for @voting, url: "/votings/#{@voting.id}/delete", method: :post, class: "form-horizontal" do |f| %>
+
+	<input type="text" name="voting[confirm_code]">
+	<input type="text" name="voting[confirm_code_check" value="<%= @confirm_code %>">
+
+	<div class="col-md-12 text-center">
+		<button class="btn btn-danger" type="submit">Delete this voting!</button>
+	</div>
+<% end %>

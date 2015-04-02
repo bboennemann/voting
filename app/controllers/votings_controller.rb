@@ -1,5 +1,5 @@
 class VotingsController < ApplicationController
-  before_action :set_voting, only: [:show, :edit, :update, :destroy]
+  before_action :set_voting, only: [:show, :edit, :update, :destroy, :delete]
   before_action :authenticate_user!, only:[:new, :create, :destroy]
 
   
@@ -28,6 +28,7 @@ class VotingsController < ApplicationController
 
   # GET /votings/1/edit
   def edit
+    @context = 'settings'
     is_current_user? @voting.user_id
     render layout: "my"
   end
@@ -81,11 +82,30 @@ class VotingsController < ApplicationController
   # DELETE /votings/1
   # DELETE /votings/1.json
   def destroy
-    @voting.destroy
-    respond_to do |format|
-      format.html { redirect_to votings_url, notice: 'Voting was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if voting_params[:confirm_code_check] != voting_params[:confirm_code]
+      logger.debug voting_params[:confirm_code]
+      logger.debug voting_params[:confirm_code_check]
+      flash[:error_msg] = "Please make sure to enter the correct confirmation code"
+      redirect_to "/votings/#{@voting.id}/delete", layout: 'my'
+    else
+
+      @voting.destroy
+      respond_to do |format|
+        format.html { redirect_to '/my_account', flash[:success_msg] => 'Voting was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
     end
+    
+
+  end
+
+
+  def delete
+    @context = 'delete'
+    @confirm_code = ('a'..'z').to_a.shuffle[0,8].join
+    render layout: 'my'
   end
 
   private
@@ -97,7 +117,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check)
     end
 
 end
