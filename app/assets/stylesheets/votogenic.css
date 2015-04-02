@@ -31,3 +31,27 @@ body{
 	z-index: 5000;
 	display: none;
 }
+
+
+.btn-file input[type=file] {
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.side-nav-item{
+	padding: 4px 0px 4px 8px;
+}
+
+.side-nav-active{
+	border-left: 4px solid #1B809E;
+	padding-left: 4px;
+}
+
+.context-nav-active{
+	border-left: 4px solid #AA6708;
+	padding-left: 4px;
+}

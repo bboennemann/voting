@@ -1,6 +1,8 @@
-<h1>Editing Classic Voting</h1>
+<%= render '/votings/basics' %>
+<br>
+<%= render "/classic_votings/item_types/#{@voting.item_type}" %>
 
-<%= render 'form' %>
 
-<%= link_to 'Show', @classic_voting %> |
-<%= link_to 'Back', classic_votings_path %>
+<% content_for :my_context_nav do %>
+  <% render '/my_account/side_nav/voting_context_nav' %>
+<% end %> 

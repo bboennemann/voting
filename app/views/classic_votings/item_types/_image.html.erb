@@ -1,10 +1,9 @@
 
-<% index = 1 %>
-<% @image_items.each do |item| %>
+<% @image_items.each_with_index do |item, index| %>
 
 	<div class="row">
     	<div class="col-md-1">
-    		<h1><%= index %></h1>
+    		<h1><%= index + 1 %></h1>
     		<br>
 
     		<span class="badge"><%= item.hits %></span>
@@ -14,6 +13,8 @@
 
   			<span class="badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+        <%= link_to '', item, method: :delete, data: { confirm: 'Are you sure?' }, :class => "glyphicon glyphicon-remove-circle", :style => "position: absolute; left: -35px; top: 0px; font-size: 2em;"  %>
+          
   			
     	</div>
 
@@ -36,8 +37,8 @@
     	</div>
 
     </div>
+    
 
     <br>
 
-	<% index = index + 1 %>
 <% end %>

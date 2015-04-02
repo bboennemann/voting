@@ -27,6 +27,13 @@ class ClassicVotingsController < ApplicationController
 
   # GET /classic_votings/1/edit
   def edit
+    # TODO
+    # this must be possible more elegant.
+    # this requires all items to be queried twice.
+    session[:redirect_path] = request.original_url
+    @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
+    @image_item = ImageItem.new(:voting_id => params[:id])   
+    render :edit, :layout => 'my'
   end
 
   # POST /classic_votings

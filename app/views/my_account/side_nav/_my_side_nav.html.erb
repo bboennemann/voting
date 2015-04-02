@@ -1,0 +1,19 @@
+<%= image_tag current_user.user_image.url(:xs), class: "img-thumbnail"%>
+<div class="side-nav-item">
+  <a href="<%= edit_user_path(current_user.id)  %>">
+  	<%= current_user.first_name %>
+  	<i class="glyphicon glyphicon-pencil"></i>
+  </a>
+</div>
+
+<br>
+
+<div class="nav nav-sidebar" role="navigation">
+	<div class='side-nav-item side-nav-active'><%= link_to 'Votings', '/my_account'  %></div>
+	<div class="side-nav-item"><%= link_to 'Friends', ""  %></div>
+	<div class="side-nav-item"><%= link_to 'Conversations', ''  %></div>
+</div>
+
+<br>
+
+<%= yield :my_context_nav %>

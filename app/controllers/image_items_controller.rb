@@ -74,7 +74,7 @@ class ImageItemsController < ApplicationController
   def destroy
     @image_item.destroy
     respond_to do |format|
-      format.html { redirect_to image_items_url, notice: 'Image item was successfully destroyed.' }
+      format.html { redirect_to session[:redirect_path] , notice: 'Image item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
