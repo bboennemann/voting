@@ -3,14 +3,14 @@
 	<!-- Main Image -->
 	<div class="row">
 		<div class="col-md-12">
-			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '228px' %>
+			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px' %>
 		</div>
 	</div>
 
 	<!-- teaser images -->
 	<div class="row">
 		<div class="col-md-12">
-			<%= image_tag voting.image_items[1].image_file.url(:xs), width: '114px' %><%= image_tag voting.image_items[2].image_file.url(:xs), width: '114px' %>
+			<%= image_tag voting.image_items[1].image_file.url(:xs), width: '112px', class: "v_teaser_img_l" %><%= image_tag voting.image_items[2].image_file.url(:xs), width: '112px', class: "v_teaser_img_r" %>			
 		</div>
 	</div>
 

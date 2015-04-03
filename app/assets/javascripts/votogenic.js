@@ -22,6 +22,13 @@ function loadHtml(data){
 
 $(document).ready(function() {
 
+	$('#container').BlocksIt({
+		numOfCol: Math.floor(window.innerWidth / 225),
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});
+
 	$('#datepicker').datepicker({
 		viewMode: 'years'
 	});
