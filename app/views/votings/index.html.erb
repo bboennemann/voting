@@ -1,12 +1,25 @@
-<table >
-    <% @votings.each do |voting| %>
-      <tr>
-        <td><%= link_to voting._id, voting_path(voting) %></td>
-        <td><%= link_to :edit, edit_voting_path(voting) %></td>
 
-      </tr>
-    <% end %>
+<% @votings.each do |voting| %>
+<div class="row">
+	
+	<div class="col-md-3">
+	<!-- TODO: make depending on # of images -->
+		<%= render "/#{voting.item_type}_items/tiles/three_images", :voting => voting %>
+	</div>
 
-</table>
+	<div class="col-md-3">
+		
+	</div>
 
+	<div class="col-md-3">
+		
+	</div>
+
+	<div class="col-md-3">
+		
+	</div>
+
+</div>
+
+<% end %>
 

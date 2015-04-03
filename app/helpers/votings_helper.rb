@@ -1,5 +1,5 @@
 module VotingsHelper
-	def voting_path voting
+	def voting_type_path voting
 		"/#{voting.voting_type}_votings/#{voting.id}"
 	end
 

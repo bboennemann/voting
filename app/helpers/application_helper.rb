@@ -7,4 +7,8 @@ module ApplicationHelper
 		end
 	end
 
+	def highlight_owner? user_id
+		is_owner?(user_id) ? 'bg-success' : ''
+	end
+
 end

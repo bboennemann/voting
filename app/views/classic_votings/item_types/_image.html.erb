@@ -1,7 +1,7 @@
 
 <% @image_items.each_with_index do |item, index| %>
 
-	<div class="row">
+	<div class="row <%= highlight_owner?(item.user_id) %>">
     	<div class="col-md-1">
     		<h1><%= index + 1 %></h1>
     		<br>
@@ -13,7 +13,9 @@
 
   			<span class="badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-        <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger", alt: "Delete!", :style => "position: absolute; left: -35px; top: 0px; font-size: 2em;"  %>
+        <% if is_owner?(item.user_id) %>
+          <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger v_btn_delete_item" %>
+        <% end %>
           
   			
     	</div>
@@ -24,7 +26,7 @@
 
     	<div class="col-md-5 text-bottom">
         <%= form_for item, remote: true do |f| %>
-          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 5, disabled: !is_owner?(item.user_id) %> 
+          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 5, disabled: !is_owner?(item.user_id), placeholder: 'Give a brief description of this image...' %> 
           <br>
             <% if is_owner?(item.user_id) %>
               <button class="btn btn-sm btn-info">
