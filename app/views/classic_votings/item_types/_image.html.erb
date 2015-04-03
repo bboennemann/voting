@@ -1,33 +1,35 @@
 
 <% @image_items.each_with_index do |item, index| %>
 
-	<div class="row <%= highlight_owner?(item.user_id) %>">
-    	<div class="col-md-1">
+	<div class="row <%= highlight_owner?(item.user_id) %>" style="padding: 5px">
+
+      <!-- Rank, click count & score -->
+    	<div class="col-md-1 text-primary">
     		<h1><%= index + 1 %></h1>
     		<br>
 
-    		<span class="badge"><%= item.hits %></span>
+    		<span class="label  label-primary v_label-as-badge"><%= item.hits %></span>
     		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
   			
   			<br><br>
 
-  			<span class="badge"><%= item.score %></span>
+  			<span class="label  label-primary v_label-as-badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
         <% if is_owner?(item.user_id) %>
           <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger v_btn_delete_item" %>
         <% end %>
-          
-  			
+            			
     	</div>
 
+      <!-- Image -->
     	<div class="col-md-3">
     		<%= image_tag item.image_file.url(:s), class: "img-rounded" %><br>
     	</div>
 
+      <!-- description -->
     	<div class="col-md-5 text-bottom">
         <%= form_for item, remote: true do |f| %>
-          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 5, disabled: !is_owner?(item.user_id), placeholder: 'Give a brief description of this image...' %> 
-          <br>
+          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 4, disabled: !is_owner?(item.user_id), placeholder: 'Give a brief description of this image...' %> <br>
             <% if is_owner?(item.user_id) %>
               <button class="btn btn-sm btn-info">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
@@ -37,8 +39,9 @@
         <% end %>
     	</div>
 
+      <!-- user -->
     	<div class="col-md-3">
-    		<%= image_tag item.user.user_image.url(:xs), class: 'img-thumbnail', alt: item.user.first_name %>
+    		<%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail', alt: item.user.first_name %>
         <p>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
         </p>

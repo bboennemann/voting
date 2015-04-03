@@ -1,0 +1,59 @@
+<div class="v_tile_container">
+
+	<!-- Main Image -->
+	<div class="row">
+		<div class="col-md-12">
+			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px' %>
+		</div>
+		
+		<% if is_owner?(voting.user_id) %>
+			<%= link_to edit_voting_path(voting), class: "btn btn-default", style: "position: absolute; top: 5px; right: 15px; font-size: 1.5em;" do %><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span>
+			<% end %>
+		<% end %>
+	</div>
+
+	<!-- teaser images -->
+	<% if voting.image_items.size > 2  %>
+	<div class="row">
+		<div class="col-md-12">
+			<%= image_tag voting.image_items[1].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_l" %><%= image_tag voting.image_items[2].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_r" %>			
+		</div>
+	</div>
+	<% end %>
+
+
+	<!-- title & owner-->
+	<div class="row v_tile_container_row">
+		<div class="col-md-12">
+			<h4><%= link_to voting.title[0..22] + '...', voting_type_path(voting) %></h4>
+			<small>By <%= link_to "#{voting.user.first_name} #{voting.user.last_name[0]}.", user_path(voting.user) %>
+				</small>
+		</div>
+	</div>
+	
+	<!--  description -->
+	<div class="row v_tile_container_row">
+		<div class="col-md-12">
+			<%= link_to voting_type_path(voting) do %><%= voting.description[0..100] %><%= link_to '...', voting_type_path(voting) %><% end %>
+		</div>
+	</div>
+
+
+	<!-- owner, hits & tags -->
+	<div class="row v_tile_container_row">
+		<div class="col-md-4">
+			<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail' %><% end %>
+			&nbsp;
+			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span class="badge"><small><%= voting.hits %></small></span>
+		</div>
+		<div class="col-md-8">
+			<% voting.tags[0..8].each do |tag| %>
+				<%= link_to "/?tags=#{tag}" do %><span class="badge"><small><%= tag %></small></span><% end %>
+			<% end  %>
+		</div>
+	</div>
+
+
+	
+	
+</div>

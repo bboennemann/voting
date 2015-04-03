@@ -1,13 +1,9 @@
-
-
-
 <div class="row">
 	<div class="col-md-12">
 		<div id="container">
 		<% @votings.each do |voting| %>
 			<div class="grid class">
-				<!-- TODO: make depending on # of images -->
-					<%= render "/#{voting.item_type}_items/tiles/three_images", :voting => voting %>
+					<%= render "/#{voting.voting_type}_votings/tiles/#{voting.item_type}", :voting => voting %>
 			</div>
 		<% end %>
 		</div>

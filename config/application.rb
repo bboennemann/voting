@@ -46,8 +46,9 @@ module Votogenic
     # image item size configuration
     config.x.image.sizes = {
       :xxs      => ['50x50>',  :jpg],
-      :xs       => ['100x100>',  :jpg],
-      :s        => ['250x250>',  :jpg],
+      :xs       => ['112x112>',  :jpg],
+      :xs_sq    => ['112x112#',  :jpg],
+      :s        => ['225x225>',  :jpg],
       :m        => ['500x500>',  :jpg],
       :l        => ['1024x1024>',  :jpg],
       :original => ['1920x1600>',  :jpg]

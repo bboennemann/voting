@@ -8,7 +8,7 @@ module ApplicationHelper
 	end
 
 	def highlight_owner? user_id
-		is_owner?(user_id) ? 'bg-success' : ''
+		is_owner?(user_id) ? 'bg-info' : ''
 	end
 
 end
