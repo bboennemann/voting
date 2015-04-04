@@ -16,7 +16,9 @@
   			<span class="label  label-primary v_label-as-badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
         <% if is_owner?(item.user_id) %>
-          <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger v_btn_delete_item" %>
+          <div  data-toggle="tooltip" data-placement="bottom" title="DELETE ITEM!" class="v_btn_delete_item">
+          <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger " %>
+          </div>
         <% end %>
             			
     	</div>
@@ -29,7 +31,7 @@
       <!-- description -->
     	<div class="col-md-5 text-bottom">
         <%= form_for item, remote: true do |f| %>
-          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 4, disabled: !is_owner?(item.user_id), placeholder: 'Give a brief description of this image...' %> <br>
+          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 4, disabled: !is_owner?(item.user_id), placeholder: 'No description...' %> <br>
             <% if is_owner?(item.user_id) %>
               <button class="btn btn-sm btn-info">
                 <span class="glyphicon glyphicon-floppy-disk"></span>

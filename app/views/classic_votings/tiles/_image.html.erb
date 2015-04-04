@@ -1,6 +1,6 @@
 <div class="v_tile_container">
 
-	<!-- Main Image -->
+<!-- Main Image -->
 	<div class="row">
 		<div class="col-md-12">
 			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px' %>
@@ -12,7 +12,7 @@
 		<% end %>
 	</div>
 
-	<!-- teaser images -->
+<!-- teaser images -->
 	<% if voting.image_items.size > 2  %>
 	<div class="row">
 		<div class="col-md-12">
@@ -22,7 +22,7 @@
 	<% end %>
 
 
-	<!-- title & owner-->
+<!-- title & owner-->
 	<div class="row v_tile_container_row">
 		<div class="col-md-12">
 			<h4><%= link_to voting.title[0..22] + '...', voting_type_path(voting) %></h4>
@@ -31,22 +31,27 @@
 		</div>
 	</div>
 	
-	<!--  description -->
+	
 	<div class="row v_tile_container_row">
 		<div class="col-md-12">
-			<%= link_to voting_type_path(voting) do %><%= voting.description[0..100] %><%= link_to '...', voting_type_path(voting) %><% end %>
+			<div class="media">
+<!--  owner image and hits -->			
+  				<div class="media-left">
+					<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail' %><% end %>
+					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span class="badge"><small><%= voting.hits %></small></span>
+  				</div>
+<!--  description -->  				
+  				<div class="media-body">
+    				<%= link_to voting_type_path(voting) do %><small><%= voting.description[0..85] %><%= link_to '...', voting_type_path(voting) %></small><% end %>
+  				</div>
+			</div>
 		</div>
 	</div>
 
 
-	<!-- owner, hits & tags -->
+<!-- tags -->
 	<div class="row v_tile_container_row">
-		<div class="col-md-4">
-			<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail' %><% end %>
-			&nbsp;
-			<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span class="badge"><small><%= voting.hits %></small></span>
-		</div>
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<% voting.tags[0..8].each do |tag| %>
 				<%= link_to "/?tags=#{tag}" do %><span class="badge"><small><%= tag %></small></span><% end %>
 			<% end  %>

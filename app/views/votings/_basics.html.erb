@@ -4,23 +4,23 @@
 <br><br>	
 
 <div class="row">
-  <div class="col-md-1 text-center">
+  <div class="col-md-1 text-center"  data-toggle="tooltip" data-placement="bottom" title="Number of single clicks for this voting!">
   	<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br>
   	<span class="badge"><%=@voting.hits %> hits</span>
   </div>
-  <div class="col-md-1 text-center">
+  <div class="col-md-1 text-center"  data-toggle="tooltip" data-placement="bottom" title="Total numbers of votable items in this voting!">
   	<span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br>
   	<span class="badge"><%=@voting.items.size %> <%=@voting.item_type.pluralize %> </span>
   </div>
-  <div class="col-md-1 text-center">
+  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Voting mode">
   	<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><br>
   	<span class="badge"><%=@voting.voting_type %></span>
   </div>
-  <div class="col-md-1 text-center">
+  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Who can see this voting?">
   	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><br>
   	<span class="badge"><%=@voting.audience %></span>
   </div>
-  <div class="col-md-1 text-center">
+  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Can anybody add items to this voting?">
   	<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span><br>
   	<span class="badge"><%=@voting.contribution %> </span>
   </div>	

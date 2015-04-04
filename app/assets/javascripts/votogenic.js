@@ -22,6 +22,8 @@ function loadHtml(data){
 
 $(document).ready(function() {
 
+	$('[data-toggle="tooltip"]').tooltip()
+
 	$('#container').BlocksIt({
 		numOfCol: Math.floor(window.innerWidth / 225),
 		offsetX: 8,

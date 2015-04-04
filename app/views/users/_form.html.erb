@@ -28,6 +28,7 @@
         <%= image_tag @user.user_image.url(:s) , class: "img-thumbnail"%>
 
         <span class="btn btn-default btn-file" style="position: relative; left: 10px; bottom: 40px; height: 30px;">
+          <span class="glyphicon glyphicon-camera"></span>
           Change<%= f.file_field :user_image,  class: "text-hide" %>
         </span>
 

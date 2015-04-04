@@ -72,6 +72,8 @@ class ImageItemsController < ApplicationController
   # DELETE /image_items/1
   # DELETE /image_items/1.json
   def destroy
+    @image_item.voting.items = @image_item.voting.items - [@image_item.id]
+    @image_item.voting.save
     @image_item.destroy
     respond_to do |format|
       format.html { redirect_to session[:redirect_path] , notice: 'Image item was successfully destroyed.' }

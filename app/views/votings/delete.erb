@@ -2,38 +2,34 @@
   <% render '/my_account/side_nav/voting_context_nav' %>
 <% end %> 
 
-	<div class="panel-danger">
-	<div class="panel-heading">This action can not be reverted!</div>
-	<div class="panel-body text-danger">
-		<p>When you delete this voting, all related information will be removed.</p>
-	</div> 
-</div>
-
 <%= render '/votings/basics' %>
 
 <br>
 <br>
 
-
-
-<div class="row">
-		<div class="col-md-1">
-			
-		</div>
-		<div class="col-md-10">
-			
-		</div>
-		<div class="col-md-1">
-			
-		</div>
-	</div>
-
 <%= form_for @voting, url: "/votings/#{@voting.id}/delete", method: :post, class: "form-horizontal" do |f| %>
+<input type="hidden" name="voting[confirm_code_check" value="<%= @confirm_code %>">
+	<div class="row">
 
-	<input type="text" name="voting[confirm_code]">
-	<input type="text" name="voting[confirm_code_check" value="<%= @confirm_code %>">
+		<div class="col-md-9">
+			<div class="panel panel-danger">
+				<div class="panel-heading">This action can not be undone!</div>
+					<div class="panel-body text-danger form-group">
+						Please confirm the following delete code: <mark><%= @confirm_code %></mark>
+					</div>
+					<div class="panel-body text-danger form-group">
+						Delete code: <input type="text" name="voting[confirm_code]">
+						<button class="btn btn-danger" type="submit">Delete this voting!</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<div class="col-md-12 text-center">
-		<button class="btn btn-danger" type="submit">Delete this voting!</button>
+		<div class="col-md-3">
+			
+		</div>
+
 	</div>
+
 <% end %>
+

@@ -11,7 +11,7 @@ class Voting
   validates_presence_of :description, message: ": Your voting needs a short description!"
   
   #TODO: reconsider indexing. search by searchable, audience, hits? etc... probably better for solr..
-  index({user_id: 1, searchable: 1}, {background: true})
+  index({user_id: 1, searchable: 1}, {background: true, sparse: true})
 
   field :user_id, 		:type => String		# owner
   field	:online_from,	:type => Date, :default => Date.current().to_time
