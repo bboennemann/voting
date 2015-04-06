@@ -4,6 +4,8 @@ class User
 
   #has_many :votings, dependent: :destroy
 
+  has_many :friend_requests, dependent: :destroy
+
   validates_presence_of :first_name, message: ": Please tell us your first name."
   validates_presence_of :last_name, message: ": Please tell us your last name."
 
@@ -47,7 +49,7 @@ class User
   field :about,       type: String
   field :sex,         type: String, default: "N"
   field :dob,         type: Date
-  field :from,        type: String
+  field :friends,      type: Array, :default => []
 
   has_mongoid_attached_file :user_image,
     :storage        => :s3,

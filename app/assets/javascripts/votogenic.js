@@ -1,3 +1,17 @@
+function friendRequest(sender, receiver){
+	$.ajax({
+		url : '/friend_requests.json?sender=' + sender + '&receiver=' + receiver,
+		type : 'post',
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('There was a problem loading the requested content. Please try again later');
+		},
+		success : function(html, resultText) {
+			$('#send_friend_request').hide();
+			$('#friend_request_sent').fadeIn();
+		}
+	});
+}
+
 function showCanvas(){
 	$('#overlayBlurr').fadeToggle();
 	$('#overlay').fadeToggle();
@@ -22,6 +36,11 @@ function loadHtml(data){
 }
 
 $(document).ready(function() {
+
+
+	$('#send_friend_request').click(function(){
+		friendRequest($(this).data('sender'), $(this).data('receiver'));
+	});
 
 	$('[data-toggle="tooltip"]').tooltip()
 

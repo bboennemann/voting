@@ -1,0 +1,3 @@
+<% unless current_user.friend_requests.empty? %>
+	<%= render template: '/friend_requests/index' %>
+<% end %>

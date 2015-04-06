@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -24,8 +25,13 @@ Rails.application.routes.draw do
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
   
+  # this needs to be cleaned up. Probably only create required.
+  resources :friend_requests
 
-  resources :users
+  resources :users do
+    resources :friends
+    resources :friend_requests
+  end
 
   resources :votings do
     resources :image_items

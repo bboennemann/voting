@@ -5,7 +5,6 @@ class MyAccountController < ApplicationController
   def index
   	@user = User.find(current_user)
   	@votings = Voting.where(user_id: current_user.id)
-  	render '/votings/index'
   end
 
 end

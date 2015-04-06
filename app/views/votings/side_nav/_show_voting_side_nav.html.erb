@@ -3,12 +3,23 @@
     <i class="glyphicon glyphicon-eye-open"> <%= link_to @voting.user.first_name, user_path(@voting.user_id)  %></i>
   </p>
 
-  <ul class="nav nav-sidebar">
-    <li><i class="glyphicon glyphicon-envelope"> <%= link_to "Message", user_path(@voting.user_id)  %></i></li>
-    <li><i class="glyphicon glyphicon-user"> <%= link_to "Add Friend", user_path(@voting.user_id)  %></i></li>
-  </ul>
+<!-- only if this is not my own voting -->
+<% if user_signed_in? && @voting.user_id != current_user.id %>
+  <!-- if we are friends then show message button -->
+  <% if @voting.user.friends.include?(current_user.id) %>
 
-  <br>
+    <%= link_to user_path(@voting.user_id) do %><button class="btn btn-sm btn-info"><i class="glyphicon glyphicon-envelope"> </i> Message</button><% end %>
+  
+  <% else %>
+  <!-- if we are not friends then show add friend button -->
+    <button class="btn btn-sm btn-info" data-sender="<%= current_user.id %>" data-receiver="<%= @voting.user.id %>" id="send_friend_request"><i class="glyphicon glyphicon-user"></i> Add Friend</button>
+    <button class="btn btn-sm btn-success" style="display: none;" id="friend_request_sent"><i class="glyphicon glyphicon-check"></i> Request Sent</button>
+
+  <% end %>
+  
+  <br><br>
+
+<% end %>
 
   <ul class="nav nav-sidebar">
     <li><i class="glyphicon glyphicon-ban-circle"> <%= link_to "Report", user_path(@voting.user_id)  %></i></li>
