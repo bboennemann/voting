@@ -25,6 +25,8 @@
 
 <%= render "devise/shared/links" %>
 
+<% if params[:ajax].nil? %>
+  
 <script type="text/javascript">
 $("#new_user").ajaxForm({
       type: "post", 
@@ -36,3 +38,5 @@ $("#new_user").ajaxForm({
       }
     });
 </script>
+
+<% end %>

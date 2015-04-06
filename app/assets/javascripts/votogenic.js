@@ -8,6 +8,7 @@ function hideCanvas(){
 	$('#overlay').fadeOut();
 }
 
+
 function loadHtml(data){
 	$.ajax({
 		url : data.getAttribute("data-url") + "?item_type=" + data.getAttribute("data-item-type") + "&voting_type=" + data.getAttribute("data-voting-type"),
@@ -24,8 +25,9 @@ $(document).ready(function() {
 
 	$('[data-toggle="tooltip"]').tooltip()
 
-	$('#container').BlocksIt({
-		numOfCol: Math.floor(window.innerWidth / 225),
+
+	$('#v_tile_container').BlocksIt({
+		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
 		offsetX: 8,
 		offsetY: 8,
 		blockElement: '.grid'

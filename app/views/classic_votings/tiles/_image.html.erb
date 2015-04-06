@@ -1,16 +1,13 @@
-<div class="v_tile_container">
+<div class="v_single_tile_container bg-default" id="single_tile">
 
 <!-- Main Image -->
+	<% unless voting.image_items.empty? %>
 	<div class="row">
 		<div class="col-md-12">
 			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px' %>
 		</div>
-		
-		<% if is_owner?(voting.user_id) %>
-			<%= link_to edit_voting_path(voting), class: "btn btn-default", style: "position: absolute; top: 5px; right: 15px; font-size: 1.5em;" do %><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span>
-			<% end %>
-		<% end %>
 	</div>
+	<% end %>
 
 <!-- teaser images -->
 	<% if voting.image_items.size > 2  %>
@@ -57,6 +54,18 @@
 			<% end  %>
 		</div>
 	</div>
+
+	<% if is_owner?(voting.user_id) %>
+
+		<div class="row v_tile_container_row">
+			<div class="col-md-12">
+				<%= link_to edit_voting_path(voting) do %>
+				<button class="btn btn-danger" style="width: 215px;"><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span> Edit Voting</button>
+			<% end %>
+			</div>
+		</div>
+			
+	<% end %>
 
 
 	

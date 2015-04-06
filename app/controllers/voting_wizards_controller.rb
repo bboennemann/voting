@@ -26,7 +26,7 @@ class VotingWizardsController < ApplicationController
     if user_signed_in?
       redirect_to controller: :votings, action: :new
     else
-      session[:redirect_path] = '/voting_wizards/step3'
+      session[:redirect_path] = request.original_url
       flash[:warning_msg] = 'You need to be logged in to create a new voting!'
       redirect_to controller: 'devise/sessions', action: 'new', layout: 'canvas'
     end
