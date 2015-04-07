@@ -12,7 +12,7 @@ module VotingsHelper
 	end
 
 	def side_nav_active? link
-		controller_name.include?(link) ? 'side-nav-active' : nil
+		link.include?(controller_name) ? 'side-nav-active' : nil
 	end
 
 	def context_nav_active? context
