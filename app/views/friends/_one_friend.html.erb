@@ -1,0 +1,13 @@
+<%= link_to friend do %>
+	<div class="row bg-info">
+		<div class="col-md-4">
+			<%= image_tag friend.user_image.url(:xs), class: 'img-thumbnail' %>
+		</div>
+		<div class="col-md-7">
+			<%= friend.first_name + ' ' + friend.last_name %>
+		</div>
+		<div>
+			<span class="glyphicon glyphicon-remove"></span>
+		</div>
+	</div>
+<% end %>

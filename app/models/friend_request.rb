@@ -5,6 +5,6 @@ class FriendRequest
   belongs_to :user
 
   field :user_id,			type: String
-  field :requester_id,		type: String
+  field :friend_id,			type: String
 
 end

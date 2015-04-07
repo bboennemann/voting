@@ -25,8 +25,8 @@ class FriendRequestsController < ApplicationController
   # POST /friend_requests.json
   def create
     @friend_request = FriendRequest.new()
-    @friend_request.user_id = params[:receiver]
-    @friend_request.requester_id = params[:sender]
+    @friend_request.user_id = current_user.id
+    @friend_request.friend_id = params[:friend]
 
     respond_to do |format|
       if @friend_request.save
@@ -42,9 +42,14 @@ class FriendRequestsController < ApplicationController
   # PATCH/PUT /friend_requests/1
   # PATCH/PUT /friend_requests/1.json
   def update
+
+    current_user.friends << @friend_request.user_id
+
+
     respond_to do |format|
-      if @friend_request.update(friend_request_params)
-        format.html { redirect_to @friend_request, notice: 'Friend request was successfully updated.' }
+      if current_user.save
+        @friend_request.delete
+        format.html { redirect_to user_friends_path(current_user), notice: 'Friend request was successfully updated.' }
         format.json { render :show, status: :ok, location: @friend_request }
       else
         format.html { render :edit }
@@ -58,7 +63,7 @@ class FriendRequestsController < ApplicationController
   def destroy
     @friend_request.destroy
     respond_to do |format|
-      format.html { redirect_to friend_requests_url, notice: 'Friend request was successfully destroyed.' }
+      format.html { redirect_to user_friends_path(current_user) }
       format.json { head :no_content }
     end
   end

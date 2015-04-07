@@ -1,3 +1,16 @@
 <% unless current_user.friend_requests.empty? %>
 	<%= render template: '/friend_requests/index' %>
 <% end %>
+
+<div class="row">
+	<% unless current_user.friends.empty? %>
+		<% @friends.each do |friend| %>
+
+			<div class="col-md-4">
+				<%= render 'one_friend', friend: friend %>
+
+			</div>
+			
+		<% end %>
+	<% end %>
+</div>

@@ -1,6 +1,6 @@
-function friendRequest(sender, receiver){
+function friendRequest(friend){
 	$.ajax({
-		url : '/friend_requests.json?sender=' + sender + '&receiver=' + receiver,
+		url : '/friend_requests.json?friend=' + friend,
 		type : 'post',
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('There was a problem loading the requested content. Please try again later');
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
 
 	$('#send_friend_request').click(function(){
-		friendRequest($(this).data('sender'), $(this).data('receiver'));
+		friendRequest($(this).data('friend'));
 	});
 
 	$('[data-toggle="tooltip"]').tooltip()

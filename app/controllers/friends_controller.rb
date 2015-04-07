@@ -6,16 +6,8 @@ class FriendsController < ApplicationController
   # GET /friends
   # GET /friends.json
   def index
-    
-    # TODO: this probably doesn't get any more ugly. Need to figure out polimorphic relations and have a request have a sender and receiver at the same time.
-    requester_ids = []
-    current_user.friend_requests.each do |req_id|
-      requester_ids << req_id.requester_id
-    end
-    @requesters = User.in(id: requester_ids)
-
-    @friend_request = FriendRequest.new
-
+    @friend_requests = FriendRequest.where(friend_id: current_user.id)
+    @friends = User.find(current_user.friends)
   end
 
   # GET /friends/1
