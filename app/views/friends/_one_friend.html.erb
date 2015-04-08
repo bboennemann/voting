@@ -1,13 +1,13 @@
-<%= link_to friend do %>
+<%= link_to my_friend do %>
 	<div class="row bg-info">
 		<div class="col-md-4">
-			<%= image_tag friend.user_image.url(:xs), class: 'img-thumbnail' %>
+			<%= image_tag my_friend.user_image.url(:xs), class: 'img-thumbnail' %>
 		</div>
 		<div class="col-md-7">
-			<%= friend.first_name + ' ' + friend.last_name %>
+			<%= my_friend.first_name + ' ' + my_friend.last_name %>
 		</div>
 		<div>
-			<span class="glyphicon glyphicon-remove"></span>
+			<%= link_to "/users/#{current_user.id}/friends/#{my_friend.id}", method: :delete, data: { confirm: 'Do you want to remove this contact from your friends?' } do %><span class="glyphicon glyphicon-remove"></span><% end %>
 		</div>
 	</div>
 <% end %>

@@ -25,13 +25,13 @@ class FriendRequestsController < ApplicationController
   # POST /friend_requests.json
   def create
     @friend_request = FriendRequest.new()
-    @friend_request.user_id = current_user.id
-    @friend_request.friend_id = params[:friend]
+    @friend_request.user = params[:user_id]
+    @friend_request.requester = current_user.id
 
     respond_to do |format|
       if @friend_request.save
-        format.html { redirect_to @friend_request, notice: 'Friend request was successfully created.' }
-        format.json { render :show, status: :created, location: @friend_request }
+        format.html { redirect_to nil, notice: 'Friend request was successfully created.' }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @friend_request.errors, status: :unprocessable_entity }
@@ -43,11 +43,12 @@ class FriendRequestsController < ApplicationController
   # PATCH/PUT /friend_requests/1.json
   def update
 
-    current_user.friends << @friend_request.user_id
-
+    current_user.friends << @friend_request.requester_id
+    friend = User.find(@friend_request.requester_id)
+    friend.friends << @friend_request.user_id
 
     respond_to do |format|
-      if current_user.save
+      if current_user.save && friend.save
         @friend_request.delete
         format.html { redirect_to user_friends_path(current_user), notice: 'Friend request was successfully updated.' }
         format.json { render :show, status: :ok, location: @friend_request }

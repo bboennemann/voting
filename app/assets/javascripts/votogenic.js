@@ -1,6 +1,6 @@
 function friendRequest(friend){
 	$.ajax({
-		url : '/friend_requests.json?friend=' + friend,
+		url : '/users/' + friend + '/friend_requests.json',
 		type : 'post',
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('There was a problem loading the requested content. Please try again later');

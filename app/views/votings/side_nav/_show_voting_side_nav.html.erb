@@ -4,7 +4,7 @@
   </p>
 
 <!-- only if this is not my own voting -->
-<% if user_signed_in? && (@voting.user_id != current_user.id) %>
+<% if user_signed_in? && !is_owner?(@voting.user_id) %>
   <!-- if we are friends then show message button -->
   <% if @voting.user.friends.include?(current_user.id) %>
 

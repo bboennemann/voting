@@ -57,9 +57,17 @@ class FriendsController < ApplicationController
   # DELETE /friends/1
   # DELETE /friends/1.json
   def destroy
-    @friend.destroy
+    puts params[:user_id]
+    puts params[:id]
+
+    friend = User.find(params[:id])
+    friend.friends.delete(current_user.id.to_s)
+    current_user.friends.delete(friend.id.to_s)
+    friend.save
+    current_user.save
+
     respond_to do |format|
-      format.html { redirect_to friends_url, notice: 'Friend was successfully destroyed.' }
+      format.html { redirect_to user_friends_url(current_user), notice: 'Friend was removed!' }
       format.json { head :no_content }
     end
   end
@@ -67,7 +75,7 @@ class FriendsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_friend
-      @friend = Friend.find(params[:id])
+      @friend = User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -4,7 +4,8 @@ class User
 
   #has_many :votings, dependent: :destroy
 
-  has_many :friend_requests, dependent: :destroy
+  has_many :friend_requests, class_name: 'FriendRequest', inverse_of: :user, dependent: :destroy
+  has_many :requested_friends, class_name: 'FriendRequest', inverse_of: :requester, dependent: :destroy
 
   validates_presence_of :first_name, message: ": Please tell us your first name."
   validates_presence_of :last_name, message: ": Please tell us your last name."
@@ -12,7 +13,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable#, :confirmable
 
   ## Database authenticatable
   field :email,              type: String, default: ""

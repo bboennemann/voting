@@ -2,15 +2,21 @@
 	<%= render template: '/friend_requests/index' %>
 <% end %>
 
-<div class="row">
-	<% unless current_user.friends.empty? %>
-		<% @friends.each do |friend| %>
+<% unless current_user.friends.empty? %>
+	<div class="row">
+
+		<% @friends.each_with_index do |friend, i| %>
 
 			<div class="col-md-4">
-				<%= render 'one_friend', friend: friend %>
+				<%= render 'one_friend', my_friend: friend %>
 
 			</div>
 			
+  			<% if ((i+1) % 3) == 0 %>
+		</div>  		
+		<div class="row">
+  			<% end %>
+	
 		<% end %>
-	<% end %>
-</div>
+	</div>
+<% end %>

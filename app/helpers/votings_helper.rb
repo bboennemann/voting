@@ -18,4 +18,16 @@ module VotingsHelper
 	def context_nav_active? context
 		@context == context ? 'context-nav-active' : nil
 	end
+
+	def is_owner? owner_id
+		if user_signed_in?
+			owner_id.to_s == current_user.id.to_s ? true : false
+		else
+			false
+		end
+	end
+
+	def highlight_owner? user_id
+		is_owner?(user_id) ? 'bg-info' : ''
+	end	
 end
