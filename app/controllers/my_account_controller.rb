@@ -1,6 +1,6 @@
 class MyAccountController < ApplicationController
   before_action :authenticate_user!
-  layout 'my'
+  layout 'my_account'
 
   def index
   	@user = User.find(current_user)

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:show]
 
-  layout 'my', only: [:edit, :destroy, :update]
+  layout 'my_account', only: [:edit, :destroy, :update]
 
 
   # GET /users
@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @votings = Voting.where(user_id: params[:id])
+
+    if @user.id.to_s == current_user.id.to_s 
+      render layout: 'my_account'
+    else
+      render layout: 'show_user'
+    end
   end
 
   # GET /users/new

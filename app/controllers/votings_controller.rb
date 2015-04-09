@@ -30,7 +30,7 @@ class VotingsController < ApplicationController
   def edit
     @context = 'settings'
     is_current_user? @voting.user_id
-    render layout: "my"
+    render layout: 'my_account'
   end
 
   # POST /votings
@@ -70,7 +70,7 @@ class VotingsController < ApplicationController
     respond_to do |format|
       if @voting.update(tmp_params)
         flash[:success_msg] = 'Voting was successfully updated.'
-        format.html { render :edit, layout: 'my' }
+        format.html { render :edit, layout: 'my_account' }
         format.json { render :show, status: :ok, location: @voting }
       else
         format.html { render :edit }
@@ -87,7 +87,7 @@ class VotingsController < ApplicationController
       logger.debug voting_params[:confirm_code]
       logger.debug voting_params[:confirm_code_check]
       flash[:error_msg] = "Please make sure to enter the correct confirmation code"
-      redirect_to "/votings/#{@voting.id}/delete", layout: 'my'
+      redirect_to "/votings/#{@voting.id}/delete", layout: 'my_account'
     else
 
       @voting.destroy
@@ -105,7 +105,7 @@ class VotingsController < ApplicationController
   def delete
     @context = 'delete'
     @confirm_code = ('a'..'z').to_a.shuffle[0,8].join
-    render layout: 'my'
+    render layout: 'my_account'
   end
 
   private

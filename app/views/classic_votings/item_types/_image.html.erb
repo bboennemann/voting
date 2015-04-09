@@ -4,7 +4,7 @@
 	<div class="row <%= highlight_owner?(item.user_id) %>" style="padding: 5px">
 
       <!-- Rank, click count & score -->
-    	<div class="col-md-1 text-primary">
+    	<div class="col-sm-1 text-primary">
     		<h1><%= index + 1 %></h1>
     		<br>
 
@@ -24,12 +24,12 @@
     	</div>
 
       <!-- Image -->
-    	<div class="col-md-3">
+    	<div class="col-sm-3">
     		<%= image_tag item.image_file.url(:s), class: "img-rounded" %><br>
     	</div>
 
       <!-- description -->
-    	<div class="col-md-5 text-bottom">
+    	<div class="col-sm-5 text-bottom">
         <%= form_for item, remote: true do |f| %>
           <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 4, disabled: !is_owner?(item.user_id), placeholder: 'No description...' %> <br>
             <% if is_owner?(item.user_id) %>
@@ -42,7 +42,7 @@
     	</div>
 
       <!-- user -->
-    	<div class="col-md-3">
+    	<div class="col-sm-3">
     		<%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail', alt: item.user.first_name %>
         <p>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>

@@ -1,0 +1,4 @@
+<%= image_tag @user.user_image.url(:xs), class: 'img-thumbnail', alt: @user.first_name %>
+  <p>
+    <i class="glyphicon glyphicon-eye-open"> <%= link_to @user.first_name, user_path  %></i>
+  </p>

@@ -14,9 +14,6 @@ Rails.application.routes.draw do
   get 'voting_wizards/step2'
   get 'voting_wizards/step3'
 
-  # my account routes
-  get 'my_account' => 'my_account#index'
-
   resources :image_items
 
   resources :classic_votings

@@ -1,7 +1,7 @@
 class ClassicVotingsController < ApplicationController
   before_action :set_classic_voting, only: [:show, :edit, :update, :destroy]
 
-  layout 'sidebar', only: [:show]
+  layout 'show_voting', only: [:show]
 
   # GET /classic_votings
   # GET /classic_votings.json
@@ -36,7 +36,7 @@ class ClassicVotingsController < ApplicationController
     session[:redirect_path] = request.original_url
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
     @image_item = ImageItem.new(:voting_id => params[:id])   
-    render :edit, :layout => 'my'
+    render :edit, :layout => 'my_account'
   end
 
   # POST /classic_votings

@@ -9,7 +9,7 @@
 <br>
 
 <div class="nav nav-sidebar" role="navigation">
-	<div class='side-nav-item <%= side_nav_active?(['votings', 'my_account', 'classic_votings']) %>'><%= link_to 'Votings', '/my_account'  %></div>
+	<div class='side-nav-item <%= side_nav_active?(['votings', 'users', 'classic_votings']) %>'><%= link_to 'Votings', current_user  %></div>
 	<div class="side-nav-item <%= side_nav_active?('friends') %>"><%= link_to 'Friends', user_friends_path(current_user)  %><% if current_user.friend_requests.size > 0 %> <div class="badge"><%= current_user.friend_requests.size %></div><% end %></div>
 	<div class="side-nav-item <%= side_nav_active?('messages') %>"><%= link_to 'Conversations', ''  %></div>
 </div>

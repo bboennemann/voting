@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
   before_action :set_friend, only: [:show, :edit, :update, :destroy]
 
-  layout 'my'
+  layout 'my_account'
 
   # GET /friends
   # GET /friends.json
