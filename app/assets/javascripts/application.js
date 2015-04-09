@@ -13,12 +13,17 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.form
 //= require bootstrap-datepicker
 //= require bootstrap-tagsinput
 //= require blocksit
 //= require votogenic
 //= require turbolinks
-
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require jquery.fileupload-ui
+//= require jquery.fileupload-process
+//= require jquery.fileupload-validate
 
 

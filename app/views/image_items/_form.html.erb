@@ -1,73 +1,141 @@
-<%= form_for(@image_item, :html => {multipart: true, :class => 'form-horizontal', :id => 'fileupload'}) do |f| %>
-  <% if @image_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@image_item.errors.count, "error") %> prohibited this image_item from being saved:</h2>
-
-      <ul>
-      <% @image_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-
-
-<!-- The file upload form used as target for the file upload widget -->
-
-        <!-- Redirect browsers with JavaScript disabled to the origin page -->
-        <noscript><input type="hidden" name="redirect" value="/"></noscript>
+<h2><%= t('photos.title') %></h2>
+<%= form_for ImageItem.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+ <%= f.hidden_field :voting_id, value: @image_item.voting_id %>
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <%= f.hidden_field :voting_id, value: @image_item.voting_id %>
         <div class="row fileupload-buttonbar">
-            <div class="col-md-7">
+            <div class="span7">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
-                    <span class="glyphicon glyphicon-plus"></span>
+                    <i class="icon-plus icon-white"></i>
                     <span>Add files...</span>
-                      <input name="image_item[image_file][]" id="image_item_image_file" type="file" multiple>
+                    <%= f.file_field :file, multiple: true %>
                 </span>
                 <button type="submit" class="btn btn-primary start">
-                    <i class="glyphicon glyphicon-upload"></i>
+                    <i class="icon-upload icon-white"></i>
                     <span>Start upload</span>
                 </button>
                 <button type="reset" class="btn btn-warning cancel">
-                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <i class="icon-ban-circle icon-white"></i>
                     <span>Cancel upload</span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
-                    <i class="glyphicon glyphicon-trash"></i>
+                    <i class="icon-trash icon-white"></i>
                     <span>Delete</span>
                 </button>
                 <input type="checkbox" class="toggle">
-                <!-- The global file processing state -->
-                <span class="fileupload-process"></span>
             </div>
-            <!-- The global progress state -->
-            <div class="col-md-5 fileupload-progress fade">
+            <div class="span5">
                 <!-- The global progress bar -->
-                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                <div class="progress progress-success progress-striped active fade">
+                    <div class="bar" style="width:0%;"></div>
                 </div>
-                <!-- The extended global progress state -->
-                <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
+        <!-- The loading indicator is shown during image processing -->
+        <div class="fileupload-loading"></div>
+        <br>
         <!-- The table listing the files available for upload/download -->
-        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
-<% end %>
+        <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+        </table>
+    <% end %>
+<script>
+  var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Filetype not allowed',
+    //maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+  };
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+            <td>
+                <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+            </td>
+            <td class="start">{% if (!o.options.autoUpload) { %}
+                <button class="btn btn-primary">
+                    <i class="icon-upload icon-white"></i>
+                    <span>{%=locale.fileupload.start%}</span>
+                </button>
+            {% } %}</td>
+        {% } else { %}
+            <td colspan="2"></td>
+        {% } %}
+        <td class="cancel">{% if (!i) { %}
+            <button class="btn btn-warning">
+                <i class="icon-ban-circle icon-white"></i>
+                <span>{%=locale.fileupload.cancel%}</span>
+            </button>
+        {% } %}</td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        {% if (file.error) { %}
+            <td></td>
+            <td class="name"><span>{%=file.name%}</span></td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else { %}
+            <td class="preview">{% if (file.thumbnail_url) { %}
+                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+            {% } %}</td>
+            <td class="name">
+                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+            </td>
+            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+            <td colspan="2"></td>
+        {% } %}
+        <td class="delete">
+            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+                <i class="icon-trash icon-white"></i>
+                <span>{%=locale.fileupload.destroy%}</span>
+            </button>
+            <input type="checkbox" name="delete" value="1">
+        </td>
+    </tr>
+{% } %}
+</script>
 
 
-<script type="text/javascript">
-$("#fileupload").ajaxForm({
-      type: "post", 
-      url : '/votings/<%= @voting.id  %>/image_items',
-      error : function(jqXHR, textStatus, errorThrown) {
-        alert('There was a problem loading the requested content. Please try again later');
-      },
-      success : function(html, resultText) {
-       $('#overlay').html(html);
-      }
+<!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
+<script src="https://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
+<script src="https://blueimp.github.com/JavaScript-Load-Image/load-image.all.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+
+<!-- add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets -->
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload();
+        // 
+        // Load existing files:
+        $.getJSON($('#fileupload').prop('action'), function (files) {
+          var fu = $('#fileupload').data('blueimp-fileupload'), 
+            template;
+          //fu._adjustMaxNumberOfFiles(-files.length);
+          template = fu._renderDownload(files)
+            .appendTo($('#fileupload .files'));
+          // Force reflow:
+          fu._reflow = fu._transition && template.length &&
+            template[0].offsetWidth;
+          template.addClass('in');
+          $('#loading').remove();
+        });
+
     });
 </script>

@@ -20,4 +20,15 @@ class ImageItem
     :styles         => Rails.configuration.x.image.sizes
 
   validates_attachment :image_file, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
+  def to_jq_upload
+    {
+      "name" => read_attribute(:image_file),
+      "size" => image_file.size,
+      "url" => image_file.url,
+      "thumbnail_url" => image_file.url(:xxs),
+      "delete_url" => "/image_items/#{id}",
+      "delete_type" => "DELETE" 
+    }
+  end
 end

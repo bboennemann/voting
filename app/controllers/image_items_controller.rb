@@ -7,6 +7,9 @@ class ImageItemsController < ApplicationController
   # GET /image_items.json
   def index
     @image_items = ImageItem.all
+
+    render :json => @image_items.collect { |p| p.to_jq_upload }.to_json
+
   end
 
   # GET /image_items/1
@@ -37,23 +40,39 @@ class ImageItemsController < ApplicationController
 
     @voting = Voting.find(image_item_params[:voting_id])
 
-    image_item_params[:image_file].each do |file|
-      image_item = @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file, :user_id => current_user.id, created_at: DateTime.now )
-      @voting.items << image_item.id
+    #image_item_params[:image_file].each do |file|
+      @image_item = @voting.image_items.new(:voting_id => image_item_params[:voting_id], :image_file => image_item_params[:file], :user_id => current_user.id, created_at: DateTime.now )
+      @voting.items << @image_item.id
+    #end
+if @image_item.save
+      respond_to do |format|
+        format.html {  
+          render :json => [@image_item.to_jq_upload].to_json, 
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json {  
+          format.json { render json: {files: [@upload.to_jq_upload]}, status: :created, location: @upload }
+          #render :json => [@image_item.to_jq_upload].to_json           
+        }
+      end
+    else 
+      render :json => [{:error => "custom_failure"}], :status => 304
     end
-    @voting.save
+  end    
 
-    respond_to do |format|
-#      if @image_item.save
+#    respond_to do |format|
+ #     if @image_item.save
+  #      @voting.save
         #format.html { redirect_to @voting, notice: 'Image item was successfully created.' }
-        format.html { render '/votings/_item_added', notice: 'Image item was successfully created.' }
-        format.json { render :show, status: :created, location: @image_item }
+   #     format.html { render '/votings/_item_added', notice: 'Image item was successfully created.' }
+    #    format.json { render :show, status: :created, location: @image_item }
 #      else
 #        format.html { render :new }
-#        format.json { render json: @image_item.errors, status: :unprocessable_entity }
-#      end
-    end
-  end
+ #       format.json { render json: @image_item.errors, status: :unprocessable_entity }
+  #    end
+   # end
+  #end
 
   # PATCH/PUT /image_items/1
   # PATCH/PUT /image_items/1.json
