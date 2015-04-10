@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  resources :friends
+
   devise_for :users
 
   # You can have the root of your site routed with "root"
@@ -14,18 +16,17 @@ Rails.application.routes.draw do
   get 'voting_wizards/step2'
   get 'voting_wizards/step3'
 
-  resources :image_items
+  resources :image_items, only: [:create, :destroy, :show]
 
-  resources :classic_votings
+  resources :classic_votings, only: [:show, :edit]
 
-  resources :votings 
+  resources :votings
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
   
-  # this needs to be cleaned up. Probably only create required.
   resources :friend_requests
 
-  resources :users do
+  resources :users, only: [:update, :destroy, :show, :edit] do 
     resources :friends
     resources :friend_requests
   end

@@ -1,3 +1,22 @@
+function getShareForm(){
+	$.ajax({
+		url : '/friends/new',
+		type : 'get',
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('There was a problem loading the requested content. Please try again later');
+		},
+		success : function(html, resultText) {
+			$('#share_voting').popover({
+				'show': true,
+				'html': 	true,
+				'title': 	'title',
+				'content': html
+			});
+
+		}
+	});
+}
+
 function friendRequest(friend){
 	$.ajax({
 		url : '/users/' + friend + '/friend_requests.json',
@@ -37,6 +56,11 @@ function loadHtml(data){
 
 $(document).ready(function() {
 
+
+
+	$('#share_voting').click(function(){
+		getShareForm()
+	});
 
 	$('#send_friend_request').click(function(){
 		friendRequest($(this).data('friend'));

@@ -23,7 +23,7 @@
 
   <ul class="nav nav-sidebar">
     <li><i class="glyphicon glyphicon-ban-circle"> <%= link_to "Report", user_path(@voting.user_id)  %></i></li>
-    <li><i class="glyphicon glyphicon-share"> <%= link_to "Share", user_path(@voting.user_id)  %></i></li>
+    <li><i class="glyphicon glyphicon-share"><span id="share_voting" > Share</span></i></li>
     <li><i class="glyphicon glyphicon-play"> <%= link_to "Vote", user_path(@voting.user_id)  %></i></li>
   </ul>
 

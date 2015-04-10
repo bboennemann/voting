@@ -18,6 +18,7 @@ class FriendsController < ApplicationController
   # GET /friends/new
   def new
     @friend = Friend.new
+    render template: '/friends/show', layout: nil
   end
 
   # GET /friends/1/edit
