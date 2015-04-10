@@ -1,0 +1,12 @@
+<h2>You may also like:</h2>
+<div class="row">
+	<div class="col-md-12">
+		<div id="v_tile_container">
+		<% @interesting_votings.each do |voting| %>
+			<div class="grid class">
+					<%= render "/#{voting.voting_type}_votings/tiles/#{voting.item_type}", :voting => voting %>
+			</div>
+		<% end %>
+		</div>
+	</div>
+</div>

@@ -8,9 +8,11 @@ class VotingsController < ApplicationController
   # GET /votings.json
   def index
     if params[:tags]
-      @votings = Voting.where(:tags => params[:tags])
+      @votings = Voting.where(:tags => params[:tags]).general_audience.valid_date.enabled
+    elsif params[:category]
+      @votings = Voting.in(:tags => Category::LIST[params[:category]]).general_audience.valid_date.enabled
     else
-      @votings = Voting.all
+      @votings = Voting.general_audience.valid_date.active
     end
 
   end
@@ -117,7 +119,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to)
     end
 
 end

@@ -7,9 +7,12 @@
 
 		<% @friends.each_with_index do |friend, i| %>
 
-			<div class="col-md-4">
+			<div class="col-sm-3">
 				<%= render 'one_friend', my_friend: friend %>
 
+			</div>
+			<div class="col-sm-1">
+				&nbsp;
 			</div>
 			
   			<% if ((i+1) % 3) == 0 %>

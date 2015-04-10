@@ -1,22 +1,3 @@
-function getShareForm(){
-	$.ajax({
-		url : '/friends/new',
-		type : 'get',
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('There was a problem loading the requested content. Please try again later');
-		},
-		success : function(html, resultText) {
-			$('#share_voting').popover({
-				'show': true,
-				'html': 	true,
-				'title': 	'title',
-				'content': html
-			});
-
-		}
-	});
-}
-
 function friendRequest(friend){
 	$.ajax({
 		url : '/users/' + friend + '/friend_requests.json',
@@ -29,6 +10,12 @@ function friendRequest(friend){
 			$('#friend_request_sent').fadeIn();
 		}
 	});
+}
+
+function triggerCanvas(data){
+	$('#overlay').html('');
+	loadHtml(data);
+	showCanvas();
 }
 
 function showCanvas(){
@@ -56,19 +43,36 @@ function loadHtml(data){
 
 $(document).ready(function() {
 
-
-
-	$('#share_voting').click(function(){
-		getShareForm()
+	// close canvas on pressing ESC
+	$(document).keyup(function(e) {
+		if (e.keyCode == 27) hideCanvas();   // esc
 	});
 
+		
+	// hide canvas when clicking on glass panel
+	$('#overlayBlurr').click(function(){
+		hideCanvas();
+	});
+
+	// Navbar categories popup
+	$('#show_categories').popover({
+		'content': $('#categories_popover_content').html(),
+		'placement': 'bottom',
+		'html': 	true,
+		'title': 	'Categories:',
+		'trigger': 'focus',
+		container: 	'body'
+	});
+
+	// send friend request ! no popup ! straight to ajax action
 	$('#send_friend_request').click(function(){
 		friendRequest($(this).data('friend'));
 	});
 
+	// globally enables bootstrap tooltips wherever configured
 	$('[data-toggle="tooltip"]').tooltip()
 
-
+	// distribute tiles
 	$('#v_tile_container').BlocksIt({
 		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
 		offsetX: 8,
@@ -76,36 +80,27 @@ $(document).ready(function() {
 		blockElement: '.grid'
 	});
 
+	// user dob datepicker
 	$('#datepicker').datepicker({
 		viewMode: 'years'
 	});
 
-	
-	$('#new_voting').click(function(){
-		$('#overlay').html('');
-		loadHtml(this);
-		showCanvas();
+	$('#trigger_report_voting').click(function(){
+		triggerCanvas(this)
 	});
 
-	$('#trigger_overlay').click(function(){
-		$('#overlay').html('');
-		loadHtml(this);
-		showCanvas();
+	
+	$('#new_voting').click(function(){
+		triggerCanvas(this)
+	});
+
+	$('#new_image_item').click(function(){
+		triggerCanvas(this)
 	});
 	
 	$('#sign_in').click(function(){
-		$('#overlay').html('');
-		loadHtml(this);
-		showCanvas();
-	});
-	
-
-	$('#overlayBlurr').click(function(){
-		hideCanvas();
+		triggerCanvas(this)
 	});
 
-	$(document).keyup(function(e) {
-		if (e.keyCode == 27) hideCanvas();   // esc
-	});
 	
 });

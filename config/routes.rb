@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'voting_wizards/step2'
   get 'voting_wizards/step3'
 
+  get 'my_account/coming_soon'
+
   resources :image_items, only: [:create, :destroy, :show]
 
   resources :classic_votings, only: [:show, :edit]
@@ -35,6 +37,7 @@ Rails.application.routes.draw do
     resources :image_items
   end
 
+  resources :categories, only: [:index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

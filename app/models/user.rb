@@ -51,6 +51,7 @@ class User
   field :sex,         type: String, default: "N"
   field :dob,         type: Date
   field :friends,      type: Array, :default => []
+  field :interests,      type: Array, :default => []
 
   has_mongoid_attached_file :user_image,
     :storage        => :s3,
@@ -62,4 +63,9 @@ class User
 
   validates_attachment :user_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
+  private
+
+  def full_name
+    first_name + ' ' + last_name   
+  end
 end

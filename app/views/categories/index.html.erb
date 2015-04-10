@@ -1,0 +1,16 @@
+<div class="row">
+	<% Category::LIST.each_with_index do |category, i| %>
+
+		<div class="col-sm-6">
+			<%= link_to category[0].to_s, "/?category=#{category[0]}" %>
+		</div>
+
+		<% if ((i+1) % 2) == 0 %>
+
+			</div> 
+			<div class="row">
+
+  		<% end %>
+	
+	<% end %>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Hello there <%= @recommendation.to_name %>,</p>
+
+    <p>your friend <%= @recommendation.from_name %> wants you to have a look at this voting:<br>
+    <%= link_to 'A ' + @voting._type,  @link %>
+    </p>
+
+    <p>Have fun with this one and share on.</p>
+
+    <p>The votogenic.io team!</p>
+  </body>
+</html>

@@ -121,6 +121,20 @@
     </div>
   </div>
 
+<!--  About me -->
+  <div class="form-group">
+    <div class="col-md-2 text-info">
+      Interests:
+    </div>
+    <div class="col-md-4">
+      <%= f.text_field :interests, id: :interests, 'data-role' => 'tagsinput', class: "form-control", value: @user.interests.join(",") %><br>
+      <small class="text-warning">(use comma "," as a separator)</small>
+    </div>
+    <div class="col-md-6">
+      &nbsp;
+    </div>
+  </div>
+
 <!-- TODO: Add location map -->
 
   <div class="form-group">

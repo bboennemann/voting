@@ -1,1 +1,5 @@
 <%= render template: '/votings/index' %>
+<% if @interesting_votings %>
+	<%= render '/votings/interesting_votings' %>
+<% end %>
+

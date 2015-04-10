@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @votings = Voting.where(user_id: params[:id])
-
     if @user.id.to_s == current_user.id.to_s 
+      @votings = Voting.where(user_id: params[:id])
+       @interesting_votings = Voting.in(tags: current_user.interests).ne(user_id: current_user.id)
       render layout: 'my_account'
     else
+      @votings = Voting.where(user_id: params[:id]).general_audience.valid_date.active
       render layout: 'show_user'
     end
   end
@@ -52,8 +53,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
 
+    tmp_params = user_params
+    tmp_params[:interests] = tmp_params[:interests].split(',')
+
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(tmp_params)
         flash[:success_msg] = 'User was successfully updated.'
         format.html { redirect_to edit_user_url(@user) }
         format.json { render :show, status: :ok, location: @user }
@@ -83,6 +87,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       #params[:user]
-      params.require(:user).permit(:first_name, :last_name, :user_image, :about, :sex, :dob, :from)
+      params.require(:user).permit(:first_name, :last_name, :user_image, :about, :sex, :dob, :from, :interests)
     end
 end

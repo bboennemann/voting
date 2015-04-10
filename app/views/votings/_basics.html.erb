@@ -1,29 +1,37 @@
-<img src="/placeholder.jpg" alt="..." width="75%" height="125" class="img-rounded">
-
+<div class="row">
+  <div class="col-sm-12">
+    <img src="/placeholder.jpg" alt="..." width="80%" height="125" class="img-rounded">
+    <%= link_to @voting do %><div class="v_play_voting text-success"><span class="glyphicon glyphicon-play-circle"></span></div><% end %>
+  </div>
+</div>
 
 <br><br>	
 
-<div class="row">
-  <div class="col-md-1 text-center"  data-toggle="tooltip" data-placement="bottom" title="Number of single clicks for this voting!">
-  	<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><br>
-  	<span class="badge"><%=@voting.hits %> hits</span>
+<div class="row" style="width: 80%">
+  <div class="col-sm-2 text-primary" data-toggle="tooltip" data-placement="bottom" title="Settings for this Voting">
+    <h4>Voting Attributes:</h4>
+  </div>  
+  <div class="col-sm-2 text-center"  data-toggle="tooltip" data-placement="bottom" title="Number of single clicks for this voting!">
+  	<span class="glyphicon glyphicon-thumbs-up text-primary" aria-hidden="true"></span><br>
+  	<span class="label label-primary v_label-as-badge"><%=@voting.hits %> hits</span>
   </div>
-  <div class="col-md-1 text-center"  data-toggle="tooltip" data-placement="bottom" title="Total numbers of votable items in this voting!">
-  	<span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br>
-  	<span class="badge"><%=@voting.items.size %> <%=@voting.item_type.pluralize %> </span>
+  <div class="col-sm-2 text-center"  data-toggle="tooltip" data-placement="bottom" title="Total numbers of votable items in this voting!">
+  	<span class="glyphicon glyphicon-picture text-primary" aria-hidden="true"></span><br>
+  	<span class="label label-primary v_label-as-badge"><%=@voting.items.size %> <%=@voting.item_type.pluralize %> </span>
   </div>
-  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Voting mode">
-  	<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span><br>
-  	<span class="badge"><%=@voting.voting_type %></span>
+  <div class="col-sm-2 text-center" data-toggle="tooltip" data-placement="bottom" title="Voting mode">
+  	<span class="glyphicon glyphicon-star-empty text-primary" aria-hidden="true"></span><br>
+  	<span class="label label-primary v_label-as-badge">Style: <%=@voting.voting_type %></span>
   </div>
-  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Who can see this voting?">
-  	<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span><br>
-  	<span class="badge"><%=@voting.audience %></span>
+  <div class="col-sm-2 text-center" data-toggle="tooltip" data-placement="bottom" title="Who can see this voting?">
+  	<span class="glyphicon glyphicon-eye-open text-primary" aria-hidden="true"></span><br>
+  	<span class="label label-primary v_label-as-badge">Audience: <%=@voting.audience %></span>
   </div>
-  <div class="col-md-1 text-center" data-toggle="tooltip" data-placement="bottom" title="Can anybody add items to this voting?">
-  	<span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span><br>
-  	<span class="badge"><%=@voting.contribution %> </span>
-  </div>	
+  <div class="col-sm-2 text-center" data-toggle="tooltip" data-placement="bottom" title="Can anybody add items to this voting?">
+  	<span class="glyphicon glyphicon-cloud-upload text-primary" aria-hidden="true"></span><br>
+  	<span class="label label-primary v_label-as-badge">Uploads: <%=@voting.contribution %> </span>
+  </div>
+
 </div>
 
 

@@ -105,3 +105,10 @@ body{
     border-radius: 1em !important;
 }
 
+.v_play_voting {
+	font-size: 4em;
+	font-weight: bolder;
+	position: absolute;
+	left: 38%;
+	bottom: 15px;
+}

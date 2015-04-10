@@ -50,23 +50,6 @@
     </div>
   </div>
 
-<!-- Voting TAGS  -->
-  <div class="form-group">
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-    <div class="col-md-3 text-info">
-      Tags:
-    </div>
-    <div class="col-md-7">
-      <%= f.text_field :tags, id: :tagsinput, 'data-role' => 'tagsinput', class: "form-control", value: @voting.tags.join(",") %>
-      <span class="text-warning">(use comma "," as a separator)</span>
-    </div>
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-  </div>
-
 
 <!-- Voting AUDIENCE  -->
   <div class="form-group">
@@ -119,30 +102,6 @@
   </div>
 
 
-<!-- Voting SEARCHABLE  -->
-  <div class="form-group">
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-    <div class="col-md-3 text-info">
-      Searchable:
-    </div>
-    <div class="col-md-7">
-      <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-info <%= @voting.searchable ? 'active' : nil %>">
-          <%= f.radio_button :searchable, true %>Yes
-        </label>
-        <label class="btn btn-info <%= @voting.searchable ? nil : 'active' %>">
-          <%= f.radio_button :searchable, false %>No
-        </label>
-      </div>
-    </div>
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-  </div>
-
-
 <!-- Voting ONLINE DATES  -->
   <div class="form-group">
     <div class="col-md-1">
@@ -153,18 +112,57 @@
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <input type="date" class="form-control" placeholder="<%= Date.current %>" id="datepicker_from">
+        <%= f.text_field :online_from, class: 'form-control', id: 'datepicker_from', placeholder: Date.current %>
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>
     </div>
     <div class="col-md-4">
       <div class="input-group">
-        <input type="date" class="form-control" placeholder="<%= (Date.current() + Rails.configuration.x.voting.default_expiration) %>" id="datepicker_to">
+        <%= f.text_field :online_to, class: 'form-control', id: 'datepicker_to' %>
         <span class="glyphicon glyphicon-calendar input-group-addon" aria-hidden="true"></span> 
       </div>      
     </div>
-
   </div>
+
+<!-- Voting TAGS  -->
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Tags:
+    </div>
+    <div class="col-md-7">
+      <%= f.text_field :tags, id: :tagsinput, 'data-role' => 'tagsinput', class: "form-control", value: @voting.tags.join(",") %><br>
+      <small class="text-warning">(use comma "," as a separator)</small>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>  
+
+<!-- Voting Enabled  -->
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      <%= @voting.active ? "Active!" : "Suspended!"  %>
+    </div>
+    <div class="col-md-7">
+      <div class="btn-group" data-toggle="buttons">
+        <label class="btn btn-info <%= @voting.active ? 'active' : nil %>">
+          <%= f.radio_button :active, true %>Active
+        </label>
+        <label class="btn btn-info <%= @voting.active ? nil : 'active' %>">
+          <%= f.radio_button :active, false %>Suspended
+        </label>
+      </div>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div>  
 
 <!-- SUBMIT  -->
   <br>
@@ -188,6 +186,6 @@
 
 <% end %>
 <script type="text/javascript">
-    $('#datepicker_from').datepicker();
-    $('#datepicker_to').datepicker();
+    $('#datepicker_from').datepicker({format: 'yyyy-mm-dd'});
+    $('#datepicker_to').datepicker({format: 'yyyy-mm-dd'});
 </script>
