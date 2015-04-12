@@ -3,11 +3,19 @@ class FriendsController < ApplicationController
 
   layout 'my_account'
 
+
+  # CUSTOM:
+  def votings
+    @votings = Voting.in(user_id: current_user.friends)
+    @context = 'votings'
+  end
+
   # GET /friends
   # GET /friends.json
   def index
     @friend_requests = FriendRequest.where(friend_id: current_user.id)
     @friends = User.find(current_user.friends)
+    @context = 'friends'
   end
 
   # GET /friends/1
@@ -57,9 +65,7 @@ class FriendsController < ApplicationController
   # DELETE /friends/1
   # DELETE /friends/1.json
   def destroy
-    puts params[:user_id]
-    puts params[:id]
-
+    
     friend = User.find(params[:id])
     friend.friends.delete(current_user.id.to_s)
     current_user.friends.delete(friend.id.to_s)

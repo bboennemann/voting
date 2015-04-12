@@ -30,6 +30,7 @@ class Voting
   field :item_type, 	:type => String  	# e.g. picture, video, text, sound, website, etc
   field :items, 		  :type => Array, :default => []		# array of subject IDs. should actually be 'has many', but can be different subject types. maybe multiple optional has many references?
   field :tags,        :type => Array, :default => []
+  field :bookmarks,    :type => Integer, default: 0 # de-normalized / redundant for faster access
   
 
   protected

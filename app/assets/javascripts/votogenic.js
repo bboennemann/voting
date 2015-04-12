@@ -12,6 +12,35 @@ function friendRequest(friend){
 	});
 }
 
+function set_bookmark(voting){
+	$.ajax({
+		url : '/votings/' + voting + '/bookmarks.json',
+		type : 'post',
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('There was a problem loading the requested content. Please try again later');
+		},
+		success : function(html, resultText) {
+			$('#set_bookmark').hide();
+			$('#bookmark_set').fadeIn();
+		}
+	});
+}
+
+function bookmark_remove(voting){
+	$.ajax({
+		url : '/votings/' + voting + '/bookmarks.json',
+		type : 'delete',
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('There was a problem loading the requested content. Please try again later');
+		},
+		success : function(html, resultText) {
+			$('#bookmark_remove').hide();
+			$('#set_bookmark').fadeIn();
+		}
+	});
+}
+
+
 function triggerCanvas(data){
 	$('#overlay').html('');
 	loadHtml(data);
@@ -69,11 +98,30 @@ $(document).ready(function() {
 		friendRequest($(this).data('friend'));
 	});
 
+	// set bookmark ! no popup ! straight to ajax action
+	$('#set_bookmark').click(function(){
+		set_bookmark($(this).data('bookmark'));
+	});
+
+	// REMOVE bookmark ! no popup ! straight to ajax action
+	$('#bookmark_remove').click(function(){
+		bookmark_remove($(this).data('bookmark'));
+	});
+
+
 	// globally enables bootstrap tooltips wherever configured
 	$('[data-toggle="tooltip"]').tooltip()
 
 	// distribute tiles
 	$('#v_tile_container').BlocksIt({
+		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});
+
+	// distribute tiles "you may also like"
+	$('#v_tile_container_interesting').BlocksIt({
 		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
 		offsetX: 8,
 		offsetY: 8,

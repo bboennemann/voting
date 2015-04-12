@@ -1,4 +1,4 @@
-<%= image_tag current_user.user_image.url(:xs), class: "img-thumbnail"%>
+<%= image_tag current_user.user_image.url(:xs), class: "img-thumbnail v_user_image_xs"%>
 <div class="side-nav-item">
   <a href="<%= edit_user_path(current_user.id)  %>">
   	<%= current_user.first_name %>
@@ -11,6 +11,6 @@
 <div class="nav nav-sidebar" role="navigation">
 	<div class='side-nav-item <%= side_nav_active?(['votings', 'users', 'classic_votings']) %>'><%= link_to 'Votings', current_user  %></div>
 	<div class="side-nav-item <%= side_nav_active?('friends') %>"><%= link_to 'Friends', user_friends_path(current_user)  %><% if current_user.friend_requests.size > 0 %> <div class="badge"><%= current_user.friend_requests.size %></div><% end %></div>
-	<div class="side-nav-item <%= side_nav_active?('messages') %>"><%= link_to 'Conversations', ''  %></div>
+	<div class="side-nav-item <%= side_nav_active?('bookmarks') %>"><%= link_to 'Bookmarks', user_bookmarks_path(current_user.id)  %></div>
 </div>
 

@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
 
-  resources :bookmarks, only: [:index, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  resources :friends
 
   devise_for :users
 
@@ -27,15 +24,23 @@ Rails.application.routes.draw do
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
   
+  ## needs clean up!
+  resources :friends do
+    get 'votings' => 'friends#votings'
+  end
+  
   resources :friend_requests
 
   resources :users, only: [:update, :destroy, :show, :edit] do 
     resources :friends
     resources :friend_requests
+    resources :bookmarks, only: [:index, :destroy]
   end
 
   resources :votings do
     resources :image_items
+    resources :bookmarks, only: [:create]
+    delete '/bookmarks' => 'bookmarks#destroy'
   end
 
   resources :categories, only: [:index]

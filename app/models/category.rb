@@ -8,7 +8,7 @@ class Category
   	"Architecture" => [],
   	"Lifestyle" => [],
   	"Fashion" => [],
-  	"Electronics" => [],
+  	"Electronics" => ['camera', 'tv', 'computer', 'pc', 'lens', 'ipod', 'cell phone', 'iphone', 'android', 'apple', 'google', 'samsung', 'electronics'],
   	"Entertainment" => [],
     "Kids" => [],
     "Food & Drinks" => [],

@@ -1,8 +1,11 @@
 <% unless current_user.friend_requests.empty? %>
 	<%= render template: '/friend_requests/index' %>
+	<br><hr><br>
 <% end %>
 
+
 <% unless current_user.friends.empty? %>
+	<h3>Your Friends:</h3>
 	<div class="row">
 
 		<% @friends.each_with_index do |friend, i| %>
@@ -22,4 +25,9 @@
 	
 		<% end %>
 	</div>
+<% end %>
+
+
+<% content_for :my_context_nav do %>
+	<%= render 'my_account/side_nav/friends_context_nav' %>
 <% end %>

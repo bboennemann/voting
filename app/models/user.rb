@@ -50,8 +50,9 @@ class User
   field :about,       type: String
   field :sex,         type: String, default: "N"
   field :dob,         type: Date
-  field :friends,      type: Array, :default => []
+  field :friends,      type: Array, :default => [] # not a relation or model for  faster access and convenience
   field :interests,      type: Array, :default => []
+  field :bookmarks,      type: Array, :default => [] # not a relation or model for  faster access and convenience
 
   has_mongoid_attached_file :user_image,
     :storage        => :s3,
@@ -59,7 +60,7 @@ class User
     :path           => '/' + Rails.env.to_s + '/user_image/:id/:style.:extension',
     :s3_credentials => Rails.configuration.x.s3.credentials,
     :styles         => Rails.configuration.x.user_image.sizes,
-    :default_url    => '/placeholder.jpg'
+    :default_url    => '/avatar.png'
 
   validates_attachment :user_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 

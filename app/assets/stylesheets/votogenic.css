@@ -112,3 +112,16 @@ body{
 	left: 38%;
 	bottom: 15px;
 }
+
+hr {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.v_user_image_xs{
+	width: 100px;
+}
+
+.v_user_image_s{
+	width: 175px;
+}

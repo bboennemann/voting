@@ -35,7 +35,6 @@
 <!--  owner image and hits -->			
   				<div class="media-left">
 					<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail' %><% end %>
-					<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><span class="badge"><small><%= voting.hits %></small></span>
   				</div>
 <!--  description -->  				
   				<div class="media-body">
@@ -46,23 +45,42 @@
 	</div>
 
 
-<!-- tags -->
+<!-- properties -->
+	<hr>
 	<div class="row v_tile_container_row">
-		<div class="col-md-12">
-			<% voting.tags[0..8].each do |tag| %>
-				<%= link_to "/?tags=#{tag}" do %><span class="badge"><small><%= tag %></small></span><% end %>
-			<% end  %>
+		<div class="col-sm-4">
+			<span class="badge"><small><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <%= voting.hits %></small></span>				
+		</div>
+		<div class="col-sm-4">
+			<span class="badge"><small><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> <%= voting.items.size + 1 %></small></span>				
+		</div>
+		<div class="col-sm-4">
+			<span class="badge"><small><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> <%= voting.bookmarks %></small></span>				
 		</div>
 	</div>
+
+
+<!-- tags -->
+	<% unless voting.tags.empty? %>
+		<hr>
+		<div class="row v_tile_container_row">
+			<div class="col-sm-3"><span class="glyphicon glyphicon-tag"></span></div>
+			<div class="col-sm-9">
+				<% voting.tags[0..8].each do |tag| %>
+					<%= link_to "/?tags=#{tag}" do %><span class="badge"><small><%= tag %></small></span><% end %>
+				<% end  %>
+			</div>
+		</div>
+	<% end %>
 
 <!-- if I am the owner, I should be able to edit the voting -->
 
 	<% if is_owner?(voting.user_id) %>
-
+		<hr>
 		<div class="row v_tile_container_row">
 			<div class="col-md-12">
 				<%= link_to edit_voting_path(voting) do %>
-				<button class="btn btn-danger" style="width: 215px;"><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span> Edit Voting</button>
+				<button class="btn btn-default" style="width: 215px;"><span class="label label-danger v_label_as_badge"><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span></span> Edit Voting</button>
 			<% end %>
 			</div>
 		</div>

@@ -1,11 +1,11 @@
-<h3>Hi there! <br>
-<small>There are some friend requests for you:</small></h3>
+<h3>You have some new friend requests:</h3>
+<br>
 <div class="row">
 	<% current_user.friend_requests.each_with_index do |request, i| %>
 
   		<div class="col col-md-4 text-center">
-  			<%= image_tag request.requester.user_image.url(:s), class: 'img-thumbnail' %>
-  			<h3><%= request.requester.first_name + ' ' + request.requester.last_name %></h3>
+  			<%= link_to request.requester do %><%= image_tag request.requester.user_image.url(:s), class: 'img-thumbnail v_user_image_s' %>
+  			<h3><%= request.requester.full_name %></h3><% end %>
         <%= form_for request do %><button class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Accept</button>
   			&nbsp; - OR - &nbsp;
         <%= link_to request, method: :delete, data: { confirm: 'Are you sure?' } do %>
