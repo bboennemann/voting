@@ -11,7 +11,7 @@ class Category
   	"Electronics" => ['camera', 'tv', 'computer', 'pc', 'lens', 'ipod', 'cell phone', 'iphone', 'android', 'apple', 'google', 'samsung', 'electronics'],
   	"Entertainment" => [],
     "Kids" => [],
-    "Food & Drinks" => [],
+    "Food & Drinks" => ['cooking', 'wine'],
     "Parenting" => [],
   }
 
