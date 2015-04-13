@@ -34,7 +34,7 @@
 			<div class="media">
 <!--  owner image and hits -->			
   				<div class="media-left">
-					<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail' %><% end %>
+					<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs' %><% end %>
   				</div>
 <!--  description -->  				
   				<div class="media-body">
@@ -47,17 +47,7 @@
 
 <!-- properties -->
 	<hr>
-	<div class="row v_tile_container_row">
-		<div class="col-sm-4">
-			<span class="badge"><small><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> <%= voting.hits %></small></span>				
-		</div>
-		<div class="col-sm-4">
-			<span class="badge"><small><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> <%= voting.items.size + 1 %></small></span>				
-		</div>
-		<div class="col-sm-4">
-			<span class="badge"><small><span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> <%= voting.bookmarks %></small></span>				
-		</div>
-	</div>
+	<%= render '/votings/tile_partials/voting_properties', voting: voting %>
 
 
 <!-- tags -->

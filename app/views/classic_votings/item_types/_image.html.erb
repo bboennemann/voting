@@ -43,7 +43,7 @@
 
       <!-- user -->
     	<div class="col-sm-3">
-    		<%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail', alt: item.user.first_name %>
+    		<%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %>
         <p>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
         </p>

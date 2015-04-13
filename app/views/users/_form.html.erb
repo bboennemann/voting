@@ -18,6 +18,7 @@
 
 <!-- TODO: Style input button -->
 <!-- TODO: Add cover image -->
+
 <!--  User Image -->
   <div class="form-group">
     <div class="col-md-2 text-info">
@@ -27,10 +28,10 @@
 
         <%= image_tag @user.user_image.url(:s) , class: "img-thumbnail"%>
 
-        <span class="btn btn-default btn-file" style="position: relative; left: 10px; bottom: 40px; height: 30px;">
+        <div class="btn btn-default btn-file" style="position: relative; left: 10px; bottom: 40px; height: 30px;">
           <span class="glyphicon glyphicon-camera"></span>
-          Change<%= f.file_field :user_image,  class: "text-hide" %>
-        </span>
+          Change<%= f.file_field :user_image,  class: "text-hide", style: 'width: 10px' %>
+        </div>
 
     </div>
     <div class="col-md-6">

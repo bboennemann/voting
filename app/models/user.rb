@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Paperclip
 
+  before_destroy :delete_votings
+
   #has_many :votings, dependent: :destroy
 
   has_many :friend_requests, class_name: 'FriendRequest', inverse_of: :user, dependent: :destroy
@@ -64,9 +66,14 @@ class User
 
   validates_attachment :user_image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
+  def delete_votings
+    Voting.destroy_all(user_id: self.id)
+  end
+
   private
 
   def full_name
     first_name + ' ' + last_name   
   end
+
 end

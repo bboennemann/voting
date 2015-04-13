@@ -1,0 +1,4 @@
+<div class="nav nav-sidebar" role="navigation">
+	<div class="side-nav-item <%= context_nav_active?('profile') %>"><%= link_to 'Profile', edit_user_path(current_user)  %></div>
+	<div class='side-nav-item <%= context_nav_active?('password') %>'><%= link_to 'Email & password', edit_user_registration_path %></div>
+</div>

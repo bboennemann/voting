@@ -1,0 +1,81 @@
+<h2>
+  Spread the word!
+  <small>Invite your friends to this voting:</small>
+</h2>
+
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3">
+      <%= image_tag @voting.image_items[0].image_file.url(:xs), class: 'image-thumbnail v_item_image_xs' %>
+    </div>
+    <div class="col-sm-7">
+      <h4><%= @voting.title %></h4>
+      <%= @voting.description[0..100] %> ...
+      <br>
+      <%= render '/votings/tile_partials/voting_properties', voting: @voting %>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+
+
+<%= form_for @voting, url: "/votings/#{@voting.id}/share", method: :post do |f| %>
+
+<br>
+
+  <!-- Your Name  -->
+
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3 text-info">
+      Your Name:
+    </div>
+    <div class="col-sm-7">
+      <input type="text" class="form-control" name="voting[email_sender]" placeholder="Your Name">
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+  
+  <br>
+
+  <!-- email adresses  -->
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3 text-info">
+      Email adresses:
+    </div>
+    <div class="col-sm-7">
+      <textarea type="email" name='voting[email_adresses]' class="form-control" id="email_input" placeholder="Enter emails separated by comma." ></textarea>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+
+<br>
+<!-- submit  -->
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3 text-info">
+      &nbsp;
+    </div>
+    <div class="col-sm-7">
+       <button type="submit" class="btn btn-success">Send</button>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+
+<% end %>

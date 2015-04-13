@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :votings
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
+  get 'votings/:id/share' => 'votings#share'
+  post 'votings/:id/share' => 'votings#send_share'
   
   ## needs clean up!
   resources :friends do

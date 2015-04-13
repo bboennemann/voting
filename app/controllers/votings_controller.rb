@@ -1,8 +1,20 @@
 class VotingsController < ApplicationController
-  before_action :set_voting, only: [:show, :edit, :update, :destroy, :delete]
+  before_action :set_voting, only: [:show, :edit, :update, :destroy, :delete, :share]
   before_action :authenticate_user!, only:[:new, :create, :destroy]
 
-  
+  def share
+    render layout: 'canvas'
+  end
+
+  def send_share
+
+    voting_params[:email_adresses].split(',').each do |email|
+      VotingRecommendationMailer.recommend_voting(email, voting_params[:email_sender], params[:id]).deliver_now
+    end
+
+    redirect_to '/'
+
+  end
 
   # GET /votings
   # GET /votings.json
@@ -119,7 +131,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to, :email_adresses, :email_sender)
     end
 
 end

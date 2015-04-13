@@ -1,10 +1,10 @@
 class VotingRecommendationMailer < ApplicationMailer
 
-	def recommend_voting(user_id, voting_id, email_to, name_to)
-		@user = User.find(user_id)
+	def recommend_voting email_to, from_name, voting_id
 		@voting = Voting.find(voting_id)
+		@sender = from_name
 
-		mail(to: email_to, subject: "A votogenic recommendation from #{@user.full_name}")
+		mail(to: email_to, subject: "A votogenic recommendation from #{from_name}")
 
 	end
 end

@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @context = 'profile'
   end
 
   # POST /users

@@ -106,16 +106,18 @@ body{
 }
 
 .v_play_voting {
-	font-size: 4em;
-	font-weight: bolder;
 	position: absolute;
-	left: 38%;
-	bottom: 15px;
+	left: 45%;
+	bottom: 50px;
 }
 
 hr {
     margin-top: 5px !important;
     margin-bottom: 5px !important;
+}
+
+.v_user_image_xxs{
+	width: 50px;
 }
 
 .v_user_image_xs{
@@ -124,4 +126,20 @@ hr {
 
 .v_user_image_s{
 	width: 175px;
+}
+
+.v_item_image_original{
+	width: 100%;
+}
+
+.v_voting_cover_image_container{
+	width: 100%; 
+	height: 150px; 
+	overflow: hidden;
+	border-radius: 15px;
+}
+
+.v_voting_cover_image{
+	position: relative;
+	top: -300px	; 
 }

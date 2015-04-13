@@ -137,6 +137,10 @@ $(document).ready(function() {
 		triggerCanvas(this)
 	});
 
+	$('#trigger_share_voting').click(function(){
+		triggerCanvas(this)
+	});
+
 	
 	$('#new_voting').click(function(){
 		triggerCanvas(this)
