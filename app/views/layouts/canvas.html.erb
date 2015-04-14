@@ -1,5 +1,6 @@
 <%= render '/layouts/shared/success_msg' %>
 <%= render '/layouts/shared/warning_msg' %>
+<%= render '/layouts/shared/error_msg' %>
 <%= yield %>
 
 <script type="text/javascript" >
@@ -8,15 +9,3 @@
 	});
 </script>
 
-
-<script type="text/javascript">
-$("#recommend_form").ajaxForm({
-      type: "post", 
-      error : function(jqXHR, textStatus, errorThrown) {
-        alert('There was a problem loading the requested content. Please try again later');
-      },
-      success : function(html, resultText) {
-        $('#overlay').html(html);
-      }
-    });
-</script>

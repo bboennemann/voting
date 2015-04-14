@@ -3,18 +3,23 @@ class VotingsController < ApplicationController
   before_action :authenticate_user!, only:[:new, :create, :destroy]
 
   def share
+    logger.debug 
     render layout: 'canvas'
   end
 
   def send_share
     # TODO: make more robust.
     # TODO: validate email addresses
-    # TODO: return error msg if invalid email
-    voting_params[:email_adresses].split(',').each do |email|
-      VotingRecommendationMailer.recommend_voting(email, voting_params[:email_sender], params[:id]).deliver_now
+    begin
+      voting_params[:email_adresses].split(',').each do |email|
+        VotingRecommendationMailer.recommend_voting(email, voting_params[:email_sender], params[:id]).deliver_now
+      end
+      flash[:success_msg] = 'Awesome! That went well. ... keep sharing ...!'
+      redirect_to "/votings/#{params[:id]}/share",  :layout => 'canvas'
+    rescue
+      flash[:error_msg] = 'The email could not be sent. Please check the email addresses that you provided and try again.'
+      redirect_to "/votings/#{params[:id]}/share",  :layout => 'canvas'
     end
-
-    render '/layouts/shared/_close_canvas', layout: 'canvas'
 
   end
 
@@ -100,8 +105,6 @@ class VotingsController < ApplicationController
   def destroy
 
     if voting_params[:confirm_code_check] != voting_params[:confirm_code]
-      logger.debug voting_params[:confirm_code]
-      logger.debug voting_params[:confirm_code_check]
       flash[:error_msg] = "Please make sure to enter the correct confirmation code"
       redirect_to "/votings/#{@voting.id}/delete", layout: 'my_account'
     else

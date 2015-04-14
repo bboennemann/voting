@@ -1,5 +1,5 @@
 <%= render template: '/votings/index' %>
-<% unless @interesting_votings.empty? %>
+<% unless @interesting_votings.nil? %>
 	<%= render '/votings/interesting_votings' %>
 <% end %>
 
