@@ -70,8 +70,6 @@ class User
     Voting.destroy_all(user_id: self.id)
   end
 
-  private
-
   def full_name
     first_name + ' ' + last_name   
   end

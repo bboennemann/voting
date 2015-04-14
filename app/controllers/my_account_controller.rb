@@ -7,8 +7,4 @@ class MyAccountController < ApplicationController
   	@votings = Voting.where(user_id: current_user.id)
   end
 
-  def coming_soon
-  	render :coming_soon, layout: nil
-  end
-
 end

@@ -3,7 +3,8 @@
     <%= link_to user_path(@voting.user_id) do %><i class="glyphicon glyphicon-eye-open"> </i> <%= @voting.user.first_name %><% end %>
   </p>
 
-
+<!-- CURRENTLY disabled -->
+<% if 0 > 1 %>
 <!-- only if this is not my own voting -->
 <% if user_signed_in? && !is_owner?(@voting.user_id) %>
   <!-- if we are friends then show message button -->
@@ -18,30 +19,12 @@
   <% end %>
   <br><br>
 <% end %>
-
-<!-- bookmark -->
-<% if user_signed_in? && !is_owner?(@voting.user_id) %>
-  <% if current_user.bookmarks.include?(@voting.id.to_s) %>
-    <button class="btn btn-sm btn-default" style="width: 110px;" id="bookmark_remove"  data-bookmark="<%= @voting.id %>"><i class="glyphicon glyphicon-heart text-danger"></i> Bookmarked</button>
-     <button style="width: 110px; display: none;" class="btn btn-sm btn-default" id="set_bookmark" data-bookmark="<%= @voting.id %>"><i class="glyphicon glyphicon-heart"></i> Bookmark</button>
-  <% else %>
-    <button style="width: 110px" class="btn btn-sm btn-default" id="set_bookmark" data-bookmark="<%= @voting.id %>"><i class="glyphicon glyphicon-heart"></i> Bookmark</button>
-    <button class="btn btn-sm btn-default" style="display: none;width: 110px;" id="bookmark_set"><i class="glyphicon glyphicon-heart text-danger"></i> Bookmarked</button>
-  <% end %>
-  <br>
-<% end %>  
-
-<!-- share! -->
-  <button style="width: 110px" class="btn btn-sm btn-default" id="trigger_share_voting" data-url="<%= "/votings/#{@voting.id}/share" %>"><i class="glyphicon glyphicon-send"></i> Share</button><br>
-
-<!-- report  -->  
-  <button style="width: 110px" class="btn btn-sm btn-default" id="trigger_report" data-url="/my_account/coming_soon"><i class="glyphicon glyphicon-flag"></i> Flag</button><br>
-
-<!-- vote -->  
-  <button style="width: 110px" class="btn btn-sm btn-default" id="trigger_vote" data-url="/my_account/coming_soon"><i class="glyphicon glyphicon-play-circle"></i> Vote</button><br>
+<% end %>
 
 
-  <br>
+
+
+
   <br>
 
   <% if @voting.contribution == true %>

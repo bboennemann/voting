@@ -10,10 +10,12 @@ class VotingsController < ApplicationController
   def send_share
     # TODO: make more robust.
     # TODO: validate email addresses
+    # to_email, name_to, name_from, voting_id
+
+    @sender_name = user_signed_in? ? current_user.full_name : "A friend"
+
     begin
-      voting_params[:email_adresses].split(',').each do |email|
-        VotingRecommendationMailer.recommend_voting(email, voting_params[:email_sender], params[:id]).deliver_now
-      end
+      VotingRecommendationMailer.recommend_voting(voting_params[:friends_email_adress], voting_params[:friends_name], @sender_name, params[:id]).deliver_now
       flash[:success_msg] = 'Awesome! That went well. ... keep sharing ...!'
       redirect_to "/votings/#{params[:id]}/share",  :layout => 'canvas'
     rescue
@@ -136,7 +138,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to, :email_adresses, :email_sender)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to, :friends_email_adress, :friends_name)
     end
 
 end

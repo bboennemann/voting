@@ -14,7 +14,7 @@
   			<br><br>
   			<span class="label label-primary v_label-as-badge"><%= item.score %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
-        <% if is_owner?(item.user_id) or (item.voting.user_id.to_s == current_user.id.to_s) %>
+        <% if is_owner?(item.user_id) or is_owner?(item.voting.user_id) %>
           <div  data-toggle="tooltip" data-placement="bottom" title="DELETE ITEM!" class="v_btn_delete_item">
           <%= link_to '', item, method: :delete, data: { confirm: 'Do you really want to delete this Image?' }, :class => "glyphicon glyphicon-remove-circle text-danger " %>
           </div>

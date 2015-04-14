@@ -4,10 +4,10 @@
     <div class="col-sm-1">
       &nbsp;
     </div>
-    <div class="col-sm-10 text-info">
+    <div class="col-sm-10 text-danger">
       <h3>
-        Spread the word!
-        <small>Invite your friends to this voting:</small>
+        Complaint
+        <small>You are about to flag this voting. Please be careful to provide all the necessary informatiom for us to follow up on your submission.</small>
       </h3>
     </div>
     <div class="col-sm-1">
@@ -26,15 +26,13 @@
     <div class="col-sm-7">
       <h4><%= @voting.title %></h4>
       <%= @voting.description[0..100] %> ...
-      <br>
-      <%= render '/votings/tile_partials/voting_properties', voting: @voting %>
     </div>
     <div class="col-sm-1">
       &nbsp;
     </div>
   </div>
 
-<form action="<%= "/votings/#{@voting.id}/share" %>" method="post" id="recommend_form">
+<form action="<%= "/votings/#{@voting.id}/voting_complaints/create" %>" method="post" id="recommend_form">
 
 <br>
 
@@ -83,7 +81,7 @@
       &nbsp;
     </div>
     <div class="col-sm-7">
-      <button type="submit" class="btn btn-success" id="send_share_button">Send away!</button>
+      <button type="submit" class="btn btn-danger" id="send_share_button">Submit</button>
       <%= image_tag 'ajax-loader.gif', id: 'loading_gif', style: 'display: none; width: 100%;' %>
     </div>
     <div class="col-sm-1">
@@ -93,7 +91,7 @@
 
 <script type="text/javascript">
 
-$("#recommend_form").ajaxForm({
+$("#complaint_form").ajaxForm({
       type: "post", 
       error : function(jqXHR, textStatus, errorThrown) {
         alert('There was a problem loading the requested content. Please try again later');
@@ -102,7 +100,7 @@ $("#recommend_form").ajaxForm({
         $('#overlay').html(html);
       }
     });
-$('#send_share_button').click(function(){
+$('#send_complaint_button').click(function(){
     $('#send_share_button').hide();
     $('#loading_gif').fadeIn();
   });

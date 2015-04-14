@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Voting Complaints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @voting_complaints.each do |voting_complaint| %>
+      <tr>
+        <td><%= link_to 'Show', voting_complaint %></td>
+        <td><%= link_to 'Edit', edit_voting_complaint_path(voting_complaint) %></td>
+        <td><%= link_to 'Destroy', voting_complaint, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Voting complaint', new_voting_complaint_path %>

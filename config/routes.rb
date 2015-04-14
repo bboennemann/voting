@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -14,18 +13,24 @@ Rails.application.routes.draw do
   get 'voting_wizards/step2'
   get 'voting_wizards/step3'
 
-  get 'my_account/coming_soon'
-
   resources :image_items, only: [:create, :destroy]
 
-  resources :classic_votings, only: [:show, :edit]
+  
+  resources :votings do
+    resources :voting_complaints, only: [:new, :create]
+    resources :image_items
+    resources :bookmarks, only: [:create]
+    delete '/bookmarks' => 'bookmarks#destroy'
+  end
 
-  resources :votings
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
   get 'votings/:id/share' => 'votings#share'
   post 'votings/:id/share' => 'votings#send_share'
   
+  resources :classic_votings, only: [:show, :edit]
+
+
   ## needs clean up!
   resources :friends do
     get 'votings' => 'friends#votings'
@@ -37,12 +42,6 @@ Rails.application.routes.draw do
     resources :friends
     resources :friend_requests
     resources :bookmarks, only: [:index, :destroy]
-  end
-
-  resources :votings do
-    resources :image_items
-    resources :bookmarks, only: [:create]
-    delete '/bookmarks' => 'bookmarks#destroy'
   end
 
   resources :categories, only: [:index]
