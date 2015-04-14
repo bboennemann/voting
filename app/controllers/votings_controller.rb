@@ -7,12 +7,14 @@ class VotingsController < ApplicationController
   end
 
   def send_share
-
+    # TODO: make more robust.
+    # TODO: validate email addresses
+    # TODO: return error msg if invalid email
     voting_params[:email_adresses].split(',').each do |email|
       VotingRecommendationMailer.recommend_voting(email, voting_params[:email_sender], params[:id]).deliver_now
     end
 
-    redirect_to '/'
+    render '/layouts/shared/_close_canvas', layout: 'canvas'
 
   end
 
@@ -87,7 +89,7 @@ class VotingsController < ApplicationController
         format.html { render :edit, layout: 'my_account' }
         format.json { render :show, status: :ok, location: @voting }
       else
-        format.html { render :edit }
+        format.html { render :edit, layout: 'my_account'  }
         format.json { render json: @voting.errors, status: :unprocessable_entity }
       end
     end

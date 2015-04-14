@@ -7,7 +7,8 @@
     <p>Hello there,</p>
 
     <p>your friend <%= @sender %> wants you to have a look at this voting:<br>
-    <%= url_for @voting %>
+    <a href="<%= url_for controller: "/#{@voting.voting_type}_votings", id: @voting.id.to_s, action: :show %>"><%= @voting.title %></a><br>
+    by <%= @voting.user.full_name %>
     </p>
 
     <p>Have fun with this one and share on.</p>

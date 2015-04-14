@@ -21,8 +21,7 @@
     </div>
   </div>
 
-
-<%= form_for @voting, url: "/votings/#{@voting.id}/share", method: :post do |f| %>
+<form action="<%= "/votings/#{@voting.id}/share" %>" method="post" id="recommend_form">
 
 <br>
 
@@ -71,11 +70,11 @@
       &nbsp;
     </div>
     <div class="col-sm-7">
-       <button type="submit" class="btn btn-success">Send</button>
+      <button type="submit" class="btn btn-success">Send away!</button>
     </div>
     <div class="col-sm-1">
       &nbsp;
     </div>
   </div>
 
-<% end %>
+

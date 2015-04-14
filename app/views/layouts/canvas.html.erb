@@ -7,3 +7,16 @@
 		loadHtml(this);
 	});
 </script>
+
+
+<script type="text/javascript">
+$("#recommend_form").ajaxForm({
+      type: "post", 
+      error : function(jqXHR, textStatus, errorThrown) {
+        alert('There was a problem loading the requested content. Please try again later');
+      },
+      success : function(html, resultText) {
+        $('#overlay').html(html);
+      }
+    });
+</script>

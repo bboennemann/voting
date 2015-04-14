@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get 'my_account/coming_soon'
 
-  resources :image_items, only: [:create, :destroy, :show]
+  resources :image_items, only: [:create, :destroy]
 
   resources :classic_votings, only: [:show, :edit]
 
@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:index]
+
+  # some helpers
+  get '/layouts/shared/close_canvas'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
