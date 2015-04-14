@@ -1,10 +1,186 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
- 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>A Simple Responsive HTML Email</title>
-  <style type="text/css">
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <table bgcolor="#f6f8f1" border="0" cellpadding="0" cellspacing="0"
+      width="100%">
+      <tbody>
+        <tr>
+          <td>
+            <!--[if (gte mso 9)|(IE)]>
+      <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td>
+    <![endif]-->
+            <table class="content" align="center" bgcolor="#ffffff"
+              border="0" cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <td class="header" bgcolor="#428bca">
+                    <table align="left" border="0" cellpadding="0"
+                      cellspacing="0" width="70">
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 20px 20px 0;"
+                            height="70"> <img class="fix"
+                              src="images/icon.gif" alt="" border="0"
+                              height="70" width="70"> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+            <table width="425" align="left" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+          <![endif]-->
+                    <table class="col425" style="width: 100%; max-width:
+                      425px;" align="left" border="0" cellpadding="0"
+                      cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td height="70">
+                            <table border="0" cellpadding="0"
+                              cellspacing="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="subhead" style="padding: 0
+                                    0 0 3px;"> You have been invited<br>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="h1" style="padding: 5px 0 0
+                                    0;"> <font color="#ffffff">Voting
+                                      Title</font><br>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+                </td>
+              </tr>
+          </table>
+          <![endif]--> </td>
+                </tr>
+                <tr>
+                  <td class="innerpadding borderbottom">
+                    <table border="0" cellpadding="0" cellspacing="0"
+                      width="100%">
+                      <tbody>
+                        <tr>
+                          <td class="h2"> Hi,<br>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="bodycopy"> Your friend <%= @sender %>
+                            has invited you to join this voting on
+                            VOTOGENIC.com<br>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="innerpadding borderbottom">
+                    <table align="left" border="0" cellpadding="0"
+                      cellspacing="0" width="115">
+                      <tbody>
+                        <tr>
+                          <td style="padding: 0 20px 20px 0;"
+                            height="115"> <img class="fix"
+                              src="images/article1.png" alt=""
+                              border="0" height="115" width="115"> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+            <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+          <![endif]-->
+                    <table class="col380" style="width: 100%; max-width:
+                      380px;" align="left" border="0" cellpadding="0"
+                      cellspacing="0">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table border="0" cellpadding="0"
+                              cellspacing="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="bodycopy"> <%= @voting.description %></td>
+                                </tr>
+                                <tr>
+                                  <td style="padding: 20px 0 0 0;">
+                                    <table class="buttonwrapper"
+                                      bgcolor="#428bca" border="0"
+                                      cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr>
+                                          <td class="button" height="45">
+                                            <font color="#ffffff"><a href="<%= url_for controller: "/#{@voting.voting_type}_votings", id: @voting.id.to_s, action: :show %>"><%= @voting.title %></a></font> </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <!--[if (gte mso 9)|(IE)]>
+                </td>
+              </tr>
+          </table>
+          <![endif]--> </td>
+                </tr>
+                <tr>
+                  <td class="innerpadding bodycopy"> Lorem ipsum dolor
+                    sit amet, consectetur adipiscing elit. In tempus
+                    adipiscing felis, sit amet blandit ipsum volutpat
+                    sed. Morbi porttitor, eget accumsan dictum, nisi
+                    libero ultricies ipsum, in posuere mauris neque at
+                    erat. </td>
+                </tr>
+                <tr>
+                  <td class="footer" bgcolor="#3366ff">
+                    <table border="0" cellpadding="0" cellspacing="0"
+                      width="100%">
+                      <tbody>
+                        <tr>
+                          <td class="footercopy" align="center"> ®
+                            Someone, somewhere 2013<br>
+                            <a
+                              href="file:///home/bboennemann/untitled.html#"
+                              class="unsubscribe"><font color="#ffffff">Unsubscribe</font></a>
+                            <span class="hide">from this newsletter
+                              instantly</span> </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+          </td>
+        </tr>
+    </table>
+    <![endif]--> </td>
+        </tr>
+      </tbody>
+    </table>
+    <title></title>
+    <style type="text/css">
   body {margin: 0; padding: 0; min-width: 100%!important;}
   img {height: auto;}
   .content {width: 100%; max-width: 600px;}
@@ -34,167 +210,5 @@
     .col380 {width: 380px!important;}
     }*/
   </style>
-</head>
-
-<body yahoo bgcolor="#f6f8f1">
-<table width="100%" bgcolor="#f6f8f1" border="0" cellpadding="0" cellspacing="0">
-<tr>
-  <td>
-    <!--[if (gte mso 9)|(IE)]>
-      <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td>
-    <![endif]-->     
-    <table bgcolor="#ffffff" class="content" align="center" cellpadding="0" cellspacing="0" border="0">
-      <tr>
-        <td bgcolor="#c7d8a7" class="header">
-          <table width="70" align="left" border="0" cellpadding="0" cellspacing="0">  
-            <tr>
-              <td height="70" style="padding: 0 20px 20px 0;">
-                <img class="fix" src="images/icon.gif" width="70" height="70" border="0" alt="" />
-              </td>
-            </tr>
-          </table>
-          <!--[if (gte mso 9)|(IE)]>
-            <table width="425" align="left" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-          <![endif]-->
-          <table class="col425" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 425px;">  
-            <tr>
-              <td height="70">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td class="subhead" style="padding: 0 0 0 3px;">
-                      CREATING
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="h1" style="padding: 5px 0 0 0;">
-                      Responsive Email Magic
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          <!--[if (gte mso 9)|(IE)]>
-                </td>
-              </tr>
-          </table>
-          <![endif]-->
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td class="h2">
-                Welcome to our responsive email!
-              </td>
-            </tr>
-            <tr>
-              <td class="bodycopy">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <table width="115" align="left" border="0" cellpadding="0" cellspacing="0">  
-            <tr>
-              <td height="115" style="padding: 0 20px 20px 0;">
-                <img class="fix" src="images/article1.png" width="115" height="115" border="0" alt="" />
-              </td>
-            </tr>
-          </table>
-          <!--[if (gte mso 9)|(IE)]>
-            <table width="380" align="left" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-          <![endif]-->
-          <table class="col380" align="left" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 380px;">  
-            <tr>
-              <td>
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td class="bodycopy">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 20px 0 0 0;">
-                      <table class="buttonwrapper" bgcolor="#e05443" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                          <td class="button" height="45">
-                            <a href="#">Claim yours!</a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          <!--[if (gte mso 9)|(IE)]>
-                </td>
-              </tr>
-          </table>
-          <![endif]-->
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding borderbottom">
-          <img class="fix" src="images/wide.png" width="100%" border="0" alt="" />
-        </td>
-      </tr>
-      <tr>
-        <td class="innerpadding bodycopy">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus adipiscing felis, sit amet blandit ipsum volutpat sed. Morbi porttitor, eget accumsan dictum, nisi libero ultricies ipsum, in posuere mauris neque at erat.
-        </td>
-      </tr>
-      <tr>
-        <td class="footer" bgcolor="#44525f">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td align="center" class="footercopy">
-                &reg; Someone, somewhere 2013<br/>
-                <a href="#" class="unsubscribe"><font color="#ffffff">Unsubscribe</font></a> 
-                <span class="hide">from this newsletter instantly</span>
-              </td>
-            </tr>
-            <tr>
-              <td align="center" style="padding: 20px 0 0 0;">
-                <table border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                      <a href="http://www.facebook.com/">
-                        <img src="images/facebook.png" width="37" height="37" alt="Facebook" border="0" />
-                      </a>
-                    </td>
-                    <td width="37" style="text-align: center; padding: 0 10px 0 10px;">
-                      <a href="http://www.twitter.com/">
-                        <img src="images/twitter.png" width="37" height="37" alt="Twitter" border="0" />
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-    <!--[if (gte mso 9)|(IE)]>
-          </td>
-        </tr>
-    </table>
-    <![endif]-->
-    </td>
-  </tr>
-</table>
-</body>
+  </body>
 </html>

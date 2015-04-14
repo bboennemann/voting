@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Hello there,</p>
+
+    <p>your friend <%= @sender %> wants you to have a look at this voting:<br>
+    <a href="<%= url_for controller: "/#{@voting.voting_type}_votings", id: @voting.id.to_s, action: :show %>"><%= @voting.title %></a><br>
+    by <%= @voting.user.full_name %>
+    </p>
+
+    <p>Have fun with this one and share on.</p>
+
+    <p>The votogenic.io team!</p>
+  </body>
+</html>
