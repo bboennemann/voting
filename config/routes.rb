@@ -3,51 +3,54 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+# Basic Routes
+  root 'votings#index'
   devise_for :users
 
-  # You can have the root of your site routed with "root"
-  root 'votings#index'
-
-  # voting wizard routes
-  get 'voting_wizards/step1'
-  get 'voting_wizards/step2'
-  get 'voting_wizards/step3'
-
-  resources :image_items, only: [:create, :destroy]
-
-  
-  resources :votings do
-    resources :voting_complaints, only: [:new, :create]
-    resources :image_items
-    resources :bookmarks, only: [:create]
-    delete '/bookmarks' => 'bookmarks#destroy'
-  end
-
-  get 'votings/:id/delete' => 'votings#delete'
-  post 'votings/:id/delete' => 'votings#destroy'
-  get 'votings/:id/share' => 'votings#share'
-  post 'votings/:id/share' => 'votings#send_share'
-  
-  resources :classic_votings, only: [:show, :edit]
-
-
-  ## needs clean up!
-  resources :friends do
-    get 'votings' => 'friends#votings'
-  end
-  
-  resources :friend_requests
-
+# users
   resources :users, only: [:update, :destroy, :show, :edit] do 
     resources :friends
     resources :friend_requests
     resources :bookmarks, only: [:index, :destroy]
   end
 
-  resources :categories, only: [:index]
+# voting wizard 
+  get 'voting_wizards/step1'
+  get 'voting_wizards/step2'
+  get 'voting_wizards/step3'
 
-  # some helpers
-  get '/layouts/shared/close_canvas'
+
+# voting
+  resources :votings do
+    resources :image_items
+    resources :bookmarks, only: [:create]
+    delete '/bookmarks' => 'bookmarks#destroy'
+  end
+  get 'votings/:id/delete' => 'votings#delete'
+  post 'votings/:id/delete' => 'votings#destroy'
+  get 'votings/:id/share' => 'votings#share'
+  post 'votings/:id/share' => 'votings#send_share'
+  
+# classic votings
+  resources :classic_votings, only: [:show, :edit]
+
+# Image Item
+  resources :image_items, only: [:create, :destroy]
+
+# complaints
+  resources :complaints, only: [:new, :create, :show]
+
+# friends
+  ## needs clean up!
+  resources :friends do
+    get 'votings' => 'friends#votings'
+  end
+  
+# friend requests
+  resources :friend_requests
+
+# categories
+  resources :categories, only: [:index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

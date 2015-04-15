@@ -133,7 +133,7 @@ $(document).ready(function() {
 		viewMode: 'years'
 	});
 
-	$('#trigger_voting_complaint').click(function(){
+	$('#trigger_complaint').click(function(){
 		triggerCanvas(this)
 	});
 

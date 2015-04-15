@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VotingComplaintsControllerTest < ActionController::TestCase
+class ComplaintTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

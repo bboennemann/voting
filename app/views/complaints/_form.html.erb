@@ -1,0 +1,66 @@
+<form action="<%= "/complaints" %>" method="post" id="complaint_form">
+<%= fields_for Complaint.new do |f|%>
+  <!-- Select Reason  -->
+
+<%= f.hidden_field :item_type, value: params[:item_type] %>
+<%= f.hidden_field :item_id, value: params[:item_id] %>
+
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3 text-info">
+      Why do you to want to report this?
+    </div>
+    <div class="col-sm-7">
+      <% Complaint::REASONS.each do |r| %>
+        <%= f.radio_button :reason, r[0] %>
+        <%= f.label('reason_' + r[0].to_s, r[1])   %><br>
+      <% end %>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+  
+  <br>
+
+
+<br>
+<!-- submit  -->
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3 text-info">
+      &nbsp;
+    </div>
+    <div class="col-sm-7">
+      <button type="submit" class="btn btn-danger" id="submit_complaint">Submit</button>
+      <%= image_tag 'ajax-loader.gif', id: 'loading_gif', style: 'display: none; width: 100%;' %>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>
+
+<% end %>
+</form>
+
+<script type="text/javascript">
+
+$("#complaint_form").ajaxForm({
+      type: "post", 
+      error : function(jqXHR, textStatus, errorThrown) {
+        alert('There was a problem loading the requested content. Please try again later');
+      },
+      success : function(html, resultText) {
+        $('#overlay').html(html);
+      }
+    });
+$('#send_complaint_button').click(function(){
+    $('#submit_complaint').hide();
+    $('#loading_gif').fadeIn();
+  });
+
+</script>
