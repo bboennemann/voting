@@ -2,11 +2,15 @@ class ImageItem
   include Mongoid::Document
   include Mongoid::Paperclip
 
+  require "open-uri"
+
   belongs_to :voting
   belongs_to :user
 
   field :voting_id,   type: String
   field :user_id,     type: String
+  field :website_url, type: String
+  field :image_url,    type: String
   field :hits,        type: Integer, default: 0
   field :score,       type: Integer, default: 0
   field :description, type: String
@@ -20,4 +24,9 @@ class ImageItem
     :styles         => Rails.configuration.x.image.sizes
 
   validates_attachment :image_file, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
+  def image_from_url(url)
+    self.image_file = open(url)
+  end
+
 end

@@ -31,6 +31,25 @@ class ImageItemsController < ApplicationController
   def edit
   end
 
+  def create_from_url
+    @voting = Voting.find(image_item_params[:voting_id])
+    image_item = @voting.image_items.new(image_item_params)
+    image_item.set(:user_id => current_user.id, created_at: DateTime.now )
+    image_item.image_file = image_item.image_from_url(image_item_params[:image_url])
+
+    respond_to do |format|
+      if image_item.save
+        flash[:success_msg] = "You got it! The image was added to this voting!"
+        format.html { redirect_to "/#{@voting.voting_type}_votings/#{@voting.id}"  }
+        format.json { render :show, status: :created, location: @image_item }
+      else
+        flash[:error_msg] = "Uuupss, something went wrong here..."
+        format.html { redirect_to "/#{@voting.voting_type}_votings/#{@voting.id}"  }
+        format.json { render json: @image_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /image_items
   # POST /image_items.json
   def create
@@ -38,7 +57,7 @@ class ImageItemsController < ApplicationController
     @voting = Voting.find(image_item_params[:voting_id])
 
     image_item_params[:image_file].each do |file|
-      image_item = @voting.image_items.create(:voting_id => image_item_params[:voting_id], :image_file => file, :user_id => current_user.id, created_at: DateTime.now )
+      image_item = @voting.image_items.create(:image_file => file, :user_id => current_user.id, created_at: DateTime.now )
       @voting.items << image_item.id
     end
     @voting.save
@@ -90,6 +109,6 @@ class ImageItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_item_params
       #params[:image_item]
-      params.require(:image_item).permit(:voting_id, :description, :image_file => [])
+      params.require(:image_item).permit(:website_url, :image_url, :voting_id, :description, :image_file => [])
     end
 end

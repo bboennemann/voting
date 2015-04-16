@@ -1,6 +1,8 @@
 class WebParsersController < ApplicationController
   before_action :set_web_parser, only: [:show, :edit, :update, :destroy]
 
+  layout 'canvas'
+
   # GET /web_parsers
   # GET /web_parsers.json
   def index
@@ -24,8 +26,10 @@ class WebParsersController < ApplicationController
   # POST /web_parsers
   # POST /web_parsers.json
   def create
+    @voting_id = web_parser_params[:voting_id]
+    @website_url = web_parser_params[:website_url]
     @web_parser = WebParser.new
-    @images = web_parser.get_images web_parser_params[:website_url]
+    @images = @web_parser.get_images web_parser_params[:website_url]
     render :show
   end
 
@@ -61,6 +65,6 @@ class WebParsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def web_parser_params
-      require.params(:web_parser).permit(:website_url)
+      params.require(:web_parser).permit(:website_url, :voting_id)
     end
 end

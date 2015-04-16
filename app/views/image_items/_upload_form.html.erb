@@ -1,3 +1,6 @@
+
+<h3>Or upload from your computer:</h3>
+
 <%= form_for(@image_item, :html => {multipart: true, :class => 'form-horizontal', :id => 'fileupload'}) do |f| %>
   <% if @image_item.errors.any? %>
     <div id="error_explanation">
@@ -10,8 +13,6 @@
       </ul>
     </div>
   <% end %>
-
-
 
 
 <!-- The file upload form used as target for the file upload widget -->
@@ -71,9 +72,3 @@ $("#fileupload").ajaxForm({
       }
     });
 </script>
-
-
-<%= form_for WebParser.new, action: :create, method: :post do |f| %>
-  <%= f.text_field :website_url %>
-  <%= f.submit %>
-<% end %>

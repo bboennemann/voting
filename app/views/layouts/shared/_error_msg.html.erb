@@ -1,8 +1,5 @@
 <% if flash[:error_msg] %>
-  <div class="alert alert-danger">
-    Shucks! Something went wrong!
-    <ul>
-      <li><%= flash[:error_msg] %></li>
-    </ul>
+  <div class="alert alert-danger text-center">
+	<h4><%= flash[:error_msg] %></h4>
   </div>
 <% end %>

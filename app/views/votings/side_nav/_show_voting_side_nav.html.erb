@@ -1,6 +1,6 @@
 <%= image_tag @voting.user.user_image.url(:xs), class: 'img-thumbnail v_user_image_xs', alt: @voting.user.first_name %>
   <p>
-    <%= link_to user_path(@voting.user_id) do %><i class="glyphicon glyphicon-eye-open"> </i> <%= @voting.user.first_name %><% end %>
+    <%= link_to user_path(@voting.user_id) do %>By <%= @voting.user.first_name %><% end %>
   </p>
 
 <!-- CURRENTLY disabled -->

@@ -6,9 +6,6 @@ class VotingRecommendationMailer < ApplicationMailer
 		@receiver_name = name_to
 		@sender = name_from
 
-		puts @sender
-		puts @receiver_name	
-
 		mail(to: to_email, subject: determine_subject)
 	end
 

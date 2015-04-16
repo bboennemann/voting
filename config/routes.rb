@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :web_parsers, only: [:new]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -35,8 +34,9 @@ Rails.application.routes.draw do
 # classic votings
   resources :classic_votings, only: [:show, :edit]
 
-# Image Item
+# Image Items
   resources :image_items, only: [:create, :destroy]
+  post 'image_items/create_from_url' => 'image_items#create_from_url'
 
 # complaints
   resources :complaints, only: [:new, :create, :show]
@@ -53,6 +53,8 @@ Rails.application.routes.draw do
 # categories
   resources :categories, only: [:index]
 
+# parsing urls for assets
+  resources :web_parsers, only: [:new, :create]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

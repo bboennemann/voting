@@ -1,8 +1,34 @@
-<% each @images.each do |image| %>
-	<div class="row">
-		<div class="col col-sm-12">
-			<%= image_tag image['src'] %>
-			<%= image['src'] %>
-		</div>
+<div class="row">
+	<div class="col col-sm-1">&nbsp;</div>
+	<div class="col col-sm-10">
+		<h3>Select your image!
+			<small>Simply 'click' on the image that you want to add to your voting.</small>
+		</h3>
 	</div>
+	<div class="col col-sm-1">&nbsp;</div>
+</div>
+<hr>
+<br>
+<div class="row">
+<% @images.each_with_index do |image, i| %>
+
+	<div class="col col-sm-1">&nbsp;</div>
+	<div class="col col-sm-4">
+		<%= form_for ImageItem.new, url: '/image_items/create_from_url', method: :post do |f| %>
+			<%= f.hidden_field :voting_id, value: @voting_id %>
+			<%= f.hidden_field :website_url, value: @website_url %>
+			<%= f.hidden_field :image_url, value: image %>
+			<button id="submit">
+				<%= image_tag image, class: 'img-thumbnail', style: 'width: 250px' %>
+			</button>
+		<% end %>
+	</div>
+
+<% if ((i+1) % 2) == 0 %>
+	<div class="col col-sm-2">&nbsp;</div>
+</div>  		
+<div class="row">
 <% end %>
+
+<% end %>
+</div>
