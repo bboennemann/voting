@@ -71,3 +71,9 @@ $("#fileupload").ajaxForm({
       }
     });
 </script>
+
+
+<%= form_for WebParser.new, action: :create, method: :post do |f| %>
+  <%= f.text_field :website_url %>
+  <%= f.submit %>
+<% end %>

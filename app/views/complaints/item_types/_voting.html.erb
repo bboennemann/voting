@@ -1,0 +1,15 @@
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3">
+      <%= image_tag @voting.image_items[0].image_file.url(:xs), class: 'image-thumbnail v_item_image_xs' %>
+    </div>
+    <div class="col-sm-7">
+      <h4><%= @voting.title %></h4>
+      <%= @voting.description[0..100] %> ...
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>

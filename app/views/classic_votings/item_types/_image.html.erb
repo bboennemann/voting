@@ -41,7 +41,7 @@
     	</div>
 
       <!-- user -->
-    	<div class="col-sm-3">
+    	<div class="col-sm-2">
     		<%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %>
         <p>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
@@ -50,6 +50,12 @@
           At <%= item.created_at.strftime("%-d/%-m/%y: %H:%M") unless item.created_at.nil? %>
         </p>
     	</div>
+
+      <!-- flag -->
+      <div class="col col-sm-1 text-right">
+        <!-- report  -->  
+        <button class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="/complaints/new?item_type=image_item&item_id=<%= item.id%>&"><i class="glyphicon glyphicon-flag text-warning"></i></button><br>
+      </div>
 
     </div>
     

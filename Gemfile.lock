@@ -208,6 +208,7 @@ DEPENDENCIES
   jquery-turbolinks
   mongoid
   mongoid-paperclip
+  nokogiri
   rails
   sass-rails
   sdoc

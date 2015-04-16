@@ -1,0 +1,8 @@
+<% each @images.each do |image| %>
+	<div class="row">
+		<div class="col col-sm-12">
+			<%= image_tag image['src'] %>
+			<%= image['src'] %>
+		</div>
+	</div>
+<% end %>

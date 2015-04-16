@@ -22,9 +22,19 @@ class ComplaintsController < ApplicationController
       flash[:warning_msg] = "Before filing a complaint, you will need to identify yourself by loggin in."
       redirect_to controller: 'devise/sessions', action: 'new', layout: 'canvas'
     end
-
+    
     @complaint = Complaint.new
-    @voting = Voting.find(params[:item_id])
+
+    # TODO: make this cleaner and generic. Also move to model or helper.
+    if params[:item_type] == 'voting'
+      @voting = Voting.find(params[:item_id])
+    end
+
+    if params[:item_type] == 'image_item'
+      @image_item = ImageItem.find(params[:item_id])
+    end
+
+
   end
 
   # GET /complaints/1/edit

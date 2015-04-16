@@ -1,0 +1,14 @@
+  <div class="row">
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+    <div class="col-sm-3">
+      <%= image_tag @image_item.image_file.url(:xs), class: 'image-thumbnail v_item_image_xs' %>
+    </div>
+    <div class="col-sm-7">
+      <h4><%= @image_item.description %></h4>
+    </div>
+    <div class="col-sm-1">
+      &nbsp;
+    </div>
+  </div>

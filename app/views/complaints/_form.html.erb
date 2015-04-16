@@ -1,5 +1,5 @@
-<form action="<%= "/complaints" %>" method="post" id="complaint_form">
-<%= fields_for Complaint.new do |f|%>
+
+<%= form_for Complaint.new, :html => { :id => "complaint_form" } do |f| %>
   <!-- Select Reason  -->
 
 <%= f.hidden_field :item_type, value: params[:item_type] %>

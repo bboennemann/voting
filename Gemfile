@@ -42,6 +42,9 @@ gem 'mongoid'
 # attachment gem paperclip for mongodb
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
+# parsing HTML e.g. skimming for images
+gem 'nokogiri'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 
