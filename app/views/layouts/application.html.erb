@@ -20,7 +20,7 @@
 
   <%= render '/layouts/shared/success_msg' %>
   <%= render '/layouts/shared/warning_msg' %>
-  <%= render '/layouts/shared/error_msg' %>s
+  <%= render '/layouts/shared/error_msg' %>
 
   <%= yield %>
   
@@ -28,6 +28,11 @@
 
 </div>
 
+<footer class="footer">
+  <div class="container">
+    <%= render '/layouts/shared/footer' %>
+  </div>
+</footer>
 
 </body>
 </html>

@@ -8,6 +8,8 @@ class Voting
   scope :valid_date, ->{where(:online_from.lte => Date.current().to_time, :online_to.gte => Date.current().to_time)}
   scope :active, ->{where(active: true)}
   scope :general_audience, ->{where(:audience.in => ['everyone', 'signed_in'])}
+  scope :friends, -> (friends) {where(:user_id.in => friends)}
+  scope :friends_audience, ->{where(:audience.in => ['everyone', 'signed_in', 'friends'])}
 
 
   validates_presence_of :title, message: ": Your voting needs a title!"

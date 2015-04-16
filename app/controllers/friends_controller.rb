@@ -6,7 +6,7 @@ class FriendsController < ApplicationController
 
   # CUSTOM:
   def votings
-    @votings = Voting.in(user_id: current_user.friends)
+    @votings = Voting.friends(current_user.friends).friends_audience
     @context = 'votings'
   end
 

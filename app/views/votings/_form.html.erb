@@ -67,6 +67,9 @@
         <label class="btn btn-info <%= @voting.audience == 'signed_in' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'signed_in' %>Signed In
         </label>
+        <label class="btn btn-info <%= @voting.audience == 'friends' ? 'active' : nil %>">
+          <%= f.radio_button :audience, 'friends' %>Only Friends
+        </label>
         <label class="btn btn-info <%= @voting.audience == 'link' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'link' %>Only with the link
         </label>
