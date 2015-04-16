@@ -22,14 +22,21 @@
 <% end %>
 
 
-
-
-
   <br>
 
   <% if @voting.contribution == true %>
-    <a id="new_image_item" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-success navbar-btn" >
+    <a id="new_image_item" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-lg btn-success navbar-btn" >
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       Add <%= @voting.item_type.pluralize %>
     </a>
   <% end %>
+
+<!-- properties -->
+<hr>
+<%= render '/votings/side_nav/properties' %>
+
+<!-- tags -->
+<% if @voting.tags.any? %>
+  <hr>
+  <%= render '/votings/side_nav/tags' %>
+<% end %>

@@ -1,0 +1,27 @@
+<h4>This Voting</h4>
+<ul class="nav v_voting_properties_nav_list text-default">
+<!-- hits -->
+  <li  data-toggle="tooltip" data-placement="right" title="Number of single clicks for this voting!">
+    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <%=@voting.hits %> hits
+  </li>
+  <hr>
+<!-- items -->
+  <li  data-toggle="tooltip" data-placement="right" title="Total numbers of votable items in this voting!">
+    <span class="glyphicon glyphicon-picture " aria-hidden="true"></span> <%=@voting.items.size %> <%=@voting.item_type.pluralize %>
+  </li>
+  <hr>
+<!-- audience -->  
+  <li  data-toggle="tooltip" data-placement="right" title="Who can see this voting?">
+    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <%=@voting.audience %>
+  </li>
+  <hr>
+<!-- voting type -->  
+  <li data-toggle="tooltip" data-placement="right" title="Voting mode">
+    <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> Style: <%=@voting.voting_type %>
+  </li>
+  <hr>
+<!-- contribution -->  
+  <li data-toggle="tooltip" data-placement="right" title="Can anybody add items to this voting?">
+    <span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Uploads: <%=@voting.contribution %>
+  </li>
+</ul>

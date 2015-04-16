@@ -3,7 +3,7 @@
     <div class="v_voting_cover_image_container">
       <%= image_tag @voting.image_items[0].image_file.url(:original), class: 'v_item_image_original v_voting_cover_image image-responsive center-block' unless @voting.image_items.empty? %>
       <div class="v_play_voting text-success">
-        <button class="btn btn-sucess btn-lg text-success">
+        <button class="btn btn-sucess btn-lg text-success trigger_voting">
           <%= link_to @voting, class: 'text-success' do %>
             <span class="glyphicon glyphicon-play-circle "></span> VOTE!
           <% end %>
@@ -51,4 +51,3 @@
   <p><%= @voting.description %></p>
 </div>
 
-<%= render '/votings/basic_partials/voting_properties' %>

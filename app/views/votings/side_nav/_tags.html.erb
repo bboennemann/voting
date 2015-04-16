@@ -1,0 +1,11 @@
+
+<h5>Tags</h5>
+<% @voting.tags.each do |tag| %>
+	<%= link_to "/?tags=#{tag}" do %>
+		<span class="badge">
+			<small>
+				<%= tag %>
+			</small>
+		</span>
+	<% end %>
+<% end  %>

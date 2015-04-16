@@ -40,7 +40,7 @@ function bookmark_remove(voting){
 	});
 }
 
-
+// regular canvas functions
 function triggerCanvas(data){
 	$('#overlay').html('');
 	loadHtml(data);
@@ -58,6 +58,9 @@ function hideCanvas(){
 }
 
 
+
+
+
 function loadHtml(data){
 	$.ajax({
 		url : data.getAttribute("data-url") + "?item_type=" + data.getAttribute("data-item-type") + "&voting_type=" + data.getAttribute("data-voting-type"),
@@ -68,6 +71,24 @@ function loadHtml(data){
 			$('#overlay').html(html);
 		}
 	});
+}
+
+// voting canvas functions
+
+function triggerVotingCanvas(data){
+	$('#votingOverlay').html('');
+	//loadHtml(data);
+	showVotingCanvas();
+}
+
+function showVotingCanvas(){
+	$('#votingOverlayBlurr').fadeToggle();
+	$('#votingOverlay').fadeToggle();
+}
+
+function hideVotingCanvas(){
+	$('#votingOverlayBlurr').fadeOut();
+	$('#votingOverlay').fadeOut();
 }
 
 $(document).ready(function() {
@@ -152,6 +173,10 @@ $(document).ready(function() {
 	
 	$('#sign_in').click(function(){
 		triggerCanvas(this)
+	});
+
+	$('.trigger_voting').click(function(){
+		triggerVotingCanvas(null)
 	});
 
 	
