@@ -2,8 +2,9 @@ body{
 	padding-top: 70px;
 	padding-right: 10px;
 	padding-left: 10px;
-	background: #f1f1f1 url('noise.png') !important;	
+	background: #f1f1f1 url('noise.png') !important;
 }
+
 
 .overlay{
 	z-index: 5001;
@@ -38,7 +39,7 @@ body{
 	padding: 0px;
 	width: 80%;
 	height: 90%;
-	background-color: black;
+	background-color: white;
 	position: fixed;
 	top: -10px;
   	left: 50%;
@@ -175,4 +176,16 @@ hr {
 .v_voting_properties_nav_list{
 	font-size: 1.2em; 
 
+}
+
+.v_voting_context{
+	width: 25%;
+	height: 100%;
+	background-color: grey;
+}
+
+.v_voting_item_canvas{
+	width: 65%;
+	height: 100%;
+	background-color: black;
 }

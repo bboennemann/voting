@@ -76,7 +76,7 @@ function loadHtml(data){
 // voting canvas functions
 
 function triggerVotingCanvas(data){
-	$('#votingOverlay').html('');
+	//$('#votingOverlay').html('');
 	//loadHtml(data);
 	showVotingCanvas();
 }
@@ -87,8 +87,8 @@ function showVotingCanvas(){
 }
 
 function hideVotingCanvas(){
-	$('#votingOverlayBlurr').fadeOut();
 	$('#votingOverlay').fadeOut();
+	$('#votingOverlayBlurr').fadeOut();
 }
 
 $(document).ready(function() {
@@ -178,6 +178,10 @@ $(document).ready(function() {
 	$('.trigger_voting').click(function(){
 		triggerVotingCanvas(null)
 	});
+
+	$('#votingOverlayBlurr').click(function(){
+		hideVotingCanvas();
+	})
 
 	
 });
