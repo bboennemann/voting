@@ -174,7 +174,7 @@ hr {
 }
 
 .v_voting_properties_nav_list{
-	font-size: 1.2em; 
+	font-size: 1.0em; 
 
 }
 
@@ -187,7 +187,7 @@ hr {
     right: 0;
 }
 
-.v_voting_item_canvas{
+.v_voting_stage{
 	display: table-column;
     background: black;
     width: 70%;

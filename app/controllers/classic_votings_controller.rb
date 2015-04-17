@@ -3,6 +3,11 @@ class ClassicVotingsController < ApplicationController
 
   layout 'show_voting', only: [:show]
 
+  def image
+    @voting = Voting.find(params[:classic_voting_id])
+    render '/classic_votings/votings/image', :layout => 'canvas'
+  end
+
   # GET /classic_votings
   # GET /classic_votings.json
   def index

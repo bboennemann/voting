@@ -32,7 +32,9 @@ Rails.application.routes.draw do
   post 'votings/:id/share' => 'votings#send_share'
   
 # classic votings
-  resources :classic_votings, only: [:show, :edit]
+  resources :classic_votings, only: [:show, :edit] do
+    get 'image' => 'classic_votings#image'
+  end
 
 # Image Items
   resources :image_items, only: [:create, :destroy]

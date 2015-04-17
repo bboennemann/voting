@@ -58,9 +58,6 @@ function hideCanvas(){
 }
 
 
-
-
-
 function loadHtml(data){
 	$.ajax({
 		url : data.getAttribute("data-url") + "?item_type=" + data.getAttribute("data-item-type") + "&voting_type=" + data.getAttribute("data-voting-type"),
@@ -73,11 +70,23 @@ function loadHtml(data){
 	});
 }
 
+function loadVoting(data){
+	$.ajax({
+		url : data.getAttribute("data-url") + "?item_type=" + data.getAttribute("data-item-type") + "&voting_type=" + data.getAttribute("data-voting-type"),
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('There was a problem loading the requested content. Please try again later');
+		},
+		success : function(html, resultText) {
+			$('#votingOverlay').html(html);
+		}
+	});
+}
+
 // voting canvas functions
 
 function triggerVotingCanvas(data){
-	//$('#votingOverlay').html('');
-	//loadHtml(data);
+	$('#votingOverlay').html('');
+	loadVoting(data);
 	showVotingCanvas();
 }
 
@@ -176,7 +185,7 @@ $(document).ready(function() {
 	});
 
 	$('.trigger_voting').click(function(){
-		triggerVotingCanvas(null)
+		triggerVotingCanvas(this)
 	});
 
 	$('#votingOverlayBlurr').click(function(){
