@@ -1,0 +1,40 @@
+<div class="row v_voting_action_buttons">
+  <div class="col col-sm-12 text-right">
+<!-- share! -->
+    <button class="btn btn-info btn-sm" id="trigger_share_voting" data-url="<%= "/votings/#{@voting.id}/share" %>">
+      <i class="glyphicon glyphicon-send"></i>
+    </button>
+
+
+<!-- contribute images -->
+    <% if @voting.contribution == true %>
+      <a id="new_image_item" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-primary btn-info btn-sm" >
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+    <% end %>
+
+    <!-- bookmark -->
+    <% if user_signed_in?  %>
+      <% if current_user.bookmarks.include?(@voting.id.to_s) %>
+        <button class="btn btn-info btn-sm"  id="bookmark_remove"  data-bookmark="<%= @voting.id %>">
+          <i class="glyphicon glyphicon-heart text-warning"></i>
+        </button>
+        <button style="display: none;" class="btn btn-info btn-sm" id="set_bookmark" data-bookmark="<%= @voting.id %>">
+          <i class="glyphicon glyphicon-heart"></i>
+        </button>
+      <% else %>
+        <button class="btn btn-info btn-sm" id="set_bookmark" data-bookmark="<%= @voting.id %>">
+          <i class="glyphicon glyphicon-heart"></i>
+        </button>
+        <button class="btn btn-info btn-sm" style="display: none;" id="bookmark_set">
+          <i class="glyphicon glyphicon-heart text-warning"></i>
+        </button>
+      <% end %>
+    <% end %>  
+
+<!-- report  -->  
+    <button class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="/complaints/new?item_type=voting&item_id=<%= @voting.id%>&">
+      <i class="glyphicon glyphicon-flag text-warning"></i>
+    </button><br>
+  </div>
+</div>

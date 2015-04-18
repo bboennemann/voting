@@ -1,7 +1,15 @@
 <div class="v_voting_stage" id="voting_stage">
-	<image src="" >
+	<image id="current_image" src="<%= @voting.image_items[0].image_file.url(:l) %>" style="max-width: 100%; max-height: 100%;">
 </div>
 <div class="v_voting_context" id="voting_context">
-	Test
+		
+	<h4><%= link_to @voting.title, voting_type_path(@voting) %>
+		<br>
+		<small>By <%= link_to @voting.user.full_name, @voting.user %></small>
+	</h4>
+
+	<div id="previous_image_container" class="v_previous_image_container">
+		<image id="current_image" src="<%= @voting.image_items[1].image_file.url(:s) %>" width="100%" class="img-thumbnail">
+	</div>
 </div>
 <%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>

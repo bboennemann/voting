@@ -4,7 +4,7 @@
 	<% unless voting.image_items.empty? %>
 	<div class="row">
 		<div class="col-md-12">
-			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px' %>
+			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img trigger_voting", width: '225px', 'data-url' => "/#{voting.voting_type}_votings/#{voting.id}/voting"  %>
 		</div>
 	</div>
 	<% end %>

@@ -104,7 +104,10 @@ $(document).ready(function() {
 
 	// close canvas on pressing ESC
 	$(document).keyup(function(e) {
-		if (e.keyCode == 27) hideCanvas();   // esc
+		if (e.keyCode == 27) {
+			hideCanvas();   
+			hideVotingCanvas();
+		}
 	});
 
 		

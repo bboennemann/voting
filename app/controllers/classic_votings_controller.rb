@@ -3,9 +3,14 @@ class ClassicVotingsController < ApplicationController
 
   layout 'show_voting', only: [:show]
 
-  def image
+  def voting
+    @voting = Voting.find(params[:classic_voting_id]) 
+    render "/classic_votings/votings/#{@voting.item_type}", :layout => 'canvas'
+  end
+
+  def initialize_voting
     @voting = Voting.find(params[:classic_voting_id])
-    render '/classic_votings/votings/image', :layout => 'canvas'
+    @voting.items = @voting.items.shuffle
   end
 
   # GET /classic_votings

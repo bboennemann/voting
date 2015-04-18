@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   
 # classic votings
   resources :classic_votings, only: [:show, :edit] do
-    get 'image' => 'classic_votings#image'
+    get 'voting' => 'classic_votings#voting'
   end
 
 # Image Items

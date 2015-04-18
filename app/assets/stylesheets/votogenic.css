@@ -131,7 +131,7 @@ body{
 }
 
 .v_label-as-badge {
-    border-radius: 1em !important;
+    border-radius: 0.5em !important;
 }
 
 .v_play_voting {
@@ -179,21 +179,31 @@ hr {
 }
 
 .v_voting_context{
-	display: table-column;
     background: white;
     width: 30%;
     height: 100%;
     position: absolute;
     right: 0;
+    padding: 10px;
 }
 
 .v_voting_stage{
-	display: table-column;
     background: black;
     width: 70%;
     height: 100%;
     position: absolute;
     left: 0;
+    padding: 20px;
+    text-align: center;
 }
 
-    
+.v_voting_action_buttons{
+	position: absolute; 
+	bottom: 10px; 
+	right: 30px;
+}
+
+.v_previous_image_container{
+	width: 100%;
+	text-align: center;
+}
