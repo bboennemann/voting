@@ -50,6 +50,37 @@
     </div>
   </div>
 
+<!-- Voting TAGS  -->
+  <div class="form-group">
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+    <div class="col-md-3 text-info">
+      Tags:
+    </div>
+    <div class="col-md-7">
+      <%= f.text_field :tags, id: :tagsinput, 'data-role' => 'tagsinput', class: "form-control", value: @voting.tags.join(",") %><br>
+      <small class="text-warning">(use comma "," as a separator)</small>
+    </div>
+    <div class="col-md-1">
+      &nbsp;
+    </div>
+  </div> 
+
+
+<!-- collapsable panel -->
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        Detailed Configuration:
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+
 
 <!-- Voting AUDIENCE  -->
   <div class="form-group">
@@ -68,10 +99,10 @@
           <%= f.radio_button :audience, 'signed_in' %>Signed In
         </label>
         <label class="btn btn-info <%= @voting.audience == 'friends' ? 'active' : nil %>">
-          <%= f.radio_button :audience, 'friends' %>Only Friends
+          <%= f.radio_button :audience, 'friends' %>Friends
         </label>
         <label class="btn btn-info <%= @voting.audience == 'link' ? 'active' : nil %>">
-          <%= f.radio_button :audience, 'link' %>Only with the link
+          <%= f.radio_button :audience, 'link' %>Link Only
         </label>
       </div>
     </div>
@@ -127,22 +158,7 @@
     </div>
   </div>
 
-<!-- Voting TAGS  -->
-  <div class="form-group">
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-    <div class="col-md-3 text-info">
-      Tags:
-    </div>
-    <div class="col-md-7">
-      <%= f.text_field :tags, id: :tagsinput, 'data-role' => 'tagsinput', class: "form-control", value: @voting.tags.join(",") %><br>
-      <small class="text-warning">(use comma "," as a separator)</small>
-    </div>
-    <div class="col-md-1">
-      &nbsp;
-    </div>
-  </div>  
+ 
 
 <!-- Voting Enabled  -->
   <div class="form-group">
@@ -166,21 +182,23 @@
       &nbsp;
     </div>
   </div>  
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <!-- SUBMIT  -->
   <br>
   <div class="form-group">
-    <div class="col-md-1">
+    <div class="col-md-4">
       &nbsp;
     </div>
-    <div class="col-md-4">
-      <button id="submit"  class="btn btn-lg btn-success">Create my Voting</button>
-    </div>
-    <div class="col-md-1">
+    <div class="col-md-7">
+      <button id="submit"  class="btn btn-lg btn-primary">Create my Voting</button>
       -or-
-    </div>
-    <div class="col-md-5">
-      <button id="cancel" onclick="hideCanvas();" class="btn btn-sm btn-danger" href='/'>cancel</button>
+      <button id="cancel" onclick="hideCanvas();" class="btn btn-sm btn-warning" href='/'>cancel</button>
     </div>    
     <div class="col-md-1">
       &nbsp;

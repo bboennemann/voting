@@ -1,15 +1,54 @@
-<div class="v_voting_stage" id="voting_stage">
-	<image id="current_image" src="<%= @voting.image_items[0].image_file.url(:l) %>" style="max-width: 100%; max-height: 100%;">
+<div  id="voting_stage">
+	
+	<image id="current_image" src="<%= @voting.image_items[0].image_file.url(:l) %>" style="max-width: 100%; max-height: 90%;">
+	<%= render '/votings/shared/voting_stars' %>
 </div>
-<div class="v_voting_context" id="voting_context">
-		
-	<h4><%= link_to @voting.title, voting_type_path(@voting) %>
-		<br>
-		<small>By <%= link_to @voting.user.full_name, @voting.user %></small>
+<div id="voting_context">
+
+	<div id="voting_context_social">
+		<%= render '/layouts/shared/social_buttons' %>
+	</div>
+	<hr>
+
+	<div id="previous_image_container" class="bg-info">
+		<div class="row">
+			<div class="col col-sm-12">
+				<image id="current_image" src="<%= @voting.image_items[1].image_file.url(:xs) %>" class="img-thumbnail" ></image>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-sm-2">&nbsp;</div>
+			<div id="previous_image_score" class="col col-sm-4">
+				<h4>4.9</h4>
+			</div>
+			<div id="previous_image_hits" class="col col-sm-4">
+				<h4>15000</h4>
+			</div>	
+			<div class="col col-sm-2">&nbsp;</div>		
+		</div>
+		<div class="row">
+			<div class="col col-sm-2">&nbsp;</div>
+			<div class="col col-sm-4">
+				<h6><span class="glyphicon glyphicon-stats" ></span> score</h6>
+			</div>
+			<div  class="col col-sm-4">
+				<h6><span class="glyphicon glyphicon-certificate" ></span> hits</h6>
+			</div>
+			<div class="col col-sm-2">&nbsp;</div>			
+		</div>
+	</div>
+
+	<hr>
+	<%= image_tag @voting.user.user_image.url(:xxs), class: "img-thumbnail" %><br>
+	<small>By <%= link_to @voting.user.full_name, @voting.user %></small>
+
+	<h4>
+		<%= link_to @voting.title, voting_type_path(@voting) %>
 	</h4>
 
-	<div id="previous_image_container" class="v_previous_image_container">
-		<image id="current_image" src="<%= @voting.image_items[1].image_file.url(:s) %>" width="100%" class="img-thumbnail">
-	</div>
+	<small><%= @voting.description[0..150] %>...</small>
+
+	<%= render '/votings/basic_partials/actions' %>
+
 </div>
 <%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>

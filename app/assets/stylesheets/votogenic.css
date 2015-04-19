@@ -178,7 +178,7 @@ hr {
 
 }
 
-.v_voting_context{
+#voting_context{
     background: white;
     width: 30%;
     height: 100%;
@@ -187,7 +187,7 @@ hr {
     padding: 10px;
 }
 
-.v_voting_stage{
+#voting_stage{
     background: black;
     width: 70%;
     height: 100%;
@@ -203,7 +203,22 @@ hr {
 	right: 30px;
 }
 
-.v_previous_image_container{
+#previous_image_container{
+	display: TODO set to none;
 	width: 100%;
 	text-align: center;
+	padding: 10px;
+}
+
+#voting_context_social{
+	text-align: right;
+}
+
+#stars{
+	position: absolute;
+	bottom: 50px;
+	left: 50%;
+  	transform: translate(-50%, 50px);
+  	-ms-transform: translate(-50%, 50px); /* IE 9 */
+    -webkit-transform: translate(-50%, 50px); /* Safari */
 }
