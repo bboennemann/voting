@@ -2,11 +2,14 @@ class VotingsController < ApplicationController
   before_action :set_voting, only: [:show, :edit, :update, :destroy, :delete, :share]
   before_action :authenticate_user!, only:[:new, :create, :destroy]
 
+# Custom methods
+
+# render 'share voting' overlay
   def share
-    
     render layout: 'canvas'
   end
 
+# send share email
   def send_share
     # TODO: make more robust.
     # TODO: validate email addresses
@@ -24,6 +27,32 @@ class VotingsController < ApplicationController
     end
 
   end
+
+# initialize any voting
+# returns a voting object and an randomized array of subject ids
+# json only!
+  def init
+    @voting = Voting.find(params[:voting_id])
+    
+    if @voting.audience == 'logged_in'
+      authenticate_user! 
+    end
+    
+    if @voting.items.nil? || @voting.items.size < 2
+      respond_to do |format|
+        format.json { head :no_content }
+      end
+    else
+      @voting.items.shuffle!  # ensure the order of the items is randomized 
+
+      respond_to do |format|
+        format.json { render :json => @voting }
+      end
+    end
+  end  
+
+
+# default methods
 
   # GET /votings
   # GET /votings.json
@@ -113,7 +142,7 @@ class VotingsController < ApplicationController
 
       @voting.destroy
       respond_to do |format|
-        format.html { redirect_to '/my_account', flash[:success_msg] => 'Voting was successfully destroyed.' }
+        format.html { redirect_to current_user, flash[:success_msg] => 'Voting was successfully destroyed.' }
         format.json { head :no_content }
       end
 

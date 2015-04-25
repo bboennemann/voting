@@ -1,6 +1,4 @@
 
-<h3>Or upload from your computer:</h3>
-
 <%= form_for(@image_item, :html => {multipart: true, :class => 'form-horizontal', :id => 'fileupload'}) do |f| %>
   <% if @image_item.errors.any? %>
     <div id="error_explanation">
@@ -22,17 +20,27 @@
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <%= f.hidden_field :voting_id, value: @image_item.voting_id %>
         <div class="row fileupload-buttonbar">
-            <div class="col-md-7">
+            <div class="col col-sm-1">&nbsp;</div>
+            <div class="col-sm-8">
+              <h3>Or upload from your computer:</h3>
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span>Add files...</span>
                       <input name="image_item[image_file][]" id="image_item_image_file" type="file" multiple>
                 </span>
-                <button type="submit" class="btn btn-primary start">
+                <button type="submit" class="btn btn-primary start" id="submit_upload">
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Start upload</span>
                 </button>
+                <div style="display: none" id='upload_processing' class="text-center"> 
+                  <%= image_tag 'ajax-loader' %>
+                  <h3>
+                    Please wait...
+                    <small>The file upload is processing and may take a long time depending on the number and size of files you are uploading.</small>
+                  </h3>
+                </div>
+<!-- tmp disabled
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
@@ -42,11 +50,12 @@
                     <span>Delete</span>
                 </button>
                 <input type="checkbox" class="toggle">
+-->
                 <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
             </div>
             <!-- The global progress state -->
-            <div class="col-md-5 fileupload-progress fade">
+            <div class="col-sm-3 fileupload-progress fade">
                 <!-- The global progress bar -->
                 <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar progress-bar-success" style="width:0%;"></div>
@@ -71,4 +80,8 @@ $("#fileupload").ajaxForm({
        $('#overlay').html(html);
       }
     });
+
+$('#submit_upload').click(function(){
+  $('#upload_processing').show();
+});
 </script>

@@ -1,28 +1,32 @@
 <div  id="voting_stage">
-	
-	<image id="current_image" src="<%= @voting.image_items[0].image_file.url(:l) %>" style="max-width: 100%; max-height: 90%;">
+	<h2 id="initializing_wait_message">
+		Please Wait...<br>
+		<small>... while the voting is initializing!</small>
+	</h2>
+	<image id="current_image" src="/assets/ajax-loader.gif" style="max-width: 100%; max-height: 90%;">
 	<%= render '/votings/shared/voting_stars' %>
 </div>
 <div id="voting_context">
+	<input type="hidden" id="voting_id" value="<%= @voting.id %>">
 
 	<div id="voting_context_social">
 		<%= render '/layouts/shared/social_buttons' %>
 	</div>
 	<hr>
 
-	<div id="previous_image_container" class="bg-info">
+	<div id="previous_image_container" class="bg-info" style="display: none">
 		<div class="row">
 			<div class="col col-sm-12">
-				<image id="current_image" src="<%= @voting.image_items[1].image_file.url(:xs) %>" class="img-thumbnail" ></image>
+				<image id="previous_image" src="<%= @voting.image_items[1].image_file.url(:xs) %>" class="img-thumbnail" ></image>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col col-sm-2">&nbsp;</div>
-			<div id="previous_image_score" class="col col-sm-4">
-				<h4>4.9</h4>
+			<div class="col col-sm-4">
+				<h2 id="previous_image_score">4.9</h2>
 			</div>
-			<div id="previous_image_hits" class="col col-sm-4">
-				<h4>15000</h4>
+			<div  class="col col-sm-4">
+				<h2><small id="previous_image_hits">15000</small></h2>
 			</div>	
 			<div class="col col-sm-2">&nbsp;</div>		
 		</div>

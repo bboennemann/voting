@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :image_items
     resources :bookmarks, only: [:create]
     delete '/bookmarks' => 'bookmarks#destroy'
+    get '/init' => 'votings#init'
   end
   get 'votings/:id/delete' => 'votings#delete'
   post 'votings/:id/delete' => 'votings#destroy'
@@ -34,10 +35,11 @@ Rails.application.routes.draw do
 # classic votings
   resources :classic_votings, only: [:show, :edit] do
     get 'voting' => 'classic_votings#voting'
+    get '/image_items/:id/vote_image_item' => 'classic_votings#vote_image_item'
   end
 
 # Image Items
-  resources :image_items, only: [:create, :destroy]
+  resources :image_items, only: [:create, :destroy, :show]
   post 'image_items/create_from_url' => 'image_items#create_from_url'
 
 # complaints

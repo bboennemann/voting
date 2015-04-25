@@ -12,7 +12,7 @@ class ImageItem
   field :website_url, type: String
   field :image_url,    type: String
   field :hits,        type: Integer, default: 0
-  field :score,       type: Integer, default: 0
+  field :score,       type: Float, default: 0
   field :description, type: String
   field :created_at,  type: DateTime
 
@@ -25,8 +25,17 @@ class ImageItem
 
   validates_attachment :image_file, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
+  def update_score result
+    self.score = ((self.score * self.hits) + result.to_i) / (self.hits + 1)
+  end
+
   def image_from_url(url)
     self.image_file = open(url)
+  end
+
+  # strip out 'confidential information', e.g. before sending as xml or json and prepare values for display
+  def prepare_display()
+    self.score = self.score.round(2)
   end
 
 end

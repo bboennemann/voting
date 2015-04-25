@@ -1,5 +1,5 @@
 class ImageItemsController < ApplicationController
-  before_action :set_image_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_image_item, only: [:show, :edit, :update, :destroy, :classic_vote]
 
   layout 'canvas', only: [:new, :create]
 
@@ -12,6 +12,11 @@ class ImageItemsController < ApplicationController
   # GET /image_items/1
   # GET /image_items/1.json
   def show
+    @image_item.prepare_display
+    respond_to do |format|
+      format.html{}
+      format.json{render :json => @image_item}
+    end
   end
 
   # GET /image_items/new
@@ -37,8 +42,10 @@ class ImageItemsController < ApplicationController
     image_item.set(:user_id => current_user.id, created_at: DateTime.now )
     image_item.image_file = image_item.image_from_url(image_item_params[:image_url])
 
+    @voting.items << image_item.id.to_s
+
     respond_to do |format|
-      if image_item.save
+      if image_item.save && @voting.save
         flash[:success_msg] = "You got it! The image was added to this voting!"
         format.html { redirect_to "/#{@voting.voting_type}_votings/#{@voting.id}"  }
         format.json { render :show, status: :created, location: @image_item }
@@ -58,7 +65,7 @@ class ImageItemsController < ApplicationController
 
     image_item_params[:image_file].each do |file|
       image_item = @voting.image_items.create(:image_file => file, :user_id => current_user.id, created_at: DateTime.now )
-      @voting.items << image_item.id
+      @voting.items << image_item.id.to_s
     end
     @voting.save
 
@@ -91,7 +98,8 @@ class ImageItemsController < ApplicationController
   # DELETE /image_items/1
   # DELETE /image_items/1.json
   def destroy
-    @image_item.voting.items = @image_item.voting.items - [@image_item.id]
+    @image_item.voting.items.delete(@image_item.id.to_s)
+    #@image_item.voting.items = @image_item.voting.items - [@image_item.id.to_s]
     @image_item.voting.save
     @image_item.destroy
     respond_to do |format|

@@ -14,11 +14,12 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.form
+//= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-tagsinput
 //= require blocksit
 //= require votogenic
-//= require turbolinks
+// require turbolinks
 
 
 

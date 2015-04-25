@@ -3,15 +3,26 @@ class ClassicVotingsController < ApplicationController
 
   layout 'show_voting', only: [:show]
 
+  def vote_image_item
+    @voting = Voting.find(params[:classic_voting_id]) 
+    @voting.inc(hits: 1)
+    @voting.save
+
+    @image_item = ImageItem.find(params[:id])
+    @image_item.update_score(params[:result])
+    @image_item.inc(hits: 1)
+    @image_item.save
+
+    @image_item.prepare_display
+    
+    render :json => @image_item
+  end
+
   def voting
     @voting = Voting.find(params[:classic_voting_id]) 
     render "/classic_votings/votings/#{@voting.item_type}", :layout => 'canvas'
   end
 
-  def initialize_voting
-    @voting = Voting.find(params[:classic_voting_id])
-    @voting.items = @voting.items.shuffle
-  end
 
   # GET /classic_votings
   # GET /classic_votings.json

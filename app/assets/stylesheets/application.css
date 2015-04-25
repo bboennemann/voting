@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap
+ *= require bootstrap-theme
  *= require jquery.fileupload
  *= require bootstrap-tagsinput
  *= require datepicker
