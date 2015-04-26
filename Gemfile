@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# for clean deployments
+gem '12factor'
+
 # for s3 storage
 gem 'aws-sdk', '< 2.0'
 
