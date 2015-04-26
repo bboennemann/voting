@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # for clean deployments
-gem '12factor'
+gem 'rails_12factor', group: :production
 
 # for s3 storage
 gem 'aws-sdk', '< 2.0'
