@@ -4,13 +4,16 @@ class ClassicVotingsController < ApplicationController
   layout 'show_voting', only: [:show]
 
   def vote_image_item
+
+    user_signed_in? ? user_id = current_user.id : user_id = nil
+
     @voting = Voting.find(params[:classic_voting_id]) 
     @voting.inc(hits: 1)
     @voting.save
 
     @image_item = ImageItem.find(params[:id])
-    @image_item.update_score(params[:result])
-    @image_item.inc(hits: 1)
+    @image_item.already_voted = @image_item.check_repeat_voting(request.remote_ip, user_id)
+    @image_item.vote(request.remote_ip, params[:result], user_id)
     @image_item.save
 
     @image_item.prepare_display
@@ -20,7 +23,13 @@ class ClassicVotingsController < ApplicationController
 
   def voting
     @voting = Voting.find(params[:classic_voting_id]) 
-    render "/classic_votings/votings/#{@voting.item_type}", :layout => 'canvas'
+    if (@voting.audience == 'signed_in' && user_signed_in? == false)
+      session[:redirect_path] = request.original_url
+      flash[:warning_msg] = 'You need to be signed in for this voting!'
+      redirect_to controller: 'devise/sessions', action: 'new', layout: 'canvas'
+    else
+      render "/classic_votings/votings/#{@voting.item_type}", :layout => 'canvas'
+    end
   end
 
 

@@ -42,8 +42,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'votogenic.io',
-    user_name:            'boennemann',
-    password:             'Nexus13532',
+    user_name:            'test.boennemann',
+    password:             'boennemann.test',
     authentication:       'plain',
     enable_starttls_auto: true  }
 

@@ -3,8 +3,8 @@
 <!-- Main Image -->
 	<% unless voting.image_items.empty? %>
 	<div class="row">
-		<div class="col-md-12">
-			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img trigger_voting", width: '225px', 'data-url' => "/#{voting.voting_type}_votings/#{voting.id}/voting"  %>
+		<div class="col-md-12 trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>">
+			<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px'  %>
 		</div>
 	</div>
 	<% end %>
@@ -12,8 +12,8 @@
 <!-- teaser images -->
 	<% if voting.image_items.size > 2  %>
 	<div class="row">
-		<div class="col-md-12">
-			<%= image_tag voting.image_items[1].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_l" %><%= image_tag voting.image_items[2].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_r" %>			
+		<div class="col-md-12 trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>">
+			<%= image_tag voting.image_items[1].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_l " %><%= image_tag voting.image_items[2].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_r" %>			
 		</div>
 	</div>
 	<% end %>

@@ -10,11 +10,13 @@ class ImageItem
   field :voting_id,   type: String
   field :user_id,     type: String
   field :website_url, type: String
-  field :image_url,    type: String
+  field :image_url,   type: String
   field :hits,        type: Integer, default: 0
   field :score,       type: Float, default: 0
   field :description, type: String
+  field :voters,      type: Array, :default => []
   field :created_at,  type: DateTime
+  field :already_voted, type: Boolean, default: false
 
   has_mongoid_attached_file :image_file,
     :storage        => :s3,
@@ -34,8 +36,40 @@ class ImageItem
   end
 
   # strip out 'confidential information', e.g. before sending as xml or json and prepare values for display
-  def prepare_display()
+  def prepare_display
     self.score = self.score.round(2)
+  end
+
+  def vote (ip, result, user_id)
+    unless check_repeat_voting(ip, user_id)  # this ip/user did "not" yet vote for this subject
+      update_score(result)
+      self.inc(hits: 1)
+      remember_ip(ip)
+      if !user_id.nil?
+        remember_user(user_id)
+      end
+    end
+
+  end
+
+  # check if this user already voted for this subject based on his UID or IP
+  # ip should always be stored, UID should be stored additionally if available
+  def check_repeat_voting (ip, user_id)
+    if !user_id.nil?
+      self.voters.include?(user_id)
+    else
+      self.voters.include?(ip) # IP should allways be stored
+    end
+  end
+
+  def remember_ip (ip)
+    self.voters.shift if self.voters.length >= 100 # TBD length value needs to be configurable
+    self.voters.push(ip)
+  end
+  
+  def remember_user (user_id)
+    self.voters.shift if self.voters.length >= 100 # TBD length value needs to be configurable
+    self.voters.push(user_id)
   end
 
 end

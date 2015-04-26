@@ -9,10 +9,10 @@
     		<br>
 
     		<span class="label  label-primary v_label-as-badge"><%= item.hits %></span>
-    		<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+    		<span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
   			
   			<br><br>
-  			<span class="label label-primary v_label-as-badge"><%= item.score %></span>
+  			<span class="label label-primary v_label-as-badge"><%= item.score.round(2) %></span>
   			<span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
         <% if is_owner?(item.user_id) or is_owner?(item.voting.user_id) %>
           <div  data-toggle="tooltip" data-placement="bottom" title="DELETE ITEM!" class="v_btn_delete_item">

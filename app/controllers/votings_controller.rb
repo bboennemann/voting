@@ -58,11 +58,11 @@ class VotingsController < ApplicationController
   # GET /votings.json
   def index
     if params[:tags]
-      @votings = Voting.where(:tags => params[:tags]).general_audience.valid_date.active
+      @votings = Voting.where(:tags => params[:tags]).general_audience.valid_date.active.desc(:id)
     elsif params[:category]
-      @votings = Voting.in(:tags => Category::LIST[params[:category]]).general_audience.valid_date.active
+      @votings = Voting.in(:tags => Category::LIST[params[:category]]).general_audience.valid_date.active.desc(:id)
     else
-      @votings = Voting.general_audience.valid_date.active
+      @votings = Voting.general_audience.valid_date.active.desc(:id)
     end
 
   end

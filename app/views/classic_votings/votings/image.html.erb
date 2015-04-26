@@ -1,9 +1,21 @@
 <div  id="voting_stage">
+	<!-- show before image is loaded -->
 	<h2 id="initializing_wait_message">
 		Please Wait...<br>
 		<small>... while the voting is initializing!</small>
 	</h2>
-	<image id="current_image" src="/assets/ajax-loader.gif" style="max-width: 100%; max-height: 90%;">
+	<!-- main image -->
+	<image id="current_image" src="/assets/squares.gif" style="max-width: 100%; max-height: 90%;">
+	<!-- show when all items are voted on -->
+	<div class="row" id="done_voting" style="display: none">
+		<div class="col col-sm-2">&nbsp;</div>
+		<div class="col col-sm-8">
+			<h3>Congratulations!<br>
+				<small>You have voted all images in this voting!</small>
+			</h3>
+		</div>
+		<div class="col col-sm-2">&nbsp;</div>
+	</div>
 	<%= render '/votings/shared/voting_stars' %>
 </div>
 <div id="voting_context">
@@ -14,7 +26,10 @@
 	</div>
 	<hr>
 
+	
+
 	<div id="previous_image_container" class="bg-info" style="display: none">
+		
 		<div class="row">
 			<div class="col col-sm-12">
 				<image id="previous_image" src="<%= @voting.image_items[1].image_file.url(:xs) %>" class="img-thumbnail" ></image>
@@ -23,10 +38,10 @@
 		<div class="row">
 			<div class="col col-sm-2">&nbsp;</div>
 			<div class="col col-sm-4">
-				<h2 id="previous_image_score">4.9</h2>
+				<h2 id="previous_image_score">blank</h2>
 			</div>
 			<div  class="col col-sm-4">
-				<h2><small id="previous_image_hits">15000</small></h2>
+				<h2><small id="previous_image_hits">blank</small></h2>
 			</div>	
 			<div class="col col-sm-2">&nbsp;</div>		
 		</div>
@@ -40,7 +55,13 @@
 			</div>
 			<div class="col col-sm-2">&nbsp;</div>			
 		</div>
+		<div class="row"  style="display:none" id="already_voted">
+			<div class="col col-sm-12 bg-danger text-center">
+				<small>It seems that you had voted for this item already.</small>
+			</div>	
+		</div>
 	</div>
+	
 
 	<hr>
 	<%= image_tag @voting.user.user_image.url(:xxs), class: "img-thumbnail" %><br>
