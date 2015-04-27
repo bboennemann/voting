@@ -1,4 +1,4 @@
-var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/development/image_items/';
+var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
 var votingId;
 var itemCursor = 0;
 var currentItem;
