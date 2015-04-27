@@ -1,10 +1,12 @@
 var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
 var votingId;
 var itemCursor = 0;
-var currentItem;
-var currentItemId;
-var previousItem;
-var previousItemId;
+var currentItem = null;
+var currentItemId = null;
+var previousItem = null;
+var previousItemId = null;
+var item = null;
+var items = null;
 
 $(document).ready(function() {
 
