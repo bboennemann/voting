@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
 
 # voting
+  post '/search' => 'votings#search'
   resources :votings do
     resources :image_items
     resources :bookmarks, only: [:create]

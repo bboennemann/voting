@@ -21,17 +21,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
-      <form class="navbar-form navbar-left" role="search" action="/">
+      <%= form_tag '/search', class: "navbar-form navbar-left", role: 'search' do %>
+      
         <div class="form-group">
           <div class="input-group">
-            <input type="text" size="50" class="form-control" placeholder="Search" name="tags">
+            <input type="text" size="50" class="form-control" placeholder="Search" name="q">
             <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-search text-primary" aria-hidden="true"></span></span>
           </div>
         </div>
-      </form>
+      <% end %>
 
       <ul class="nav navbar-nav navbar-left">
+      <!-- temp disabled!
         <button  class="btn btn-default" id="show_categories" data-toggle="popover"><span class="glyphicon glyphicon-align-justify text-primary"></span></button>
+        -->
         <a id="new_voting" data-url="/voting_wizards/step1" class="btn btn-primary navbar-btn " >
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           New Voting

@@ -7,10 +7,6 @@ class ClassicVotingsController < ApplicationController
 
     user_signed_in? ? user_id = current_user.id : user_id = nil
 
-    @voting = Voting.find(params[:classic_voting_id]) 
-    @voting.inc(hits: 1)
-    @voting.save
-
     @image_item = ImageItem.find(params[:id])
     @image_item.already_voted = @image_item.check_repeat_voting(request.remote_ip, user_id)
     @image_item.vote(request.remote_ip, params[:result], user_id)

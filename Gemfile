@@ -60,6 +60,16 @@ gem 'sdoc', group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', :group => [:development, :test]
 
+# wrapper for using sunspot with mongoid
+gem 'sunspot_mongoid'
+
+# rails dsl for solr
+gem 'sunspot_rails'
+
+# local solr server for dev purposes
+gem 'sunspot_solr', :group => :development
+
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 

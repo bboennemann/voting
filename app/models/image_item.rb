@@ -45,6 +45,8 @@ class ImageItem
       update_score(result)
       self.inc(hits: 1)
       remember_ip(ip)
+      self.voting.inc(hits: 1)
+      self.voting.save
       if !user_id.nil?
         remember_user(user_id)
       end

@@ -1,6 +1,7 @@
 class Voting
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Sunspot::Mongoid
 
   has_many    :image_items, dependent: :destroy
   belongs_to  :user
@@ -33,6 +34,12 @@ class Voting
   field :items, 		  :type => Array, :default => []		# array of subject IDs. should actually be 'has many', but can be different subject types. maybe multiple optional has many references?
   field :tags,        :type => Array, :default => []
   field :bookmarks,    :type => Integer, default: 0 # de-normalized / redundant for faster access
+
+  searchable do
+      text :title, boost: 10
+      text :tags, boost: 2
+      text :description
+    end
 
   protected
 

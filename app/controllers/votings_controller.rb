@@ -4,6 +4,16 @@ class VotingsController < ApplicationController
 
 # Custom methods
 
+  def search
+    @search = Voting.solr_search do
+      fulltext params[:q]
+    end
+    @votings = @search.results
+
+    render :index
+  end
+
+
 # render 'share voting' overlay
   def share
     render layout: 'canvas'
@@ -167,7 +177,7 @@ class VotingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def voting_params
       #params[:voting]
-      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to, :friends_email_adress, :friends_name)
+      params.require(:voting).permit(:title, :description, :audience, :contribution, :searchable, :active, :tags, :confirm_code, :confirm_code_check, :online_from, :online_to, :friends_email_adress, :friends_name, :q)
     end
 
 end
