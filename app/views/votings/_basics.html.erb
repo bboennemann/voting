@@ -4,8 +4,8 @@
       <%= image_tag @voting.image_items[0].image_file.url(:original), class: 'v_item_image_original v_voting_cover_image image-responsive center-block' unless @voting.image_items.empty? %>
       <%= render '/votings/basic_partials/actions' %>
       <div class="v_play_voting">  
-          <button class="btn btn-primary btn-lg  trigger_voting" data-url="<%= "/#{@voting.voting_type}_votings/#{@voting.id}/voting" %>" >
-            <span class="glyphicon glyphicon-play-circle "></span> VOTE!
+          <button class="btn btn-success btn-lg  trigger_voting" data-url="<%= "/#{@voting.voting_type}_votings/#{@voting.id}/voting" %>" >
+            <span class="glyphicon glyphicon-play-circle "></span> VOTE NOW!
           </button>
       </div>
     </div>

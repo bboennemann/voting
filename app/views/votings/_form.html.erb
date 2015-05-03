@@ -92,16 +92,16 @@
     </div>
     <div class="col-md-7">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-info <%= @voting.audience == 'everyone' ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.audience == 'everyone' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'everyone' %>Everybody
         </label>
-        <label class="btn btn-info <%= @voting.audience == 'signed_in' ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.audience == 'signed_in' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'signed_in' %>Signed In
         </label>
-        <label class="btn btn-info <%= @voting.audience == 'friends' ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.audience == 'friends' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'friends' %>Friends
         </label>
-        <label class="btn btn-info <%= @voting.audience == 'link' ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.audience == 'link' ? 'active' : nil %>">
           <%= f.radio_button :audience, 'link' %>Link Only
         </label>
       </div>
@@ -122,10 +122,10 @@
     </div>
     <div class="col-md-7">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-info <%= @voting.contribution ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.contribution ? 'active' : nil %>">
           <%= f.radio_button :contribution, true %>Allowed
         </label>
-        <label class="btn btn-info <%= @voting.contribution ? nil : 'active' %>">
+        <label class="btn btn-info btn-sm <%= @voting.contribution ? nil : 'active' %>">
           <%= f.radio_button :contribution, false %>Not Allowed
         </label>
       </div>
@@ -170,10 +170,10 @@
     </div>
     <div class="col-md-7">
       <div class="btn-group" data-toggle="buttons">
-        <label class="btn btn-info <%= @voting.active ? 'active' : nil %>">
+        <label class="btn btn-info btn-sm <%= @voting.active ? 'active' : nil %>">
           <%= f.radio_button :active, true %>Active
         </label>
-        <label class="btn btn-info <%= @voting.active ? nil : 'active' %>">
+        <label class="btn btn-info btn-sm <%= @voting.active ? nil : 'active' %>">
           <%= f.radio_button :active, false %>Suspended
         </label>
       </div>
@@ -198,7 +198,7 @@
     <div class="col-md-7">
       <button id="submit"  class="btn btn-lg btn-primary">Save!</button>
       -or-
-      <button id="cancel" onclick="hideCanvas();" class="btn btn-sm btn-warning" href='/'>cancel</button>
+      <a onclick="hideCanvas();" href='#'>cancel</a>
     </div>    
     <div class="col-md-1">
       &nbsp;

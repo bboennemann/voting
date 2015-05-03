@@ -17,6 +17,23 @@ $(document).ready(function() {
 	votingId = $('#voting_id').attr('value');
 	initialize_voting(votingId);
 
+	$('.complaint').click(function(){
+		triggerCanvas(this)
+	});
+
+	// set bookmark ! no popup ! straight to ajax action
+	$('#set_bookmark').click(function(){
+		set_bookmark($(this).data('bookmark'));
+	});
+
+	$('#trigger_share_voting').click(function(){
+		triggerCanvas(this)
+	});
+
+	$('#new_image_item').click(function(){
+		triggerCanvas(this)
+	});
+
 });
 
 
@@ -94,6 +111,7 @@ function populate_previous_image(){
 
 function populate_current_image(){
 	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
+	$("#trigger_complaint").attr('data-url', '/complaints/new?item_type=image_item&item_id=' + currentItemId + '&');
 	$('#stars').fadeIn();
 }
 
