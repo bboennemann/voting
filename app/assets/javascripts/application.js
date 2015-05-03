@@ -20,7 +20,6 @@
 //= require bootstrap-tagsinput
 //= require blocksit
 //= require votogenic
-// require turbolinks
 
 
 

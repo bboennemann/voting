@@ -15,7 +15,7 @@ class WebParser
 
 		images.each do |image|
 			unless image['src'].nil?
-				unless image['src'].include? 'http://'
+				unless image['src'].include?('http://') or image['src'].include?('//www.')
 					# TODO: implement separate solution for services like flickr, picasa.
 					# if base url is added to flickr locations, this won'ty work properly anymore. 
 					# maybe related to responsive design? Images are probably loaded from other than base url using media queries.

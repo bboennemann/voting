@@ -10,17 +10,17 @@ var items = null;
 
 $(document).ready(function() {
 
-	votingId = $('#voting_id').attr('value');
-	initialize_voting(votingId);
-
 	$('.rate_star').click(function(){
 		vote($(this).data('rating'));
 	});
 
+	votingId = $('#voting_id').attr('value');
+	initialize_voting(votingId);
+
 });
 
 
-function initialize_voting(voting_id){
+function initialize_voting(votingId){
 	$.ajax({
 		url : '/votings/' + votingId + '/init.json',
 		type : 'get',
@@ -37,6 +37,7 @@ function initialize_voting(voting_id){
 
 // TODO: needs to be post method!
 function vote(value){
+	$('#stars').fadeOut();
 	$.ajax({
 		url : '/classic_votings/' + votingId + '/image_items/' + currentItemId + '/vote_image_item.json?result=' + value,
 		type : 'get',
@@ -93,6 +94,7 @@ function populate_previous_image(){
 
 function populate_current_image(){
 	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
+	$('#stars').fadeIn();
 }
 
 function display_voting_over(){

@@ -145,21 +145,6 @@ $(document).ready(function() {
 	// globally enables bootstrap tooltips wherever configured
 	$('[data-toggle="tooltip"]').tooltip()
 
-	// distribute tiles
-	$('#v_tile_container').BlocksIt({
-		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
-		offsetX: 8,
-		offsetY: 8,
-		blockElement: '.grid'
-	});
-
-	// distribute tiles "you may also like"
-	$('#v_tile_container_interesting').BlocksIt({
-		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
-		offsetX: 8,
-		offsetY: 8,
-		blockElement: '.grid'
-	});
 
 	// user dob datepicker
 	$('#datepicker').datepicker({
@@ -195,5 +180,22 @@ $(document).ready(function() {
 		hideVotingCanvas();
 	})
 
-	
+
+// should always come last!
+	// distribute tiles
+	$('#v_tile_container').BlocksIt({
+		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});
+
+	// distribute tiles "you may also like"
+	$('#v_tile_container_interesting').BlocksIt({
+		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});	
+
 });

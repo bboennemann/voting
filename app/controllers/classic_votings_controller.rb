@@ -38,11 +38,11 @@ class ClassicVotingsController < ApplicationController
   # GET /classic_votings/1
   # GET /classic_votings/1.json
   def show
-
+    session[:redirect_path] = request.original_url
     # TODO
     # this must be possible more elegant.
     # this requires all items to be queried twice.
-    session[:redirect_path] = request.original_url
+    
     @image_items = ImageItem.where(:voting_id => params[:id]).desc(:score)
     @image_item = ImageItem.new(:voting_id => params[:id])
   end
