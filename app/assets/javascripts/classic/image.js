@@ -1,4 +1,4 @@
-var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
+var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/development/image_items/';
 var votingId;
 var itemCursor = 0;
 var currentItem = null;
@@ -113,6 +113,7 @@ function populate_current_image(){
 	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
 	$("#trigger_complaint").attr('data-url', '/complaints/new?item_type=image_item&item_id=' + currentItemId + '&');
 	$('#stars').fadeIn();
+	set_website_url();
 }
 
 function display_voting_over(){
@@ -120,4 +121,13 @@ function display_voting_over(){
 	$('#stars').fadeOut();
 	populate_previous_image();
 	$('#done_voting').fadeIn();
+}
+
+function set_website_url(){
+	if(currentItem.website_url == null){
+		$('#item_website_url').fadeOut();
+	}else{
+		$('#item_website_url').attr('href', currentItem.website_url);
+		$('#item_website_url').fadeIn();
+	}
 }

@@ -1,4 +1,6 @@
 <div  id="voting_stage">
+	<a href='' id='item_website_url' target="_blank" style="display:none"><button class="btn btn-sm" style="position:absolute; top:60px; right:10px;"><span class="glyphicon glyphicon-globe" ></span></button></a>
+	<button class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="" style="position:absolute; top:20px; right:10px;"><i class="glyphicon glyphicon-flag text-warning"></i></button>
 	<!-- show before image is loaded -->
 	<h2 id="initializing_wait_message">
 		Please Wait...<br>
@@ -6,6 +8,7 @@
 	</h2>
 	<!-- main image -->
 	<image id="current_image" src="/assets/squares.gif" style="max-width: 100%; max-height: 90%;">
+
 	<!-- show when all items are voted on -->
 	<div class="row" id="done_voting" style="display: none">
 		<div class="col col-sm-2">&nbsp;</div>
