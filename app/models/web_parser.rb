@@ -14,8 +14,9 @@ class WebParser
 		image_array = []
 
 		images.each do |image|
+			logger.debug image.to_s
 			unless image['src'].nil?
-				image['src'] = image['src'].sub! '//www.', 'http://www.'
+				image['src'] = image['src'].sub /^\/\/www./, 'http://www.'
 				logger.debug image['src']
 				unless image['src'].include?('http://') 
 					# TODO: implement separate solution for services like flickr, picasa.
@@ -30,6 +31,7 @@ class WebParser
 				image_array << image['src']
 			end
 		end
+		logger.debug image_array.to_s
 		return image_array.uniq
 	end
 end
