@@ -120,7 +120,7 @@ function getNextItem(){
 			currentItem = item;
 
 			itemCursor++;
-						
+			
 			populate_current_image();
 			populate_previous_image();
 		}
@@ -128,22 +128,29 @@ function getNextItem(){
 }
 
 function populate_previous_image(){
-	if(previousItem.already_voted == true){
-		$('#already_voted').show();
-	}else{
-		$('#already_voted').hide();
-	}
+	
 	$('#previous_image').attr('src', imageBaseUrl + previousItemId + '/xs.jpg');
 	$('#previous_image_score').text(previousItem.score);
 	$('#previous_image_hits').text(previousItem.hits);
 	$('#previous_image_container').fadeIn();
+
+	if(previousItem.already_voted == true){
+		$('#already_voted').hide();
+		$('#already_voted').show( "bounce", { times: 3 }, "slow" );
+	}else{
+		$('#already_voted').hide();
+		$('#current_image').effect( "transfer", { to: $('#previous_image') }, 500 );
+	}
 }
 
-function populate_current_image(){
+function populate_current_image(){	
+	$('#current_image').fadeOut();
 	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
 	$("#trigger_complaint").attr('data-url', '/complaints/new?item_type=image_item&item_id=' + currentItemId + '&');
 	$('#stars').fadeIn();
 	set_website_url();
+	//$('#current_image').show('slide');
+	$('#current_image').fadeIn();
 }
 
 function display_voting_over(){

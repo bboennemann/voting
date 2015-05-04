@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.form
+//= require jquery-ui
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-tagsinput
