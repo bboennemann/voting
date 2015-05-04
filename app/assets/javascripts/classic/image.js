@@ -1,4 +1,4 @@
-var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
+var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/development/image_items/';
 var votingId;
 var itemCursor = 0;
 var currentItem = null;
@@ -45,6 +45,11 @@ $(document).ready(function() {
 	});
 
 	$('#voting_context').mouseover(function(){
+		$('.v_current_item_actions').fadeOut();
+		$('#current_item_description').fadeOut();
+	});
+
+	$('#current_item_description').mouseover(function(){
 		$('.v_current_item_actions').fadeOut();
 		$('#current_item_description').fadeOut();
 	});

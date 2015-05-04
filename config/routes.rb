@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   end
 
 # Image Items
-  resources :image_items, only: [:create, :destroy, :show]
+  resources :image_items, only: [:create, :destroy, :show, :update]
   post 'image_items/create_from_url' => 'image_items#create_from_url'
 
 # complaints
