@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0' # ruby head at dev time
+ruby '> 2.1' # ruby head at dev time
 
 # for s3 storage
 gem 'aws-sdk', '< 2.0'
