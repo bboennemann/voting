@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-# for clean deployments
-gem 'rails_12factor', group: :production
+ruby '2.3.0' # ruby head at dev time
 
 # for s3 storage
 gem 'aws-sdk', '< 2.0'
@@ -50,6 +49,9 @@ gem 'nokogiri'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
+
+# for clean deployments
+gem 'rails_12factor', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
