@@ -144,12 +144,11 @@ function populate_previous_image(){
 }
 
 function populate_current_image(){	
-	$('#current_image').fadeOut();
+	$('#current_image').hide();
 	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
 	$("#trigger_complaint").attr('data-url', '/complaints/new?item_type=image_item&item_id=' + currentItemId + '&');
 	$('#stars').fadeIn();
 	set_website_url();
-	//$('#current_image').show('slide');
 	$('#current_image').fadeIn();
 }
 

@@ -102,6 +102,10 @@ function hideVotingCanvas(){
 
 $(document).ready(function() {
 
+	var calculatedNumberOfColumns = Math.floor(($('#v_tile_container').width()) / 225);
+
+
+
 	// close canvas on pressing ESC
 	$(document).keyup(function(e) {
 		if (e.keyCode == 27) {
@@ -180,11 +184,10 @@ $(document).ready(function() {
 		hideVotingCanvas();
 	})
 
-
-// should always come last!
+	// should always come last!
 	// distribute tiles
 	$('#v_tile_container').BlocksIt({
-		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
+		numOfCol: calculatedNumberOfColumns,
 		offsetX: 8,
 		offsetY: 8,
 		blockElement: '.grid'
@@ -192,10 +195,11 @@ $(document).ready(function() {
 
 	// distribute tiles "you may also like"
 	$('#v_tile_container_interesting').BlocksIt({
-		numOfCol: Math.floor(($('#v_tile_container').width()) / 225),
+		numOfCol: calculatedNumberOfColumns,
 		offsetX: 8,
 		offsetY: 8,
 		blockElement: '.grid'
 	});	
+
 
 });

@@ -10,17 +10,17 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require google_analytics
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.form
 //= require jquery-ui
+//= require blocksit
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-tagsinput
-//= require blocksit
 //= require votogenic
+//= require google_analytics
 
 
 
