@@ -1,4 +1,4 @@
-var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
+var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/development/image_items/';
 var votingId;
 var itemCursor = 0;
 var currentItem = null;
@@ -34,7 +34,32 @@ $(document).ready(function() {
 		triggerCanvas(this)
 	});
 
+	$('#current_image').mouseenter(function(){
+		$('.v_current_item_actions').fadeIn();
+		show_current_item_description();
+	});
+
+	$('.rate_star').mouseover(function(){
+		$('.v_current_item_actions').fadeOut();
+		$('#current_item_description').fadeOut();
+	});
+
+	$('#voting_context').mouseover(function(){
+		$('.v_current_item_actions').fadeOut();
+		$('#current_item_description').fadeOut();
+	});
+
+
+	
+
 });
+
+function show_current_item_description(){
+	if(currentItem.description != null){
+		$('#current_item_description').text(currentItem.description);
+		$('#current_item_description').fadeIn();
+	}
+}
 
 
 function initialize_voting(votingId){

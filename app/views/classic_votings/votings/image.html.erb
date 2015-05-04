@@ -1,6 +1,15 @@
 <div  id="voting_stage">
-	<a href='' id='item_website_url' target="_blank" style="display:none"><button class="btn btn-sm" style="position:absolute; top:60px; right:10px;"><span class="glyphicon glyphicon-globe" ></span></button></a>
-	<button class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="" style="position:absolute; top:20px; right:10px;"><i class="glyphicon glyphicon-flag text-warning"></i></button>
+	<div class="v_current_item_actions" style="display: none;">
+ 		<a href='' id='item_website_url' target="_blank" style="display:none">
+ 			<button class="btn btn-sm" style="position:absolute; left:10px; top: 5px;">
+ 				<span class="glyphicon glyphicon-globe" ></span>
+ 				Visit Website
+ 			</button>
+ 		</a>
+		<button class="btn btn-sm complaint" id="trigger_complaint" data-url="" style="position:absolute; right:10px; top: 5px;">
+			<span class="glyphicon glyphicon-flag"></span>
+		</button>
+ 	</div>	
 	<!-- show before image is loaded -->
 	<h2 id="initializing_wait_message">
 		Please Wait...<br>
@@ -23,6 +32,10 @@
 		<div class="col col-sm-2">&nbsp;</div>
 	</div>
 	<%= render '/votings/shared/voting_stars' %>
+
+	<div class="v_current_item_description" id="current_item_description" style="display: none;">
+ 	</div>	
+
 </div>
 <div id="voting_context">
 	<input type="hidden" id="voting_id" value="<%= @voting.id %>">

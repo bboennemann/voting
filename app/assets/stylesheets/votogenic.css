@@ -226,3 +226,23 @@ hr {
 .trigger_voting{
 	cursor: pointer;
 }
+
+.v_current_item_actions{
+	position: absolute;
+	background-color: white;
+	opacity: 0.85;
+	width: 100%;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+
+.v_current_item_description{
+	position: absolute;
+	background-color: white;
+	opacity: 0.85;
+	width: 100%;
+	height: 50px;
+	left: 0px;
+	bottom: 0px;
+}
