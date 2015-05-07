@@ -1,5 +1,13 @@
+<%= render '/votings/basics' %>
+<div class="row">
+	<div class="col col-sm-9">
+		<%= render 'form' %>
+	</div>
+	<div class="col col-sm-3">
+		&nbsp;
+	</div>
+</div>
 
-<%= render 'form' %>
 
 <% content_for :my_context_nav do %>
 	<%= render 'my_account/side_nav/voting_context_nav' %>
