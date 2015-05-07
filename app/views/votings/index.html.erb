@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<div id="v_tile_container">
-		<% @votings.each do |voting| %>
+		<% @votings.each_with_index do |voting, i| %>
 			<div class="grid class">
-					<%= render "/#{voting.voting_type}_votings/tiles/#{voting.item_type}", :voting => voting %>
+					<%= render "/#{voting.voting_type}_votings/tiles/#{voting.item_type}", :voting => voting, :i => i %>
 			</div>
 		<% end %>
 		</div>

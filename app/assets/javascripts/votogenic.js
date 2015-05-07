@@ -180,6 +180,17 @@ $(document).ready(function() {
 		triggerVotingCanvas(this)
 	});
 
+	$('.triger_vote_button').mouseenter(function(){
+		id = '#click_to_vote_' + $(this).data('index');
+		$(id).show();
+	});
+
+	$('.triger_vote_button').mouseleave(function(){
+		id = '#click_to_vote_' + $(this).data('index');
+		$(id).fadeOut();
+	});
+
+
 	$('#votingOverlayBlurr').click(function(){
 		hideVotingCanvas();
 	})
