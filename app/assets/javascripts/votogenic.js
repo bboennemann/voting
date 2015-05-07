@@ -184,7 +184,10 @@ $(document).ready(function() {
 		hideVotingCanvas();
 	})
 
-	// should always come last!
+$('#container').imagesLoaded()
+  .always( function( instance ) {
+    
+	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
 	// distribute tiles
 	$('#v_tile_container').BlocksIt({
 		numOfCol: calculatedNumberOfColumns,
@@ -200,7 +203,7 @@ $(document).ready(function() {
 		offsetY: 8,
 		blockElement: '.grid'
 	});	
-
-
+console.log('all images loaded');
+  })
 
 });

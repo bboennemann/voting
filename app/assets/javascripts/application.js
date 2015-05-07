@@ -21,6 +21,7 @@
 //= require bootstrap-tagsinput
 //= require votogenic
 //= require google_analytics
+//= require imagesloaded.pkgd
 
 
 
