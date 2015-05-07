@@ -203,7 +203,6 @@ $('#container').imagesLoaded()
 		offsetY: 8,
 		blockElement: '.grid'
 	});	
-console.log('all images loaded');
   })
 
 });

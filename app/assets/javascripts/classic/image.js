@@ -1,4 +1,4 @@
-var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/production/image_items/';
+var imageBaseUrl = 'http://s3.amazonaws.com/votogenic/development/image_items/';
 var votingId;
 var itemCursor = 0;
 var currentItem = null;
@@ -7,8 +7,14 @@ var previousItem = null;
 var previousItemId = null;
 var item = null;
 var items = null;
+var imageSize = 's';
 
 $(document).ready(function() {
+
+	if($( window ).width() > 350) imageSize = 'm';
+	if($( window ).width() > 800) imageSize = 'l';
+	if($( window ).width() > 1200) imageSize = 'original';
+
 
 	$('.rate_star').click(function(){
 		vote($(this).data('rating'));
@@ -145,7 +151,7 @@ function populate_previous_image(){
 
 function populate_current_image(){	
 	$('#current_image').hide();
-	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/l.jpg');
+	$('#current_image').attr('src', imageBaseUrl + currentItemId + '/' + imageSize + '.jpg');
 	$("#trigger_complaint").attr('data-url', '/complaints/new?item_type=image_item&item_id=' + currentItemId + '&');
 	$('#stars').fadeIn();
 	set_website_url();
