@@ -90,9 +90,8 @@
 	<h4>
 		<%= link_to @voting.title, voting_type_path(@voting) %>
 	</h4>
-
-	<small><%= @voting.description[0..150] %>...</small>
 	<div class="hidden-xs">
+	<small><%= @voting.description[0..150] %>...</small>
 		<%= render '/votings/basic_partials/actions' %>
 	</div>
 

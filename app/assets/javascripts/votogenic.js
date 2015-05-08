@@ -44,6 +44,7 @@ function bookmark_remove(voting){
 function triggerCanvas(data){
 	$('#overlay').html('');
 	loadHtml(data);
+	$('#overlay').css('top', $(document).scrollTop());
 	showCanvas();
 }
 
@@ -156,7 +157,7 @@ $(document).ready(function() {
 	});
 
 	$('.complaint').click(function(){
-		triggerCanvas(this)
+		triggerCanvas(this);
 	});
 
 	$('#trigger_share_voting').click(function(){

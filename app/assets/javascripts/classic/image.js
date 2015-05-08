@@ -24,7 +24,7 @@ $(document).ready(function() {
 	initialize_voting(votingId);
 
 	$('.complaint').click(function(){
-		triggerCanvas(this)
+		triggerCanvas(this);		
 	});
 
 	// set bookmark ! no popup ! straight to ajax action
