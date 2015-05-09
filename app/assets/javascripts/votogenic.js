@@ -181,15 +181,7 @@ $(document).ready(function() {
 		triggerVotingCanvas(this)
 	});
 
-	$('.triger_vote_button').mouseenter(function(){
-		id = '#click_to_vote_' + $(this).data('index');
-		$(id).show();
-	});
 
-	$('.triger_vote_button').mouseleave(function(){
-		id = '#click_to_vote_' + $(this).data('index');
-		$(id).fadeOut();
-	});
 
 
 	$('#votingOverlayBlurr').click(function(){
@@ -197,7 +189,7 @@ $(document).ready(function() {
 	})
 
 $('#container').imagesLoaded()
-  .always( function( instance ) {
+  .done( function( instance ) {
     
 	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
 	// distribute tiles
