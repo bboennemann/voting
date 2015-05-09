@@ -188,7 +188,7 @@ $(document).ready(function() {
 		hideVotingCanvas();
 	})
 
-$('#container').imagesLoaded().done( function( instance ) {
+$('#container').imagesLoaded().done(function(instance) {
     
 	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
 	// distribute tiles
