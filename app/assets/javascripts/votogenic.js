@@ -166,10 +166,6 @@ $(document).ready(function() {
 		hideVotingCanvas();
 	});
 
-
-});
-
-$(window).load(function(){
 	var calculatedNumberOfColumns = Math.floor(($('#v_tile_container').width()) / 225);
 	
 	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
@@ -188,4 +184,34 @@ $(window).load(function(){
 		offsetY: 8,
 		blockElement: '.grid'
 	});
+
+
 });
+
+$(window).load(function(){
+	var calculatedNumberOfColumns = Math.floor(($('#v_tile_container').width()) / 225);
+	
+	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
+	// distribute tiles
+	$('#v_tile_container').BlocksIt({
+		numOfCol: calculatedNumberOfColumns,
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});
+
+
+	// distribute tiles "you may also like"
+	$('#v_tile_container_interesting').BlocksIt({
+		numOfCol: calculatedNumberOfColumns,
+		offsetX: 8,
+		offsetY: 8,
+		blockElement: '.grid'
+	});
+
+	$('.v_single_tile_container').effect(
+		'highlight', 
+		{color: '#5bc0de'}
+		);
+});
+
