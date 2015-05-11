@@ -88,8 +88,6 @@ function hideVotingCanvas(){
 
 $(document).ready(function() {
 
-	var calculatedNumberOfColumns = Math.floor(($('#v_tile_container').width()) / 225);
-
 
 
 	// close canvas on pressing ESC
@@ -166,10 +164,14 @@ $(document).ready(function() {
 
 	$('#votingOverlayBlurr').click(function(){
 		hideVotingCanvas();
-	})
+	});
 
-$('#container').imagesLoaded().done(function(instance) {
-    
+
+});
+
+$(window).load(function(){
+	var calculatedNumberOfColumns = Math.floor(($('#v_tile_container').width()) / 225);
+	
 	// TODO: eventually to be replaced by isotope.js for sorting and filtering ..?
 	// distribute tiles
 	$('#v_tile_container').BlocksIt({
@@ -185,7 +187,5 @@ $('#container').imagesLoaded().done(function(instance) {
 		offsetX: 8,
 		offsetY: 8,
 		blockElement: '.grid'
-	});	
-  })
-
+	});
 });

@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   resources :votings do
     resources :image_items
     resources :bookmarks, only: [:create]
-    delete '/bookmarks' => 'bookmarks#destroy'
     get '/init' => 'votings#init'
   end
   get 'votings/:id/delete' => 'votings#delete'
