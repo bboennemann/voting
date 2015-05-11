@@ -209,9 +209,5 @@ $(window).load(function(){
 		blockElement: '.grid'
 	});
 
-	$('.v_single_tile_container').effect(
-		'highlight', 
-		{color: '#5bc0de'}
-		);
 });
 
