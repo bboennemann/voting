@@ -13,6 +13,7 @@ class ImageItemsController < ApplicationController
   # GET /image_items/1.json
   def show
     @image_item.prepare_display
+    
     respond_to do |format|
       format.html{}
       format.json{render :json => @image_item}

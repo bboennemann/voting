@@ -19,23 +19,8 @@ function set_bookmark(voting){
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('There was a problem loading the requested content. Please try again later');
 		},
-		success : function(html, resultText) {
-			$('#set_bookmark').hide();
-			$('#bookmark_set').fadeIn();
-		}
-	});
-}
-
-function bookmark_remove(voting){
-	$.ajax({
-		url : '/votings/' + voting + '/bookmarks.json',
-		type : 'delete',
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert('There was a problem loading the requested content. Please try again later');
-		},
-		success : function(html, resultText) {
-			$('#bookmark_remove').hide();
-			$('#set_bookmark').fadeIn();
+		success : function(response, resultText) {
+			$('.toggle_bookmark').toggleClass('text-warning');
 		}
 	});
 }
@@ -137,13 +122,8 @@ $(document).ready(function() {
 	});
 
 	// set bookmark ! no popup ! straight to ajax action
-	$('#set_bookmark').click(function(){
+	$('.toggle_bookmark').click(function(){
 		set_bookmark($(this).data('bookmark'));
-	});
-
-	// REMOVE bookmark ! no popup ! straight to ajax action
-	$('#bookmark_remove').click(function(){
-		bookmark_remove($(this).data('bookmark'));
 	});
 
 
@@ -160,7 +140,7 @@ $(document).ready(function() {
 		triggerCanvas(this);
 	});
 
-	$('#trigger_share_voting').click(function(){
+	$('.trigger_share_voting').click(function(){
 		triggerCanvas(this)
 	});
 
@@ -169,7 +149,7 @@ $(document).ready(function() {
 		triggerCanvas(this)
 	});
 
-	$('#new_image_item').click(function(){
+	$('.new_image_item').click(function(){
 		triggerCanvas(this)
 	});
 	

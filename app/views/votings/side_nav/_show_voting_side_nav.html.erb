@@ -3,15 +3,15 @@
     <%= link_to user_path(@voting.user_id) do %>By <%= @voting.user.first_name %><% end %>
   </p>
 
-<!-- CURRENTLY disabled -->
-<% if 0 > 1 %>
+
 <!-- only if this is not my own voting -->
 <% if user_signed_in? && !is_owner?(@voting.user_id) %>
   <!-- if we are friends then show message button -->
   <% if @voting.user.friends.include?(current_user.id.to_s) %>
-
+<!-- CURRENTLY disabled -->
+<% if 0 > 1 %>
     <%= link_to user_path(@voting.user_id) do %><button class="btn btn-sm btn-info" style="width: 110px"><i class="glyphicon glyphicon-envelope"> </i> Message</button><% end %>
-  
+<% end %>
   <% else %>
   <!-- if we are not friends then show add friend button -->
     <button class="btn btn-sm btn-info" style="width: 110px" data-friend="<%= @voting.user.id %>" id="send_friend_request"><i class="glyphicon glyphicon-user"></i> Add Friend</button>
@@ -19,7 +19,7 @@
   <% end %>
   <br><br>
 <% end %>
-<% end %>
+
 
 <br>
 
