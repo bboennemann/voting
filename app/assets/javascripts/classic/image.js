@@ -23,20 +23,26 @@ $(document).ready(function() {
 	votingId = $('#voting_id').attr('value');
 	initialize_voting(votingId);
 
+	$('.complaint').off('click');
+	$('.set_bookmark').off('click');
+	$('.bookmark_remove').off('click');
+	$('.trigger_share_voting').off('click');
+	$('.new_image_item').off('click');
+
 	$('.complaint').click(function(){
 		triggerCanvas(this);		
 	});
 
 	// set bookmark ! no popup ! straight to ajax action
-	$('#set_bookmark').click(function(){
+	$('.toggle_bookmark').click(function(){
 		set_bookmark($(this).data('bookmark'));
 	});
 
-	$('#trigger_share_voting').click(function(){
+	$('.trigger_share_voting').click(function(){
 		triggerCanvas(this)
 	});
 
-	$('#new_image_item').click(function(){
+	$('.new_image_item').click(function(){
 		triggerCanvas(this)
 	});
 

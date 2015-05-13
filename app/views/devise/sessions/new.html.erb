@@ -87,7 +87,6 @@ $("#new_user").ajaxForm({
         alert('There was a problem loading the requested content. Please try again later');
       },
       success : function(html, resultText) {
-        $('#votingOverlay').html(html);
         $('#overlay').html(html);
       }
     });
