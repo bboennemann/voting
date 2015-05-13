@@ -16,7 +16,7 @@
 
 <!-- teaser images -->
 	<% if voting.image_items.size > 2  %>
-	<div class="row triger_vote_button" data-index='<%= i %>'>
+	<div class="row triger_vote_button hidden-xs" data-index='<%= i %>'>
 		<div class="col-md-12 trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>">
 			<%= image_tag voting.image_items[1].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_l " %><%= image_tag voting.image_items[2].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_r" %>			
 		</div>
@@ -58,7 +58,7 @@
 <!-- tags -->
 	<% unless voting.tags.empty? %>
 		<hr>
-		<div class="row v_tile_container_row">
+		<div class="row v_tile_container_row hidden-xs">
 			<div class="col-sm-3"><span class="glyphicon glyphicon-tag"></span></div>
 			<div class="col-sm-9">
 				<% voting.tags[0..8].each do |tag| %>

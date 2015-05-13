@@ -38,7 +38,7 @@ body{
 	z-index: 4001;
 	padding: 0px;
 	width: 80%;
-	height: 90%;
+	height: 85%;
 	background-color: black;
 	position: fixed;
 	top: -10px;
@@ -263,7 +263,7 @@ hr {
 	text-align: center;
 	padding: 15px;
 	background-color: black;
-	opacity: 0.50;
+	opacity: 0.60;
 	position: absolute;
 	z-index: 5;
 	top: 0px;
@@ -274,5 +274,5 @@ hr {
 }
 
 .v_tile_click_to_vote:hover .v_tile_click_to_vote{
-	display: block;
+	display: visible;
 }
