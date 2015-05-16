@@ -24,6 +24,12 @@
 
 </div>
 
+  <% if @autostart_voting %>
+    <script type="text/javascript">
+      var autostart_url = "<%= "/#{@autostart_voting.voting_type}_votings/#{@autostart_voting.id}/voting" %>";
+    </script>
+  <% end %>
+
 <footer class="footer">
   <div class="container">
     <%= render '/layouts/shared/footer' %>

@@ -31,5 +31,12 @@
   <%= render 'layouts/shared/canvas' %>
   <%= render 'layouts/shared/voting_canvas' %>
 </div>
+
+  <% if params[:autostart] %>
+    <script type="text/javascript">
+      var autostart_url = "<%= "/#{@voting.voting_type}_votings/#{@voting.id}/voting" %>";
+    </script>
+  <% end %>
+
 </body>
 </html>

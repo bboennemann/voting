@@ -56,9 +56,9 @@ function loadHtml(data){
 	});
 }
 
-function loadVoting(data){
+function loadVoting(voting_url){
 	$.ajax({
-		url : data.getAttribute("data-url") + "?item_type=" + data.getAttribute("data-item-type") + "&voting_type=" + data.getAttribute("data-voting-type"),
+		url : voting_url,
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert('There was a problem loading the requested content. Please try again later');
 		},
@@ -70,9 +70,9 @@ function loadVoting(data){
 
 // voting canvas functions
 
-function triggerVotingCanvas(data){
+function triggerVotingCanvas(voting_url){
 	$('#votingOverlay').html('');
-	loadVoting(data);
+	loadVoting(voting_url);
 	showVotingCanvas();
 }
 
@@ -156,9 +156,12 @@ $(document).ready(function() {
 	});
 
 	$('.trigger_voting').click(function(){
-		triggerVotingCanvas(this)
+		triggerVotingCanvas($(this).data("url"));
 	});
 
+	if(autostart_url != null){
+		triggerVotingCanvas(autostart_url);
+	}
 
 
 

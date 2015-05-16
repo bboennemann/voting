@@ -67,6 +67,9 @@ class VotingsController < ApplicationController
   # GET /votings
   # GET /votings.json
   def index
+
+    @autostart_voting = Voting.find(params[:autostart]) unless !params[:autostart] 
+
     if params[:tags]
       @votings = Voting.where(:tags => params[:tags]).general_audience.valid_date.active.desc(:id)
     elsif params[:category]
