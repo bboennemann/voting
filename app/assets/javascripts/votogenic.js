@@ -1,3 +1,5 @@
+var autostart_url = null;
+
 function friendRequest(friend){
 	$.ajax({
 		url : '/users/' + friend + '/friend_requests.json',
