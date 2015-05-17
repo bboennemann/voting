@@ -1,0 +1,19 @@
+<%= render '/votings/basics' %>
+<div class="row">
+	<div class="col-md-12">
+		<a id="new_image_item" style="width: 100%" data-url="<%= "/votings/#{@voting.id}/image_items/new" %>" class="btn btn-lg btn-success navbar-btn" >
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+			Add <%= @voting.item_type.pluralize %>
+		</a>
+	</div>
+</div>
+
+<br>
+<br>
+<br>
+
+<%= render "/grid_votings/display/#{@voting.item_type}" %>
+
+<% content_for :my_context_nav do %>
+  <% render '/my_account/side_nav/voting_context_nav' %>
+<% end %> 

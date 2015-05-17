@@ -1,0 +1,8 @@
+<%= render '/votings/basics' %>
+<br>
+<%= render "/grid_votings/display/#{@voting.item_type}" %>
+
+
+<% content_for :side_nav do %>
+  <% render '/votings/side_nav/show_voting_side_nav' %>
+<% end %> 

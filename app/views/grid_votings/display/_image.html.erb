@@ -1,0 +1,50 @@
+
+<% @image_items.each_with_index do |item, index| %>
+
+	<div class="row">
+
+    <div class="col col-sm-4 text-center <%= highlight_owner?(item.user_id) %>">
+      <!-- user -->
+      <div class="row">
+        <div class="col col-sm-3 text-left">
+          <%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %><br>
+          By <%= link_to item.user.first_name, user_path(item.user_id)  %>
+        </div>
+
+      <!-- Image -->
+        <div class="col col-sm-9">
+          <div>
+            <%= image_tag item.image_file.url(:s), width: '225px' %>
+          </div>
+          <div id="stars_<%= index %>">
+            <%= render '/votings/shared/voting_stars_small', index: index %>  
+          </div>
+          <div id="result_<%= index %>" style="display: none;">
+            TEST  
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+<!-- time to start a new row? -->
+  <% if ((index + 1) % 3) == 0 %>
+  </div>
+  <div class="row">
+    <div class="col col-sm-12">
+      &nbsp;
+    </div>
+  </div>
+  <div class="row">
+  <% end %>
+  
+<% end %>
+</div>
+
+<div class="row">
+  <div class="col col-sm-12">
+    &nbsp;
+  </div>
+</div>
+<%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>
+

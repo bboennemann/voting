@@ -1,0 +1,101 @@
+<div  id="voting_stage">
+	<div class="v_current_item_actions" style="display: none;">
+ 		<a href='' id='item_website_url' target="_blank" style="display:none">
+ 			<button class="btn btn-sm" style="position:absolute; left:10px; top: 5px;">
+ 				<span class="glyphicon glyphicon-globe" ></span>
+ 				Visit Website
+ 			</button>
+ 		</a>
+		<button class="btn btn-sm complaint" id="trigger_complaint" data-url="" style="position:absolute; right:10px; top: 5px;">
+			<span class="glyphicon glyphicon-flag"></span>
+		</button>
+ 	</div>	
+	<!-- show before image is loaded -->
+	<h2 id="initializing_wait_message">
+		Please Wait...<br>
+		<small>... while the voting is initializing!</small>
+	</h2>
+	<!-- main image -->
+	<image id="current_image" src="/assets/squares.gif" style="max-width: 100%; max-height: 90%;">
+
+	<!-- show when all items are voted on -->
+	<div class="row" id="done_voting" style="display: none">
+		<div class="col col-sm-2">&nbsp;</div>
+		<div class="col col-sm-8">
+			<h3>Congratulations!<br>
+				<small>You have voted all images in this voting!</small>
+			</h3>
+			<br>
+			<br>
+			<%= link_to voting_type_path(@voting) do %><button class="btn btn-primary">See the results</button><% end %>
+		</div>
+		<div class="col col-sm-2">&nbsp;</div>
+	</div>
+
+	<%= render '/votings/shared/voting_stars' %>
+
+	<div class="v_current_item_description" id="current_item_description" style="display: none;">
+ 	</div>	
+
+</div>
+<div id="voting_context">
+	<input type="hidden" id="voting_id" value="<%= @voting.id %>">
+
+	<div id="voting_context_social" class="hidden-xs">
+		<%= render '/layouts/shared/social_buttons' %>
+	</div>
+	<hr>
+
+	
+
+	<div id="previous_image_container" class="bg-info" style="display: none">
+		
+		<div class="row">
+			<div class="col col-sm-12">
+				<image id="previous_image" src="<%= @voting.image_items[1].image_file.url(:xs) %>" class="img-thumbnail" ></image>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-sm-2">&nbsp;</div>
+			<div class="col col-sm-4">
+				<h2 id="previous_image_score">blank</h2>
+			</div>
+			<div  class="col col-sm-4">
+				<h2><small id="previous_image_hits">blank</small></h2>
+			</div>	
+			<div class="col col-sm-2">&nbsp;</div>		
+		</div>
+		<div class="row">
+			<div class="col col-sm-2">&nbsp;</div>
+			<div class="col col-sm-4">
+				<h6><span class="glyphicon glyphicon-stats" ></span> score</h6>
+			</div>
+			<div  class="col col-sm-4">
+				<h6><span class="glyphicon glyphicon-certificate" ></span> hits</h6>
+			</div>
+			<div class="col col-sm-2">&nbsp;</div>			
+		</div>
+		<div class="row"  style="display:none" id="already_voted">
+			<div class="col col-sm-12 bg-danger text-center">
+				<small>It seems that you had voted for this item already.</small>
+			</div>	
+		</div>
+	</div>
+	
+
+	<hr>
+	<%= image_tag @voting.user.user_image.url(:xxs), class: "img-thumbnail" %><br>
+	<small>By <%= link_to @voting.user.full_name, @voting.user %></small>
+
+	<h4>
+		<%= link_to @voting.title, voting_type_path(@voting) %>
+	</h4>
+	<div class="hidden-xs">
+	<small><%= @voting.description[0..150] %>...</small>
+	</div>
+
+		<%= render '/votings/basic_partials/actions' %>
+	
+
+</div>
+<%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>

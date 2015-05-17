@@ -31,13 +31,22 @@ Rails.application.routes.draw do
   post 'votings/:id/delete' => 'votings#destroy'
   get 'votings/:id/share' => 'votings#share'
   post 'votings/:id/share' => 'votings#send_share'
-  
+
+##############   VOTING TYPES ###################  
+
 # classic votings
   resources :classic_votings, only: [:show, :edit] do
     get 'voting' => 'classic_votings#voting'
     get '/image_items/:id/vote_image_item' => 'classic_votings#vote_image_item'
   end
 
+# grid votings
+  resources :grid_votings, only: [:show, :edit] do
+    get 'voting' => 'grid_votings#voting'
+    get '/image_items/:id/vote_image_item' => 'grid_votings#vote_image_item'
+  end
+
+##############   END VOTING TYPES ###################
 # Image Items
   resources :image_items, only: [:create, :destroy, :show, :update]
   post 'image_items/create_from_url' => 'image_items#create_from_url'

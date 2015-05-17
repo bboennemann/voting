@@ -1,0 +1,90 @@
+<div class="v_single_tile_container" id="single_tile">
+	
+  <!-- activates on 'hover' -->
+	<div class="v_tile_click_to_vote  trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>"  id="click_to_vote_<%= i %>">
+		<button class="btn btn-sm">
+			<span class="glyphicon glyphicon-play-circle"></span> Start the Voting!
+		</button>
+	</div>
+
+<!-- Main Image -->
+	<% unless voting.image_items.empty? %>
+		<div class="row triger_vote_button" data-index='<%= i %>'>
+			<div class="col-md-12 trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>" >
+				<%= image_tag voting.image_items[0].image_file.url(:s), class: "v_tile_main_img", width: '225px', alt: voting.image_items[0].description  %>
+			</div>
+		</div>
+	<% end %>
+
+<!-- teaser images -->
+	<% if voting.image_items.size > 2  %>
+		<div class="row triger_vote_button hidden-xs" data-index='<%= i %>'>
+			<div class="col-md-12 trigger_voting" data-url="<%= "/#{voting.voting_type}_votings/#{voting.id}/voting" %>">
+				<%= image_tag voting.image_items[1].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_l " %><%= image_tag voting.image_items[2].image_file.url(:xs_sq), width: '112px', class: "v_teaser_img_r" %>			
+			</div>
+		</div>
+	<% end %>
+
+
+<!-- title & owner-->
+	<div class="row v_tile_container_row">
+		<div class="col-md-12">
+			<h4><%= link_to voting.title[0..22] + '...', voting_type_path(voting) %></h4>
+			<small>By <%= link_to "#{voting.user.first_name} #{voting.user.last_name[0]}.", user_path(voting.user) %>
+				</small>
+		</div>
+	</div>
+	
+	
+	<div class="row v_tile_container_row">
+		<div class="col-md-12">
+			<div class="media">
+<!--  owner image and hits -->			
+  				<div class="media-left">
+					<%= link_to voting.user do %><%= image_tag voting.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs' %><% end %>
+  				</div>
+<!--  description -->  				
+  				<div class="media-body">
+    				<%= link_to voting_type_path(voting) do %><small><%= voting.description[0..85] %><%= link_to '...', voting_type_path(voting) %></small><% end %>
+  				</div>
+			</div>
+		</div>
+	</div>
+
+
+<!-- properties -->
+	<hr>
+	<%= render '/votings/tile_partials/voting_properties', voting: voting %>
+
+
+<!-- tags -->
+	<% unless voting.tags.empty? %>
+		<hr>
+		<div class="row v_tile_container_row hidden-xs">
+			<div class="col-sm-3"><span class="glyphicon glyphicon-tag"></span></div>
+			<div class="col-sm-9">
+				<% voting.tags[0..8].each do |tag| %>
+					<%= link_to "/?tags=#{tag}" do %><span class="badge"><small><%= tag %></small></span><% end %>
+				<% end  %> ...
+			</div>
+		</div>
+	<% end %>
+
+<!-- if I am the owner, I should be able to edit the voting -->
+
+	<% if is_owner?(voting.user_id) %>
+		<hr>
+		<div class="row v_tile_container_row">
+			<div class="col-md-12">
+				<%= link_to edit_voting_path(voting) do %>
+				<button class="btn btn-default" style="width: 215px;"><span class="label label-danger v_label_as_badge"><span class="glyphicon glyphicon-wrench" aria-hidden="true" ></span></span> Edit Voting</button>
+			<% end %>
+			</div>
+		</div>
+			
+	<% end %>
+
+
+	
+	
+</div>
