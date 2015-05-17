@@ -6,3 +6,8 @@
 <% content_for :side_nav do %>
   <% render '/votings/side_nav/show_voting_side_nav' %>
 <% end %> 
+
+<%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>
+<script type="text/javascript">
+  var votingId = '<%= @voting.id %>';
+</script>

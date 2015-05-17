@@ -17,10 +17,19 @@
             <%= image_tag item.image_file.url(:s), width: '225px' %>
           </div>
           <div id="stars_<%= index %>">
-            <%= render '/votings/shared/voting_stars_small', index: index %>  
+            <%= render '/votings/shared/voting_stars_small', index: index, item: item %>  
           </div>
           <div id="result_<%= index %>" style="display: none;">
-            TEST  
+            <div class="row">
+              <div class="col col-sm-2">&nbsp;</div>
+              <div class="col col-sm-4">
+                <h6><span class="glyphicon glyphicon-stats" ></span> <span  id="grid_image_score_<%= index %>"><%= item.score %></span></h6>
+              </div>
+              <div  class="col col-sm-4">
+                <h6><span class="glyphicon glyphicon-certificate" ></span> <span  id="grid_image_hits_<%= index %>"><%= item.score %></span></h6>
+              </div>
+              <div class="col col-sm-2">&nbsp;</div>      
+            </div>  
           </div>
         </div>
       </div>
@@ -46,5 +55,5 @@
     &nbsp;
   </div>
 </div>
-<%= javascript_include_tag "#{@voting.voting_type}/#{@voting.item_type}" %>
+
 
