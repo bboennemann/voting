@@ -1,0 +1,7 @@
+.v_grid_image{
+	border: 1px; 
+	border-style: solid; 
+	border-color: grey; 
+	padding: 5px; 
+	background-color: white;
+}

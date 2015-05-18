@@ -30,4 +30,12 @@ module VotingsHelper
 	def highlight_owner? user_id
 		is_owner?(user_id) ? 'bg-info' : ''
 	end	
+
+	def already_voted? voted_array
+		if user_signed_in?
+			voted_array.include?(current_user.id.to_s) || voted_array.include?(request.remote_ip.to_s)
+		else
+			voted_array.include?(request.remote_ip.to_s)
+		end
+	end
 end

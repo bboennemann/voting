@@ -1,36 +1,46 @@
-
+<div class="row">
 <% @image_items.each_with_index do |item, index| %>
 
-	<div class="row">
+	
 
     <div class="col col-sm-4 text-center <%= highlight_owner?(item.user_id) %>">
-      <!-- user -->
-      <div class="row">
+      
+      <div class="row" >
+        <!-- user -->
         <div class="col col-sm-3 text-left">
           <%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %><br>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
         </div>
+        <!-- END user -->
 
-      <!-- Image -->
-        <div class="col col-sm-9">
+      
+        <div class="col col-sm-9 v_grid_image">
+          <!-- Image -->
           <div>
             <%= image_tag item.image_file.url(:s), width: '225px' %>
           </div>
-          <div id="stars_<%= index %>">
+          <!-- END Image -->
+          <!-- Stars -->
+          <div id="stars_<%= index %>" style="display: <%= already_voted?(item.voters) ? 'none' : 'normal' %>;">
             <%= render '/votings/shared/voting_stars_small', index: index, item: item %>  
           </div>
-          <div id="result_<%= index %>" style="display: none;">
+          <!-- END Stars -->
+          <!-- RESULT -->
+          <div id="result_<%= index %>" style="display: <%= already_voted?(item.voters) ? 'normal' : 'none' %>;">
             <div class="row">
-              <div class="col col-sm-2">&nbsp;</div>
               <div class="col col-sm-4">
-                <h6><span class="glyphicon glyphicon-stats" ></span> <span  id="grid_image_score_<%= index %>"><%= item.score %></span></h6>
+                <h5 ><span class='glyphicon glyphicon-ok-circle text-success'></span><small> Voted</small></h5>
               </div>
-              <div  class="col col-sm-4">
-                <h6><span class="glyphicon glyphicon-certificate" ></span> <span  id="grid_image_hits_<%= index %>"><%= item.score %></span></h6>
-              </div>
-              <div class="col col-sm-2">&nbsp;</div>      
+              <div class="col col-sm-8 text-center">
+                <h5>
+                  Score <span class="glyphicon glyphicon-stats" ></span><span id="grid_image_score_<%= index %>"> <%= item.score.round(2) %></span>
+                  
+                  <small>Hits <span class="glyphicon glyphicon-certificate" ></span><span id="grid_image_hits_<%= index %>"> <%= item.hits %></span></small>
+                </h6>
+              </div>    
             </div>  
           </div>
+          <!-- END Result -->
         </div>
       </div>
       

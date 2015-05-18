@@ -3,11 +3,14 @@
     <div class="v_voting_cover_image_container">
       <%= image_tag @voting.image_items[0].image_file.url(:original), class: 'v_item_image_original v_voting_cover_image image-responsive center-block' unless @voting.image_items.empty? %>
       <%= render '/votings/basic_partials/actions' %>
+      <!-- TODO: the following is awful and needs to be fixed. too tired right now... -->
+      <% if @voting.voting_type != 'grid' %>
       <div class="v_play_voting">  
           <button class="btn btn-success btn-lg  trigger_voting" data-url="<%= "/#{@voting.voting_type}_votings/#{@voting.id}/voting" %>" >
             <span class="glyphicon glyphicon-play-circle "></span> VOTE NOW!
           </button>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
