@@ -11,7 +11,9 @@
 <div class="v_grid_image">
         <!-- user -->
         <div class="col col-sm-3 text-left">
-          <%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %><br>
+          <div class="hidden-xs">
+            <%= image_tag item.user.user_image.url(:xxs), class: 'img-thumbnail v_user_image_xxs', alt: item.user.first_name %><br>
+          </div>
           By <%= link_to item.user.first_name, user_path(item.user_id)  %>
         </div>
         <!-- END user -->
