@@ -4,4 +4,8 @@
 	border-color: grey; 
 	padding: 5px; 
 	background-color: white;
+	height: 270px;
+	margin: 5px;
+	border-radius: 4px;
+	box-shadow: 5px 5px 5px #BDBDBD;
 }
