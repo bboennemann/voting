@@ -1,5 +1,5 @@
-<div class="row v_voting_action_buttons">
-  <div class="col col-sm-12 text-right">
+<div class=" v_voting_action_buttons">
+
 <!-- share! -->
     <button class="btn btn-info btn-sm trigger_share_voting" id="trigger_share_voting" data-url="<%= "/votings/#{@voting.id}/share" %>">
       <i class="glyphicon glyphicon-send"></i>
@@ -24,10 +24,12 @@
       <% end %>
     </button>
     <% end %>  
+    
+</div>
 
-<!-- report  -->  
+<div class="v_voting_action_report">
+  <!-- report  -->  
     <button class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="/complaints/new?item_type=voting&item_id=<%= @voting.id%>&">
       <i class="glyphicon glyphicon-flag"></i>
-    </button><br>
-  </div>
+    </button>
 </div>
