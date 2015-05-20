@@ -5,6 +5,10 @@ class VotingRecommendationMailer < ApplicationMailer
 		@voting = Voting.find(voting_id)
 		@receiver_name = name_to
 		@sender = name_from
+		@voting_url = url_for controller: "/#{@voting.voting_type}_votings", id: @voting.id.to_s, action: :show 
+		if @voting.voting_type == 'classic'
+			@voting_url += "?autostart=true"
+		end
 
 		mail(to: to_email, subject: determine_subject)
 	end

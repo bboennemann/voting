@@ -7,8 +7,9 @@
       
       <div class="row " >
 
-<!-- tile -->  
-<div class="v_grid_image">
+      <!-- tile -->  
+      <div class="v_grid_image">
+
         <!-- user -->
         <div class="col col-sm-3 text-left">
           <div class="hidden-xs">
@@ -31,16 +32,38 @@
               <span class="glyphicon glyphicon-flag"></span>
             </button>
           </div>
+
           <!-- Image -->
-          <div >
+          <div  class="v_grid_item">
+
+          <!-- activates on 'hover' -->
+            <div class="v_grid_item_actions">
+
+              <!-- link to site  -->
+              <% unless item.website_url.nil? %>
+                <a href='<%=item.website_url %>' id='item_website_url' target="_blank">
+                  <button class="btn btn-sm" style="position:absolute; left:10px; top: 5px;">
+                    <span class="glyphicon glyphicon-globe" ></span>
+                    Visit Website
+                  </button>
+                </a>
+              <% end %>
+
+                <!-- report  -->  
+                <button style="position:absolute; right:10px; top: 5px;" class="btn btn-sm btn-default complaint" id="trigger_complaint" data-url="/complaints/new?item_type=image_item&item_id=<%= item.id%>&"><i class="glyphicon glyphicon-flag"></i></button>
+            </div>
             <%= image_tag item.image_file.url(:s) %>
           </div>
           <!-- END Image -->
+
+
           <!-- Stars -->
           <div id="stars_<%= index %>" style="display: <%= already_voted?(item.voters) ? 'none' : 'normal' %>;">
             <%= render '/votings/shared/voting_stars_small', index: index, item: item %>  
           </div>
           <!-- END Stars -->
+
+
           <!-- RESULT -->
           <div id="result_<%= index %>" style="display: <%= already_voted?(item.voters) ? 'normal' : 'none' %>;">
             <div class="row">
@@ -57,6 +80,8 @@
             </div>  
           </div>
           <!-- END Result -->
+
+
         </div>
 </div>
 <!-- END tile -->              

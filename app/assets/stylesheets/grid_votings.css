@@ -9,3 +9,23 @@
 	border-radius: 4px;
 	box-shadow: 5px 5px 5px #BDBDBD;
 }
+
+.v_grid_item_actions{
+	display: none;
+	text-align: center;
+	padding: 15px;
+	background-color: black;
+	opacity: 0.60;
+	position: absolute;
+	z-index: 5;
+	top: 0px;
+	text-align: center;
+	width: 100%;
+	max-width: 225px;
+	height: 40px;
+}
+
+
+.v_grid_item:hover .v_grid_item_actions{
+	display: block;
+}
