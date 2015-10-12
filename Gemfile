@@ -36,9 +36,6 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-# A Ruby driver for MongoDB
-gem 'mongo'
-
 # mongodb object document mapper
 gem 'mongoid'
 
