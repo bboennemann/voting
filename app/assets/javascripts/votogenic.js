@@ -145,7 +145,7 @@ $(document).ready(function() {
 	});
 
 	
-	$('#new_voting').click(function(){
+	$('.new_voting').click(function(){
 		triggerCanvas(this)
 	});
 
