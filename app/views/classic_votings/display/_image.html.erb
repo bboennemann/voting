@@ -30,13 +30,7 @@
       <!-- description -->
     	<div class="col-sm-5 text-bottom">
         <%= form_for item, remote: true do |f| %>
-          <%= f.text_area :description, class: 'form-control', id: :item_descr, rows: 4, disabled: !is_owner?(item.user_id), placeholder: 'No description...' %> <br>
-            <% if is_owner?(item.user_id) %>
-              <button class="btn btn-sm btn-info">
-                <span class="glyphicon glyphicon-floppy-disk"></span>
-                Save
-              </button>
-            <% end %>
+          <%= f.text_area :description, class: 'form-control item_description', id: :item_descr, rows: 6, disabled: !is_owner?(item.user_id), placeholder: 'Just type something nice about the item on the left here...' %> 
         <% end %>
     	</div>
 

@@ -128,7 +128,11 @@ $(document).ready(function() {
 
 
 	// globally enables bootstrap tooltips wherever configured
-	$('[data-toggle="tooltip"]').tooltip()
+	$('[data-toggle="tooltip"]').tooltip();
+
+	$('.item_description').focusout(function(){
+		$(this).closest("form").submit();
+	});
 
 
 	// user dob datepicker
